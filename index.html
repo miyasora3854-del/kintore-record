@@ -1,212 +1,138 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="ja">
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-<meta name="theme-color" content="#111827">
-
-<title>筋トレ記録 V2</title>
+<title>筋トレ記録</title>
 
 <style>
 
-*{box-sizing:border-box}
+*{
 
-body{
+  box-sizing:border-box;
+
+  -webkit-tap-highlight-color:transparent;
+
+}
+
+html,body{
 
   margin:0;
 
-  font-family:-apple-system,BlinkMacSystemFont,
+  padding:0;
 
-  "Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  height:100%;
 
-  background:#f4f5f7;
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",
 
-  color:#111827;
+    "Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
 
-}
+  background:#f5f6f8;
 
-button,input,select,textarea{font:inherit}
-
-button{cursor:pointer;border:0}
-
-.app{
-
-  max-width:760px;
-
-  margin:auto;
-
-  min-height:100vh;
-
-  padding-bottom:75px;
+  color:#222;
 
 }
 
-header{
+body{
 
-  background:#111827;
+  overflow:hidden;
 
-  color:white;
+}
 
-  padding:17px 18px 14px;
+button,
 
-  position:sticky;
+input,
 
-  top:0;
+select,
+
+textarea{
+
+  font:inherit;
+
+}
+
+button{
+
+  cursor:pointer;
+
+}
+
+.header{
+
+  height:58px;
+
+  background:#fff;
+
+  border-bottom:1px solid #ddd;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:20px;
+
+  font-weight:700;
+
+  position:relative;
 
   z-index:10;
 
 }
 
-.title{
+.main{
 
-  font-size:21px;
+  height:calc(100vh - 118px);
 
-  font-weight:800;
-
-}
-
-.sub{
-
-  font-size:12px;
-
-  opacity:.7;
-
-  margin-top:3px;
-
-}
-
-main{padding:12px}
-
-.card{
-
-  background:white;
-
-  border-radius:16px;
-
-  padding:15px;
-
-  margin-bottom:12px;
-
-  box-shadow:0 2px 10px #0000000b;
-
-}
-
-h2{
-
-  font-size:18px;
-
-  margin:0 0 12px;
-
-}
-
-h3{
-
-  font-size:15px;
-
-  margin:0 0 10px;
-
-}
-
-.row{
-
-  display:flex;
-
-  gap:8px;
-
-  align-items:center;
-
-}
-
-.between{
-
-  justify-content:space-between;
-
-}
-
-.wrap{flex-wrap:wrap}
-
-.btn{
-
-  padding:10px 14px;
-
-  border-radius:11px;
-
-  background:#111827;
-
-  color:white;
-
-  font-weight:700;
-
-}
-
-.btn.secondary{
-
-  background:#e5e7eb;
-
-  color:#111827;
-
-}
-
-.btn.danger{
-
-  background:#fee2e2;
-
-  color:#991b1b;
-
-}
-
-.btn.small{
-
-  padding:7px 10px;
-
-  font-size:13px;
-
-}
-
-input,select,textarea{
-
-  width:100%;
-
-  padding:10px 11px;
-
-  border:1px solid #d1d5db;
-
-  border-radius:10px;
-
-  background:white;
-
-}
-
-textarea{
-
-  min-height:80px;
-
-  resize:vertical;
-
-}
-
-label{
-
-  display:block;
-
-  font-size:12px;
-
-  color:#6b7280;
-
-  margin:9px 0 5px;
+  overflow:hidden;
 
 }
 
 /* =========================
 
-   カレンダー
+   ホーム
 
 ========================= */
+
+.home{
+
+  height:100%;
+
+  overflow-y:auto;
+
+  -webkit-overflow-scrolling:touch;
+
+  padding:12px;
+
+}
+
+.calendar-card,
+
+.preview-card,
+
+.card{
+
+  background:#fff;
+
+  border-radius:14px;
+
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+
+}
+
+.calendar-card{
+
+  padding:12px;
+
+  margin-bottom:12px;
+
+}
 
 .calendar-head{
 
@@ -220,17 +146,47 @@ label{
 
 }
 
-.month{
-
-  font-weight:800;
+.calendar-title{
 
   font-size:18px;
 
+  font-weight:700;
+
 }
 
-.week,
+.month-btn{
 
-.calendar{
+  border:0;
+
+  background:#f0f1f3;
+
+  width:38px;
+
+  height:38px;
+
+  border-radius:10px;
+
+  font-size:20px;
+
+}
+
+.week{
+
+  display:grid;
+
+  grid-template-columns:repeat(7,1fr);
+
+  text-align:center;
+
+  font-size:12px;
+
+  color:#777;
+
+  margin-bottom:5px;
+
+}
+
+.days{
 
   display:grid;
 
@@ -240,29 +196,9 @@ label{
 
 }
 
-.week div{
-
-  text-align:center;
-
-  font-size:11px;
-
-  color:#6b7280;
-
-  padding:4px;
-
-}
-
 .day{
 
-  min-height:67px;
-
-  background:#fafafa;
-
-  border:1px solid #eee;
-
-  border-radius:10px;
-
-  padding:5px;
+  min-height:58px;
 
   position:relative;
 
@@ -272,225 +208,463 @@ label{
 
   width:100%;
 
-  height:100%;
+  height:58px;
 
-  min-height:57px;
+  border:0;
 
   background:transparent;
 
-  text-align:left;
+  border-radius:10px;
 
-  padding:0;
+  position:relative;
 
-}
-
-.day.muted{
-
-  opacity:.25;
+  padding:4px 2px;
 
 }
 
-.day.today{
+.day button:active{
 
-  outline:2px solid #111827;
-
-}
-
-.day.selected{
-
-  background:#eef2ff;
+  background:#eee;
 
 }
 
-.num{
+.day.other button{
 
-  font-weight:800;
-
-  font-size:12px;
+  color:#bbb;
 
 }
 
-.marks{
+.day.today button{
 
-  display:flex;
-
-  flex-wrap:wrap;
-
-  gap:1px;
-
-  margin-top:6px;
-
-  font-size:12px;
+  border:2px solid #222;
 
 }
 
-.mark{
+.day.selected button{
 
-  line-height:1;
+  background:#222;
+
+  color:#fff;
+
+}
+
+.day-number{
+
+  font-size:14px;
+
+  line-height:20px;
+
+}
+
+.day-marks{
+
+  font-size:11px;
+
+  line-height:16px;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+}
+
+.calendar-legend-mini{
+
+  margin-top:8px;
+
+  font-size:11px;
+
+  color:#777;
+
+  text-align:right;
 
 }
 
 /* =========================
 
-   ホーム詳細
+   プレビュー
 
 ========================= */
 
-.home-details{
+.preview-card{
 
-  margin-top:10px;
+  padding:14px;
 
-}
-
-.date-title{
-
-  font-size:20px;
-
-  font-weight:800;
+  margin-bottom:20px;
 
 }
 
-.exercise-card{
+.preview-head{
 
-  border:1px solid #e5e7eb;
+  display:flex;
 
-  border-radius:13px;
-
-  padding:12px;
-
-  margin:10px 0;
-
-}
-
-.pill{
-
-  display:inline-block;
-
-  background:#eef2ff;
-
-  border-radius:999px;
-
-  padding:4px 8px;
-
-  font-size:11px;
-
-  margin:2px;
-
-}
-
-.set{
-
-  display:grid;
-
-  grid-template-columns:35px 1fr 1fr 38px;
-
-  gap:6px;
+  justify-content:space-between;
 
   align-items:center;
 
-  margin-bottom:7px;
+  gap:8px;
+
+  margin-bottom:12px;
 
 }
 
-.setno{
+.preview-date{
 
-  font-weight:800;
+  font-size:18px;
 
-  color:#6b7280;
+  font-weight:700;
 
-  text-align:center;
+}
+
+.primary-btn{
+
+  border:0;
+
+  background:#222;
+
+  color:#fff;
+
+  border-radius:10px;
+
+  padding:9px 13px;
+
+  font-weight:700;
+
+}
+
+.secondary-btn{
+
+  border:0;
+
+  background:#eee;
+
+  color:#222;
+
+  border-radius:10px;
+
+  padding:9px 13px;
+
+  font-weight:600;
+
+}
+
+.preview-scroll{
+
+  max-height:55vh;
+
+  overflow-y:auto;
+
+  -webkit-overflow-scrolling:touch;
+
+  padding-right:2px;
 
 }
 
 .empty{
 
+  color:#888;
+
   text-align:center;
 
-  color:#6b7280;
-
-  padding:25px 5px;
+  padding:30px 10px;
 
 }
 
-.notice{
+.plan-box{
 
-  background:#fff7ed;
+  background:#f3f4f6;
 
-  border:1px solid #fed7aa;
+  border-radius:10px;
+
+  padding:10px;
+
+  margin-bottom:12px;
+
+}
+
+.plan-title{
+
+  font-weight:700;
+
+  margin-bottom:5px;
+
+}
+
+.workout-preview{
+
+  border:1px solid #e1e1e1;
 
   border-radius:12px;
 
-  padding:11px;
+  padding:12px;
 
-  font-size:13px;
-
-}
-
-.memo-box{
-
-  margin-top:10px;
+  margin-bottom:10px;
 
 }
 
-/* =========================
+.workout-title{
 
-   タブ
+  font-size:16px;
 
-========================= */
+  font-weight:700;
 
-.tabs{
-
-  position:fixed;
-
-  bottom:0;
-
-  left:0;
-
-  right:0;
-
-  background:white;
-
-  border-top:1px solid #ddd;
-
-  z-index:20;
-
-  display:flex;
-
-  justify-content:center;
+  margin-bottom:5px;
 
 }
 
-.tabs button{
+.workout-sub{
 
-  flex:1;
+  color:#777;
 
-  max-width:190px;
+  font-size:12px;
 
-  background:white;
+  margin-bottom:8px;
 
-  padding:9px 4px 11px;
+}
 
-  color:#6b7280;
+.set-row{
+
+  display:grid;
+
+  grid-template-columns:45px 1fr 1fr;
+
+  gap:6px;
+
+  padding:5px 0;
+
+  border-bottom:1px solid #eee;
+
+  font-size:14px;
+
+}
+
+.set-row:last-child{
+
+  border-bottom:0;
+
+}
+
+.set-head{
+
+  color:#888;
 
   font-size:12px;
 
 }
 
-.tabs button.active{
+.memo-box{
 
-  color:#111827;
+  background:#fff8dc;
 
-  font-weight:800;
+  border-radius:10px;
+
+  padding:11px;
+
+  margin-top:12px;
+
+  white-space:pre-wrap;
 
 }
 
-.tabs b{
+.memo-title{
+
+  font-weight:700;
+
+  margin-bottom:5px;
+
+}
+
+/* =========================
+
+   下部タブ
+
+========================= */
+
+.bottom-nav{
+
+  height:60px;
+
+  background:#fff;
+
+  border-top:1px solid #ddd;
+
+  display:grid;
+
+  grid-template-columns:repeat(4,1fr);
+
+  position:fixed;
+
+  left:0;
+
+  right:0;
+
+  bottom:0;
+
+  z-index:20;
+
+}
+
+.bottom-nav button{
+
+  border:0;
+
+  background:#fff;
+
+  color:#777;
+
+  font-size:11px;
+
+}
+
+.bottom-nav button.active{
+
+  color:#111;
+
+  font-weight:700;
+
+}
+
+.nav-icon{
 
   display:block;
 
-  font-size:19px;
+  font-size:20px;
 
   margin-bottom:2px;
+
+}
+
+/* =========================
+
+   共通画面
+
+========================= */
+
+.page{
+
+  height:100%;
+
+  overflow-y:auto;
+
+  -webkit-overflow-scrolling:touch;
+
+  padding:12px;
+
+}
+
+.section-title{
+
+  font-size:18px;
+
+  font-weight:700;
+
+  margin:8px 2px 12px;
+
+}
+
+.card{
+
+  padding:14px;
+
+  margin-bottom:12px;
+
+}
+
+.row{
+
+  display:flex;
+
+  gap:8px;
+
+  align-items:center;
+
+}
+
+.row-between{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:8px;
+
+}
+
+.form-group{
+
+  margin-bottom:12px;
+
+}
+
+label{
+
+  display:block;
+
+  font-size:13px;
+
+  color:#666;
+
+  margin-bottom:5px;
+
+}
+
+input,
+
+select,
+
+textarea{
+
+  width:100%;
+
+  border:1px solid #ccc;
+
+  border-radius:9px;
+
+  padding:10px;
+
+  background:#fff;
+
+}
+
+textarea{
+
+  min-height:100px;
+
+  resize:vertical;
+
+}
+
+.small-btn{
+
+  border:0;
+
+  border-radius:8px;
+
+  padding:7px 10px;
+
+  background:#eee;
+
+}
+
+.danger{
+
+  background:#ffe4e4;
+
+  color:#b00000;
+
+}
+
+.item{
+
+  border:1px solid #ddd;
+
+  border-radius:10px;
+
+  padding:11px;
+
+  margin-bottom:8px;
 
 }
 
@@ -506,35 +680,61 @@ label{
 
   inset:0;
 
-  background:#0008;
+  background:rgba(0,0,0,.5);
 
-  display:flex;
+  display:none;
 
-  align-items:center;
+  align-items:flex-end;
 
   justify-content:center;
-
-  padding:16px;
 
   z-index:100;
 
 }
 
+.modal.show{
+
+  display:flex;
+
+}
+
 .modal-box{
 
-  background:white;
+  width:100%;
 
-  width:min(560px,100%);
+  max-width:600px;
 
-  max-height:90vh;
+  max-height:92vh;
 
-  overflow:auto;
+  overflow-y:auto;
 
-  border-radius:18px;
+  background:#fff;
 
-  padding:18px;
+  border-radius:18px 18px 0 0;
 
-  box-shadow:0 20px 60px #0005;
+  padding:16px;
+
+  animation:slideUp .2s ease;
+
+}
+
+@keyframes slideUp{
+
+  from{
+
+    transform:translateY(30px);
+
+    opacity:.5;
+
+  }
+
+  to{
+
+    transform:translateY(0);
+
+    opacity:1;
+
+  }
 
 }
 
@@ -542,25 +742,167 @@ label{
 
   display:flex;
 
-  justify-content:space-between;
-
   align-items:center;
 
-  margin-bottom:8px;
+  justify-content:space-between;
+
+  margin-bottom:15px;
+
+}
+
+.modal-title{
+
+  font-size:19px;
+
+  font-weight:700;
 
 }
 
 .modal-close{
 
-  background:#f3f4f6;
+  border:0;
 
-  border-radius:50%;
+  background:#eee;
 
   width:36px;
 
   height:36px;
 
-  font-size:22px;
+  border-radius:50%;
+
+  font-size:20px;
+
+}
+
+.modal-actions{
+
+  display:flex;
+
+  gap:8px;
+
+  margin-top:15px;
+
+}
+
+.modal-actions button{
+
+  flex:1;
+
+}
+
+/* 部位→種目 */
+
+.exercise-select-note{
+
+  font-size:12px;
+
+  color:#777;
+
+  margin-top:5px;
+
+}
+
+.set-editor{
+
+  border:1px solid #ddd;
+
+  border-radius:10px;
+
+  padding:10px;
+
+  margin-bottom:8px;
+
+}
+
+.set-editor-grid{
+
+  display:grid;
+
+  grid-template-columns:35px 1fr 1fr 38px;
+
+  gap:6px;
+
+  align-items:center;
+
+}
+
+.remove-set{
+
+  border:0;
+
+  background:#ffe5e5;
+
+  color:#b00000;
+
+  border-radius:7px;
+
+  height:38px;
+
+}
+
+.add-set{
+
+  width:100%;
+
+  border:1px dashed #aaa;
+
+  background:#fafafa;
+
+  border-radius:9px;
+
+  padding:10px;
+
+  margin-top:4px;
+
+}
+
+/* =========================
+
+   メニュー画面
+
+========================= */
+
+.menu-section{
+
+  margin-bottom:20px;
+
+}
+
+.menu-category{
+
+  font-size:16px;
+
+  font-weight:700;
+
+  margin:15px 0 8px;
+
+}
+
+.mark-description{
+
+  display:flex;
+
+  align-items:flex-start;
+
+  gap:10px;
+
+  padding:9px 0;
+
+  border-bottom:1px solid #eee;
+
+}
+
+.mark-description:last-child{
+
+  border-bottom:0;
+
+}
+
+.mark-icon{
+
+  font-size:20px;
+
+  width:28px;
 
 }
 
@@ -570,81 +912,81 @@ label{
 
 ========================= */
 
-.statgrid{
+.stat-grid{
 
   display:grid;
 
   grid-template-columns:repeat(2,1fr);
 
-  gap:9px;
+  gap:8px;
 
 }
 
 .stat{
 
-  background:#f9fafb;
+  background:#f3f4f6;
 
-  border-radius:12px;
+  border-radius:10px;
 
   padding:12px;
 
 }
 
-.stat strong{
+.stat-value{
 
-  font-size:20px;
+  font-size:22px;
 
-  display:block;
+  font-weight:700;
 
 }
 
-.muted{
+.stat-label{
 
-  color:#6b7280;
+  color:#777;
 
   font-size:12px;
 
 }
 
-.canvas-wrap{
+canvas{
 
-  width:100%;
-
-  height:280px;
-
-}
-
-.canvas-wrap canvas{
-
-  width:100%;
-
-  height:100%;
+  max-width:100%;
 
 }
 
 /* =========================
 
-   エラー表示
+   PC
 
 ========================= */
 
-#errorBox{
+@media(min-width:700px){
 
-  display:none;
+  .home{
 
-  margin:12px;
+    max-width:800px;
 
-  padding:14px;
+    margin:auto;
 
-  border-radius:12px;
+  }
 
-  background:#fee2e2;
+  .page{
 
-  color:#991b1b;
+    max-width:800px;
 
-  font-size:13px;
+    margin:auto;
 
-  white-space:pre-wrap;
+  }
+
+  .bottom-nav{
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    max-width:800px;
+
+  }
 
 }
 
@@ -654,169 +996,239 @@ label{
 
 <body>
 
-<div class="app">
+<header class="header">
 
-<header>
-
-  <div class="title">🏋️ 筋トレ記録</div>
-
-  <div class="sub" id="headerSub">トレーニングを記録</div>
+  筋トレ記録
 
 </header>
 
-<div id="errorBox"></div>
+<main class="main" id="app"></main>
 
-<main id="main"></main>
+<nav class="bottom-nav">
 
-<div id="modalRoot"></div>
+  <button id="nav-calendar" onclick="showTab('calendar')">
 
-<nav class="tabs">
+    <span class="nav-icon">📅</span>
 
-<button data-tab="calendar" onclick="showTab('calendar')">
+    ホーム
 
-  <b>🏠</b>
+  </button>
 
-  ホーム
+  <button id="nav-menu" onclick="showTab('menu')">
 
-</button>
+    <span class="nav-icon">🏋️</span>
 
-<button data-tab="menu" onclick="showTab('menu')">
+    種目
 
-  <b>📋</b>
+  </button>
 
-  種目
+  <button id="nav-analysis" onclick="showTab('analysis')">
 
-</button>
+    <span class="nav-icon">📊</span>
 
-<button data-tab="analysis" onclick="showTab('analysis')">
+    分析
 
-  <b>📊</b>
+  </button>
 
-  分析
+  <button id="nav-settings" onclick="showTab('settings')">
 
-</button>
+    <span class="nav-icon">⚙️</span>
 
-<button data-tab="settings" onclick="showTab('settings')">
+    メニュー
 
-  <b>⚙️</b>
-
-  メニュー
-
-</button>
+  </button>
 
 </nav>
+
+<div class="modal" id="modal" onclick="modalBackground(event)">
+
+  <div class="modal-box" id="modalBox"></div>
 
 </div>
 
 <script>
 
-/* =====================================================
+/* =========================================================
 
-   基本設定
+   データ
 
-===================================================== */
+========================================================= */
 
-const KEY="kintoreDataV2";
+const KEY = 'kintoreData';
 
-const MENUKEY="kintoreMenusV2";
+const MENUKEY = 'kintoreMenus';
 
-const PROFILEKEY="kintoreProfileV2";
+const PLANKEY = 'kintorePlans';
 
-const cats=[
+const PROFILEKEY = 'kintoreProfile';
 
-  "胸","背中","肩","腕","脚","腹","有酸素","その他"
+const TEMPLATEKEY = 'kintoreTemplates';
 
-];
+const categories = [
 
-const cardio=[
+  '胸',
 
-  "ランニング",
+  '背中',
 
-  "ジョギング",
+  '肩',
 
-  "ウォーキング",
+  '腕',
 
-  "サイクリング",
+  '脚',
 
-  "水泳",
+  '腹',
 
-  "その他"
+  '有酸素',
 
-];
-
-const defaults=[
-
- ["胸","ベンチプレス","バーベル"],
-
- ["胸","チェストプレス","マシン"],
-
- ["胸","ダンベルプレス","ダンベル"],
-
- ["胸","ディップス","自重"],
-
- ["背中","懸垂","自重"],
-
- ["背中","ラットプルダウン","マシン"],
-
- ["背中","ローイング","マシン"],
-
- ["背中","ワンハンドロー","ダンベル"],
-
- ["肩","ショルダープレス","マシン"],
-
- ["肩","サイドレイズ","ダンベル"],
-
- ["肩","フロントレイズ","ダンベル"],
-
- ["腕","アームカール","マシン"],
-
- ["腕","ハンマーカール","ダンベル"],
-
- ["腕","トライセプスプレスダウン","ケーブル"],
-
- ["脚","スクワット","バーベル"],
-
- ["脚","スミスマシンスクワット","スミス"],
-
- ["脚","レッグプレス","マシン"],
-
- ["脚","レッグカール","マシン"],
-
- ["脚","カーフレイズ","スミス"],
-
- ["腹","アブドミナル","マシン"],
-
- ["腹","レッグレイズ","自重"],
-
- ["腹","ケーブルクランチ","ケーブル"],
-
- ...cardio.map(x=>["有酸素",x,"有酸素"]),
-
- ["その他","その他","その他"]
+  'その他'
 
 ];
 
-/* =====================================================
+const cardioExercises = [
 
-   ユーティリティ
+  'ランニング',
 
-===================================================== */
+  'ジョギング',
 
-function loadJSON(key,fallback){
+  'ウォーキング',
+
+  'サイクリング',
+
+  '水泳',
+
+  'その他'
+
+];
+
+const defaultMenus = {
+
+  '胸': [
+
+    'ベンチプレス',
+
+    'チェストプレス',
+
+    'ダンベルプレス',
+
+    'ディップス'
+
+  ],
+
+  '背中': [
+
+    '懸垂',
+
+    'ラットプルダウン',
+
+    'ローイング',
+
+    'ワンハンドロー'
+
+  ],
+
+  '肩': [
+
+    'ショルダープレス',
+
+    'サイドレイズ',
+
+    'フロントレイズ'
+
+  ],
+
+  '腕': [
+
+    'アームカール',
+
+    'ハンマーカール',
+
+    'トライセプスプレスダウン'
+
+  ],
+
+  '脚': [
+
+    'スクワット',
+
+    'スミスマシンスクワット',
+
+    'レッグプレス',
+
+    'レッグカール',
+
+    'カーフレイズ'
+
+  ],
+
+  '腹': [
+
+    'アブドミナル',
+
+    'レッグレイズ',
+
+    'ケーブルクランチ'
+
+  ],
+
+  '有酸素': cardioExercises,
+
+  'その他': [
+
+    'その他'
+
+  ]
+
+};
+
+let data = loadJSON(KEY, {});
+
+let menus = loadJSON(MENUKEY, {});
+
+let plans = loadJSON(PLANKEY, {});
+
+let profile = loadJSON(PROFILEKEY, {
+
+  name:'自分',
+
+  height:'',
+
+  weight:''
+
+});
+
+let templates = loadJSON(TEMPLATEKEY, {});
+
+mergeDefaultMenus();
+
+let state = {
+
+  tab:'calendar',
+
+  date:isoToday(),
+
+  month:new Date(),
+
+  modalWorkout:null,
+
+  modalEditIndex:null
+
+};
+
+/* =========================================================
+
+   基本関数
+
+========================================================= */
+
+function loadJSON(key, fallback){
 
   try{
 
-    const value=localStorage.getItem(key);
+    const value = localStorage.getItem(key);
 
-    if(!value)return fallback;
+    return value ? JSON.parse(value) : fallback;
 
-    const parsed=JSON.parse(value);
-
-    return parsed;
-
-  }catch(error){
-
-    console.error(error);
+  }catch(e){
 
     return fallback;
 
@@ -826,23 +1238,43 @@ function loadJSON(key,fallback){
 
 function saveJSON(key,value){
 
-  try{
+  localStorage.setItem(key,JSON.stringify(value));
 
-    localStorage.setItem(
+}
 
-      key,
+function saveAll(){
 
-      JSON.stringify(value)
+  saveJSON(KEY,data);
 
-    );
+  saveJSON(MENUKEY,menus);
 
-    return true;
+  saveJSON(PLANKEY,plans);
 
-  }catch(error){
+  saveJSON(PROFILEKEY,profile);
 
-    console.error(error);
+  saveJSON(TEMPLATEKEY,templates);
 
-    return false;
+}
+
+function mergeDefaultMenus(){
+
+  for(const cat of categories){
+
+    if(!Array.isArray(menus[cat])){
+
+      menus[cat] = [];
+
+    }
+
+    for(const exercise of defaultMenus[cat]){
+
+      if(!menus[cat].includes(exercise)){
+
+        menus[cat].push(exercise);
+
+      }
+
+    }
 
   }
 
@@ -850,7 +1282,7 @@ function saveJSON(key,value){
 
 function isoToday(){
 
-  const d=new Date();
+  const d = new Date();
 
   return localDate(d);
 
@@ -858,513 +1290,375 @@ function isoToday(){
 
 function localDate(d){
 
-  return d.getFullYear()+"-"+
+  const y = d.getFullYear();
 
-    String(d.getMonth()+1).padStart(2,"0")+"-"+
+  const m = String(d.getMonth()+1).padStart(2,'0');
 
-    String(d.getDate()).padStart(2,"0");
+  const day = String(d.getDate()).padStart(2,'0');
 
-}
-
-function esc(value){
-
-  return String(value??"").replace(
-
-    /[&<>"']/g,
-
-    function(m){
-
-      return {
-
-        "&":"&amp;",
-
-        "<":"&lt;",
-
-        ">":"&gt;",
-
-        '"':"&quot;",
-
-        "'":"&#39;"
-
-      }[m];
-
-    }
-
-  );
+  return `${y}-${m}-${day}`;
 
 }
 
-/* =====================================================
+function esc(str){
 
-   データ
+  return String(str ?? '')
 
-===================================================== */
+    .replace(/&/g,'&amp;')
 
-let data=loadJSON(KEY,{});
+    .replace(/</g,'&lt;')
 
-if(!data || typeof data!=="object"){
+    .replace(/>/g,'&gt;')
 
-  data={};
+    .replace(/"/g,'&quot;')
 
-}
-
-let menus=loadJSON(MENUKEY,[]);
-
-if(!Array.isArray(menus)){
-
-  menus=[];
+    .replace(/'/g,'&#039;');
 
 }
 
-function mergeDefaultMenus(){
+function formatDate(date){
 
-  const existing=new Set(
+  const d = new Date(date + 'T00:00:00');
 
-    menus.map(
-
-      m=>m.cat+"|"+m.name
-
-    )
-
-  );
-
-  defaults.forEach((item,index)=>{
-
-    const key=item[0]+"|"+item[1];
-
-    if(!existing.has(key)){
-
-      menus.push({
-
-        id:"default_"+index,
-
-        cat:item[0],
-
-        name:item[1],
-
-        equip:item[2]
-
-      });
-
-    }
-
-  });
+  return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
 
 }
 
-mergeDefaultMenus();
+function getRecord(date){
 
-let profile=loadJSON(
+  if(!data[date]){
 
-  PROFILEKEY,
+    return {
 
-  {
+      workouts:[],
 
-    name:"自分",
+      memo:''
 
-    height:"",
-
-    weight:""
+    };
 
   }
 
-);
+  return {
 
-if(!profile || typeof profile!=="object"){
+    workouts:Array.isArray(data[date].workouts)
 
-  profile={
+      ? data[date].workouts
 
-    name:"自分",
+      : [],
 
-    height:"",
-
-    weight:""
+    memo:data[date].memo || ''
 
   };
 
 }
 
-/* =====================================================
+function hasWorkout(date){
 
-   状態
-
-===================================================== */
-
-let state={
-
-  tab:"calendar",
-
-  date:isoToday(),
-
-  month:new Date(),
-
-  analysisExercise:""
-
-};
-
-/* =====================================================
-
-   保存
-
-===================================================== */
-
-function saveAll(){
-
-  const a=saveJSON(KEY,data);
-
-  const b=saveJSON(MENUKEY,menus);
-
-  const c=saveJSON(PROFILEKEY,profile);
-
-  if(!a || !b || !c){
-
-    alert(
-
-      "保存できませんでした。\n"+
-
-      "ブラウザの保存機能が制限されている可能性があります。"
-
-    );
-
-    return false;
-
-  }
-
-  return true;
+  return getRecord(date).workouts.length > 0;
 
 }
 
-/* =====================================================
+function hasMemo(date){
 
-   画面切り替え
+  return !!getRecord(date).memo.trim();
 
-===================================================== */
+}
+
+function hasPlan(date){
+
+  return Array.isArray(plans[date]) && plans[date].length > 0;
+
+}
+
+/* =========================================================
+
+   タブ
+
+========================================================= */
 
 function showTab(tab){
 
-  state.tab=tab;
+  state.tab = tab;
+
+  document.querySelectorAll('.bottom-nav button')
+
+    .forEach(b => b.classList.remove('active'));
+
+  const nav = document.getElementById(
+
+    'nav-' + (tab === 'calendar' ? 'calendar' : tab)
+
+  );
+
+  if(nav){
+
+    nav.classList.add('active');
+
+  }
 
   render();
 
 }
 
-/* =====================================================
+/* =========================================================
 
-   メイン描画
+   描画
 
-===================================================== */
+========================================================= */
 
 function render(){
 
-  document.querySelectorAll(".tabs button")
+  const app = document.getElementById('app');
 
-  .forEach(button=>{
+  if(state.tab === 'calendar'){
 
-    button.classList.toggle(
+    app.innerHTML = renderHome();
 
-      "active",
+  }
 
-      button.dataset.tab===state.tab
+  if(state.tab === 'menu'){
 
-    );
+    app.innerHTML = renderMenu();
 
-  });
+  }
 
-  document.getElementById("headerSub")
+  if(state.tab === 'analysis'){
 
-    .textContent=
+    app.innerHTML = renderAnalysis();
 
-    profile.name+
+    setTimeout(drawWeightChart,50);
 
-    " のトレーニング記録";
+  }
 
-  if(state.tab==="calendar"){
+  if(state.tab === 'settings'){
 
-    renderCalendar();
-
-  }else if(state.tab==="menu"){
-
-    renderMenu();
-
-  }else if(state.tab==="analysis"){
-
-    renderAnalysis();
-
-  }else{
-
-    renderSettings();
+    app.innerHTML = renderSettings();
 
   }
 
 }
 
-/* =====================================================
+/* =========================================================
 
-   カレンダー
+   ホーム
 
-===================================================== */
+========================================================= */
+
+function renderHome(){
+
+  return `
+
+    <div class="home">
+
+      ${renderCalendar()}
+
+      ${renderHomePreview()}
+
+    </div>
+
+  `;
+
+}
 
 function renderCalendar(){
 
-  const d=state.month;
+  const year = state.month.getFullYear();
 
-  const year=d.getFullYear();
+  const month = state.month.getMonth();
 
-  const month=d.getMonth();
+  const first = new Date(year,month,1);
 
-  const first=new Date(
+  const last = new Date(year,month+1,0);
 
-    year,
+  const startDay = first.getDay();
 
-    month,
+  const totalDays = last.getDate();
 
-    1
+  let html = `
 
-  );
-
-  const last=new Date(
-
-    year,
-
-    month+1,
-
-    0
-
-  );
-
-  const start=
-
-    (first.getDay()+6)%7;
-
-  let cells=[];
-
-  for(let i=0;i<start;i++){
-
-    cells.push(
-
-      '<div class="day muted"></div>'
-
-    );
-
-  }
-
-  for(
-
-    let n=1;
-
-    n<=last.getDate();
-
-    n++
-
-  ){
-
-    const date=localDate(
-
-      new Date(year,month,n)
-
-    );
-
-    const record=data[date];
-
-    const marks=[];
-
-    if(
-
-      record &&
-
-      Array.isArray(record.workouts) &&
-
-      record.workouts.length
-
-    ){
-
-      marks.push(
-
-        '<span class="mark">🔥</span>'
-
-      );
-
-    }
-
-    if(
-
-      record &&
-
-      record.memo &&
-
-      String(record.memo).trim()
-
-    ){
-
-      marks.push(
-
-        '<span class="mark">📝</span>'
-
-      );
-
-    }
-
-    if(
-
-      record &&
-
-      record.pr
-
-    ){
-
-      marks.push(
-
-        '<span class="mark">🏆</span>'
-
-      );
-
-    }
-
-    cells.push(`
-
-      <div class="day
-
-        ${date===isoToday()?"today":""}
-
-        ${date===state.date?"selected":""}">
-
-        <button
-
-          onclick="openDate('${date}')">
-
-          <div class="num">
-
-            ${n}
-
-          </div>
-
-          <div class="marks">
-
-            ${marks.join("")}
-
-          </div>
-
-        </button>
-
-      </div>
-
-    `);
-
-  }
-
-  document.getElementById("main").innerHTML=`
-
-    <div class="card">
+    <div class="calendar-card">
 
       <div class="calendar-head">
 
-        <button
+        <button class="month-btn" onclick="moveMonth(-1)">‹</button>
 
-          class="btn secondary small"
-
-          onclick="moveMonth(-1)">
-
-          ‹
-
-        </button>
-
-        <div class="month">
+        <div class="calendar-title">
 
           ${year}年${month+1}月
 
         </div>
 
-        <button
-
-          class="btn secondary small"
-
-          onclick="moveMonth(1)">
-
-          ›
-
-        </button>
+        <button class="month-btn" onclick="moveMonth(1)">›</button>
 
       </div>
 
       <div class="week">
 
-        ${[
+        <div>日</div>
 
-          "月","火","水","木","金","土","日"
+        <div>月</div>
 
-        ].map(
+        <div>火</div>
 
-          x=>`<div>${x}</div>`
+        <div>水</div>
 
-        ).join("")}
+        <div>木</div>
 
-      </div>
+        <div>金</div>
 
-      <div class="calendar">
-
-        ${cells.join("")}
+        <div>土</div>
 
       </div>
 
-    </div>
+      <div class="days">
 
-    <div
+  `;
 
-      class="home-details"
+  // 前月
 
-      id="homeDetails">
+  for(let i=0;i<startDay;i++){
+
+    const d = new Date(year,month,i-startDay+1);
+
+    html += renderDay(d,true);
+
+  }
+
+  // 当月
+
+  for(let i=1;i<=totalDays;i++){
+
+    const d = new Date(year,month,i);
+
+    html += renderDay(d,false);
+
+  }
+
+  // 翌月
+
+  const totalCells = startDay + totalDays;
+
+  const remain = (7 - totalCells % 7) % 7;
+
+  for(let i=1;i<=remain;i++){
+
+    const d = new Date(year,month+1,i);
+
+    html += renderDay(d,true);
+
+  }
+
+  html += `
+
+      </div>
+
+      <div class="calendar-legend-mini">
+
+        🔥記録　📅予定　📝メモ
+
+      </div>
 
     </div>
 
   `;
 
-  renderHomeDetails();
+  return html;
 
 }
 
-/* =====================================================
+function renderDay(d,other){
 
-   日付選択
+  const date = localDate(d);
 
-===================================================== */
+  const today = isoToday() === date;
+
+  const selected = state.date === date;
+
+  let cls = 'day';
+
+  if(other) cls += ' other';
+
+  if(today) cls += ' today';
+
+  if(selected) cls += ' selected';
+
+  let marks = '';
+
+  if(hasWorkout(date)){
+
+    marks += '🔥';
+
+  }
+
+  if(hasPlan(date)){
+
+    marks += '📅';
+
+  }
+
+  if(hasMemo(date)){
+
+    marks += '📝';
+
+  }
+
+  return `
+
+    <div class="${cls}">
+
+      <button onclick="openDate('${date}')">
+
+        <div class="day-number">${d.getDate()}</div>
+
+        <div class="day-marks">${marks}</div>
+
+      </button>
+
+    </div>
+
+  `;
+
+}
 
 function openDate(date){
 
-  state.date=date;
+  state.date = date;
+
+  const d = new Date(date + 'T00:00:00');
+
+  if(
+
+    d.getMonth() !== state.month.getMonth() ||
+
+    d.getFullYear() !== state.month.getFullYear()
+
+  ){
+
+    state.month = new Date(
+
+      d.getFullYear(),
+
+      d.getMonth(),
+
+      1
+
+    );
+
+  }
 
   render();
-
-  setTimeout(()=>{
-
-    const box=
-
-      document.getElementById(
-
-        "homeDetails"
-
-      );
-
-    if(box){
-
-      box.scrollIntoView({
-
-        behavior:"smooth",
-
-        block:"start"
-
-      });
-
-    }
-
-  },30);
 
 }
 
 function moveMonth(diff){
 
-  state.month.setMonth(
+  state.month = new Date(
 
-    state.month.getMonth()+diff
+    state.month.getFullYear(),
+
+    state.month.getMonth()+diff,
+
+    1
 
   );
 
@@ -1372,227 +1666,29 @@ function moveMonth(diff){
 
 }
 
-/* =====================================================
+/* =========================================================
 
-   日詳細
+   ホーム：表示専用プレビュー
 
-===================================================== */
+========================================================= */
 
-function renderHomeDetails(){
+function renderHomePreview(){
 
-  const box=
+  const record = getRecord(state.date);
 
-    document.getElementById(
+  const planned = plans[state.date] || [];
 
-      "homeDetails"
+  let body = '';
 
-    );
+  if(planned.length){
 
-  if(!box)return;
+    body += `
 
-  const record=
+      <div class="plan-box">
 
-    data[state.date] || {
+        <div class="plan-title">📅 予定</div>
 
-      workouts:[],
-
-      memo:"",
-
-      pr:false
-
-    };
-
-  const workouts=
-
-    Array.isArray(record.workouts)
-
-      ?record.workouts
-
-      :[];
-
-  box.innerHTML=`
-
-    <div class="card">
-
-      <div class="row between">
-
-        <div class="date-title">
-
-          ${state.date.replaceAll("-","/")}
-
-        </div>
-
-        <button
-
-          class="btn"
-
-          onclick="addWorkout()">
-
-          ＋ 記録
-
-        </button>
-
-      </div>
-
-      ${
-
-        workouts.length
-
-        ?
-
-        workouts.map(
-
-          (w,i)=>
-
-            workoutHTML(w,i)
-
-        ).join("")
-
-        :
-
-        `
-
-        <div class="empty">
-
-          この日の記録はありません
-
-        </div>
-
-        `
-
-      }
-
-      <div class="memo-box">
-
-        <label>
-
-          今日のメモ
-
-        </label>
-
-        <textarea
-
-          id="dayMemo"
-
-          placeholder="体調・気づき・疲労感など"
-
-        >${esc(record.memo||"")}</textarea>
-
-      </div>
-
-      <div
-
-        class="row"
-
-        style="margin-top:10px">
-
-        <button
-
-          class="btn"
-
-          onclick="saveDay()">
-
-          保存
-
-        </button>
-
-        <button
-
-          class="btn secondary"
-
-          onclick="copyPrevious()">
-
-          前回コピー
-
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-/* =====================================================
-
-   ワークアウト表示
-
-===================================================== */
-
-function workoutHTML(w,index){
-
-  if(w.cat==="有酸素"){
-
-    return `
-
-      <div class="exercise-card">
-
-        <div class="row between">
-
-          <div>
-
-            <strong>
-
-              ${esc(w.exercise)}
-
-            </strong>
-
-            <span class="pill">
-
-              有酸素
-
-            </span>
-
-          </div>
-
-          <button
-
-            class="btn danger small"
-
-            onclick="removeWorkout(${index})">
-
-            削除
-
-          </button>
-
-        </div>
-
-        <label>
-
-          時間（分）
-
-        </label>
-
-        <input
-
-          class="cardio-time"
-
-          data-i="${index}"
-
-          type="number"
-
-          min="0"
-
-          value="${esc(w.time||"")}"
-
-          placeholder="例：60">
-
-        <label>
-
-          種目メモ
-
-        </label>
-
-        <textarea
-
-          class="workout-memo"
-
-          data-i="${index}"
-
-          placeholder="この運動についてのメモ"
-
-        >${esc(w.memo||"")}</textarea>
+        <div>${planned.map(esc).join(' / ')}</div>
 
       </div>
 
@@ -1600,145 +1696,83 @@ function workoutHTML(w,index){
 
   }
 
-  const sets=
+  if(record.workouts.length){
 
-    Array.isArray(w.sets)
+    record.workouts.forEach((w,i)=>{
 
-      ?w.sets
+      body += homeWorkoutHTML(w,i);
 
-      :[];
+    });
+
+  }else if(!planned.length){
+
+    body += `
+
+      <div class="empty">
+
+        この日の記録はありません
+
+      </div>
+
+    `;
+
+  }
+
+  if(record.memo){
+
+    body += `
+
+      <div class="memo-box">
+
+        <div class="memo-title">📝 メモ</div>
+
+        ${esc(record.memo)}
+
+      </div>
+
+    `;
+
+  }
 
   return `
 
-    <div class="exercise-card">
+    <div class="preview-card">
 
-      <div class="row between">
+      <div class="preview-head">
 
-        <div>
+        <div class="preview-date">
 
-          <strong>
-
-            ${esc(w.exercise)}
-
-          </strong>
-
-          <span class="pill">
-
-            ${esc(w.cat)}
-
-          </span>
-
-          <span class="pill">
-
-            ${esc(w.equip)}
-
-          </span>
+          ${formatDate(state.date)}
 
         </div>
 
-        <button
+        <div class="row">
 
-          class="btn danger small"
+          <button class="secondary-btn"
 
-          onclick="removeWorkout(${index})">
+            onclick="openDayMemoModal()">
 
-          削除
+            📝 メモ
 
-        </button>
+          </button>
 
-      </div>
+          <button class="primary-btn"
 
-      <div style="margin-top:10px">
+            onclick="addWorkout()">
 
-        ${
+            ＋ 記録
 
-          sets.map(
+          </button>
 
-            (s,j)=>`
-
-              <div class="set">
-
-                <div class="setno">
-
-                  ${j+1}
-
-                </div>
-
-                <input
-
-                  class="weight"
-
-                  data-i="${index}"
-
-                  data-j="${j}"
-
-                  type="number"
-
-                  step="0.1"
-
-                  value="${esc(s.weight||"")}"
-
-                  placeholder="kg">
-
-                <input
-
-                  class="reps"
-
-                  data-i="${index}"
-
-                  data-j="${j}"
-
-                  type="number"
-
-                  value="${esc(s.reps||"")}"
-
-                  placeholder="回">
-
-                <button
-
-                  class="btn danger small"
-
-                  onclick="removeSet(${index},${j})">
-
-                  ×
-
-                </button>
-
-              </div>
-
-            `
-
-          ).join("")
-
-        }
+        </div>
 
       </div>
 
-      <button
+      <div class="preview-scroll">
 
-        class="btn secondary small"
+        ${body}
 
-        onclick="addSet(${index})">
-
-        ＋ セット追加
-
-      </button>
-
-      <label>
-
-        種目メモ
-
-      </label>
-
-      <textarea
-
-        class="workout-memo"
-
-        data-i="${index}"
-
-        placeholder="この種目についてのメモ"
-
-      >${esc(w.memo||"")}</textarea>
+      </div>
 
     </div>
 
@@ -1746,65 +1780,267 @@ function workoutHTML(w,index){
 
 }
 
-/* =====================================================
+function homeWorkoutHTML(w,index){
 
-   記録追加モーダル
+  if(w.cat === '有酸素'){
 
-===================================================== */
+    return `
+
+      <div class="workout-preview">
+
+        <div class="workout-title">
+
+          ${esc(w.exercise)}
+
+        </div>
+
+        <div class="workout-sub">
+
+          有酸素
+
+        </div>
+
+        <div>
+
+          ⏱ ${esc(w.time || '未入力')} 分
+
+        </div>
+
+        ${
+
+          w.memo
+
+          ? `<div class="memo-box">${esc(w.memo)}</div>`
+
+          : ''
+
+        }
+
+      </div>
+
+    `;
+
+  }
+
+  let sets = '';
+
+  (w.sets || []).forEach((s,i)=>{
+
+    sets += `
+
+      <div class="set-row">
+
+        <div>${i+1}セット</div>
+
+        <div>${esc(s.weight || '-')} kg</div>
+
+        <div>${esc(s.reps || '-')} 回</div>
+
+      </div>
+
+    `;
+
+  });
+
+  return `
+
+    <div class="workout-preview">
+
+      <div class="workout-title">
+
+        ${esc(w.exercise)}
+
+      </div>
+
+      <div class="workout-sub">
+
+        ${esc(w.cat || '')}
+
+        ${w.equip ? ' / ' + esc(w.equip) : ''}
+
+      </div>
+
+      ${sets}
+
+      ${
+
+        w.memo
+
+        ? `<div class="memo-box">${esc(w.memo)}</div>`
+
+        : ''
+
+      }
+
+    </div>
+
+  `;
+
+}
+
+/* =========================================================
+
+   記録モーダル
+
+========================================================= */
 
 function addWorkout(){
 
-  const options=
+  openWorkoutModal(-1);
 
-    menus.map(
+}
 
-      m=>`
+function openWorkoutModal(index){
 
-        <option value="${esc(m.id)}">
+  const record = getRecord(state.date);
 
-          ${esc(m.cat)}
+  if(index >= 0){
 
-          ／
+    const original = record.workouts[index];
 
-          ${esc(m.name)}
+    state.modalWorkout = JSON.parse(
 
-        </option>
+      JSON.stringify(original)
 
-      `
+    );
 
-    ).join("");
+    state.modalEditIndex = index;
 
-  document.getElementById("modalRoot")
+  }else{
 
-    .innerHTML=`
+    state.modalWorkout = {
 
-      <div
+      cat:'胸',
 
-        class="modal"
+      exercise:menus['胸'][0] || '',
 
-        onclick="
+      equip:'',
 
-          if(event.target===this)
+      sets:[
 
-          closeModal()
+        {weight:'',reps:''},
 
-        ">
+        {weight:'',reps:''},
 
-        <div class="modal-box">
+        {weight:'',reps:''}
 
-          <div class="modal-head">
+      ],
 
-            <h2 style="margin:0">
+      time:'',
 
-              記録を追加
+      memo:''
 
-            </h2>
+    };
+
+    state.modalEditIndex = null;
+
+  }
+
+  renderWorkoutModal();
+
+}
+
+function renderWorkoutModal(){
+
+  const w = state.modalWorkout;
+
+  const isCardio = w.cat === '有酸素';
+
+  let exerciseOptions = '';
+
+  const list = menus[w.cat] || [];
+
+  list.forEach(ex=>{
+
+    exerciseOptions += `
+
+      <option value="${esc(ex)}"
+
+        ${w.exercise === ex ? 'selected' : ''}>
+
+        ${esc(ex)}
+
+      </option>
+
+    `;
+
+  });
+
+  let content = '';
+
+  if(isCardio){
+
+    content = `
+
+      <div class="form-group">
+
+        <label>時間（分）</label>
+
+        <input
+
+          id="modal-time"
+
+          type="number"
+
+          min="0"
+
+          inputmode="decimal"
+
+          value="${esc(w.time || '')}"
+
+          placeholder="例：30">
+
+      </div>
+
+    `;
+
+  }else{
+
+    let setsHTML = '';
+
+    (w.sets || []).forEach((s,i)=>{
+
+      setsHTML += `
+
+        <div class="set-editor">
+
+          <div class="set-editor-grid">
+
+            <div>${i+1}</div>
+
+            <input
+
+              id="modal-weight-${i}"
+
+              type="number"
+
+              step="0.1"
+
+              inputmode="decimal"
+
+              placeholder="重量 kg"
+
+              value="${esc(s.weight || '')}">
+
+            <input
+
+              id="modal-reps-${i}"
+
+              type="number"
+
+              min="0"
+
+              inputmode="numeric"
+
+              placeholder="回数"
+
+              value="${esc(s.reps || '')}">
 
             <button
 
-              class="modal-close"
+              class="remove-set"
 
-              onclick="closeModal()">
+              onclick="modalRemoveSet(${i})">
 
               ×
 
@@ -1812,1225 +2048,883 @@ function addWorkout(){
 
           </div>
 
-          <label>
-
-            種目
-
-          </label>
-
-          <select id="addExercise">
-
-            ${options}
-
-          </select>
-
-          <div
-
-            class="notice"
-
-            style="margin-top:12px">
-
-            筋トレは
-
-            <strong>3セット</strong>
-
-            から開始します。
-
-          </div>
-
-          <div
-
-            class="row"
-
-            style="
-
-              margin-top:14px;
-
-              justify-content:flex-end
-
-            ">
-
-            <button
-
-              class="btn secondary"
-
-              onclick="closeModal()">
-
-              キャンセル
-
-            </button>
-
-            <button
-
-              class="btn"
-
-              onclick="confirmAddWorkout()">
-
-              追加
-
-            </button>
-
-          </div>
-
         </div>
 
-      </div>
-
-    `;
-
-}
-
-function confirmAddWorkout(){
-
-  const select=
-
-    document.getElementById(
-
-      "addExercise"
-
-    );
-
-  if(!select)return;
-
-  const menu=
-
-    menus.find(
-
-      m=>m.id===select.value
-
-    );
-
-  if(!menu)return;
-
-  if(!data[state.date]){
-
-    data[state.date]={
-
-      workouts:[],
-
-      memo:"",
-
-      pr:false
-
-    };
-
-  }
-
-  if(
-
-    !Array.isArray(
-
-      data[state.date].workouts
-
-    )
-
-  ){
-
-    data[state.date].workouts=[];
-
-  }
-
-  let workout;
-
-  if(menu.cat==="有酸素"){
-
-    workout={
-
-      cat:menu.cat,
-
-      exercise:menu.name,
-
-      equip:menu.equip,
-
-      time:"",
-
-      memo:""
-
-    };
-
-  }else{
-
-    workout={
-
-      cat:menu.cat,
-
-      exercise:menu.name,
-
-      equip:menu.equip,
-
-      sets:[
-
-        {
-
-          weight:"",
-
-          reps:""
-
-        },
-
-        {
-
-          weight:"",
-
-          reps:""
-
-        },
-
-        {
-
-          weight:"",
-
-          reps:""
-
-        }
-
-      ],
-
-      memo:""
-
-    };
-
-  }
-
-  data[state.date].workouts.push(
-
-    workout
-
-  );
-
-  saveAll();
-
-  closeModal();
-
-  renderHomeDetails();
-
-}
-
-/* =====================================================
-
-   セット
-
-===================================================== */
-
-function addSet(index){
-
-  const workout=
-
-    data[state.date]?.workouts?.[index];
-
-  if(!workout)return;
-
-  if(!Array.isArray(workout.sets)){
-
-    workout.sets=[];
-
-  }
-
-  workout.sets.push({
-
-    weight:"",
-
-    reps:""
-
-  });
-
-  renderHomeDetails();
-
-}
-
-function removeSet(index,setIndex){
-
-  const workout=
-
-    data[state.date]?.workouts?.[index];
-
-  if(!workout)return;
-
-  if(workout.sets.length<=1){
-
-    alert(
-
-      "セットを0件にはできません。"
-
-    );
-
-    return;
-
-  }
-
-  workout.sets.splice(
-
-    setIndex,
-
-    1
-
-  );
-
-  saveAll();
-
-  renderHomeDetails();
-
-}
-
-/* =====================================================
-
-   ワークアウト削除
-
-===================================================== */
-
-function removeWorkout(index){
-
-  const workout=
-
-    data[state.date]?.workouts?.[index];
-
-  if(!workout)return;
-
-  if(
-
-    confirm(
-
-      "この記録を削除しますか？"
-
-    )
-
-  ){
-
-    data[state.date].workouts.splice(
-
-      index,
-
-      1
-
-    );
-
-    saveAll();
-
-    renderHomeDetails();
-
-  }
-
-}
-
-/* =====================================================
-
-   日の保存
-
-===================================================== */
-
-function saveDay(){
-
-  if(!data[state.date]){
-
-    data[state.date]={
-
-      workouts:[],
-
-      memo:"",
-
-      pr:false
-
-    };
-
-  }
-
-  const workouts=
-
-    data[state.date].workouts;
-
-  document.querySelectorAll(
-
-    ".weight"
-
-  ).forEach(el=>{
-
-    const i=
-
-      Number(el.dataset.i);
-
-    const j=
-
-      Number(el.dataset.j);
-
-    if(
-
-      workouts[i] &&
-
-      workouts[i].sets &&
-
-      workouts[i].sets[j]
-
-    ){
-
-      workouts[i].sets[j].weight=
-
-        el.value;
-
-    }
-
-  });
-
-  document.querySelectorAll(
-
-    ".reps"
-
-  ).forEach(el=>{
-
-    const i=
-
-      Number(el.dataset.i);
-
-    const j=
-
-      Number(el.dataset.j);
-
-    if(
-
-      workouts[i] &&
-
-      workouts[i].sets &&
-
-      workouts[i].sets[j]
-
-    ){
-
-      workouts[i].sets[j].reps=
-
-        el.value;
-
-    }
-
-  });
-
-  document.querySelectorAll(
-
-    ".cardio-time"
-
-  ).forEach(el=>{
-
-    const i=
-
-      Number(el.dataset.i);
-
-    if(workouts[i]){
-
-      workouts[i].time=
-
-        el.value;
-
-    }
-
-  });
-
-  document.querySelectorAll(
-
-    ".workout-memo"
-
-  ).forEach(el=>{
-
-    const i=
-
-      Number(el.dataset.i);
-
-    if(workouts[i]){
-
-      workouts[i].memo=
-
-        el.value;
-
-    }
-
-  });
-
-  const memo=
-
-    document.getElementById(
-
-      "dayMemo"
-
-    );
-
-  data[state.date].memo=
-
-    memo ? memo.value : "";
-
-  data[state.date].pr=
-
-    detectPR(state.date);
-
-  saveAll();
-
-  render();
-
-}
-
-/* =====================================================
-
-   PR判定
-
-===================================================== */
-
-function detectPR(date){
-
-  const record=data[date];
-
-  if(!record)return false;
-
-  let foundPR=false;
-
-  const previousDates=
-
-    Object.keys(data)
-
-      .filter(
-
-        d=>d<date
-
-      )
-
-      .sort();
-
-  const previous=
-
-    previousDates.map(
-
-      d=>data[d]
-
-    );
-
-  const currentWorkouts=
-
-    Array.isArray(record.workouts)
-
-      ?record.workouts
-
-      :[];
-
-  currentWorkouts.forEach(workout=>{
-
-    if(workout.cat==="有酸素")return;
-
-    const currentMax=
-
-      Math.max(
-
-        ...(
-
-          Array.isArray(workout.sets)
-
-            ?workout.sets
-
-            :[]
-
-        ).map(
-
-          s=>Number(s.weight)||0
-
-        ),
-
-        0
-
-      );
-
-    if(currentMax<=0)return;
-
-    let oldMax=0;
-
-    previous.forEach(r=>{
-
-      const workouts=
-
-        Array.isArray(r?.workouts)
-
-          ?r.workouts
-
-          :[];
-
-      workouts
-
-        .filter(
-
-          w=>w.exercise===workout.exercise
-
-        )
-
-        .forEach(w=>{
-
-          (
-
-            Array.isArray(w.sets)
-
-              ?w.sets
-
-              :[]
-
-          ).forEach(s=>{
-
-            oldMax=Math.max(
-
-              oldMax,
-
-              Number(s.weight)||0
-
-            );
-
-          });
-
-        });
+      `;
 
     });
 
-    if(currentMax>oldMax){
+    content = `
 
-      foundPR=true;
+      <div class="form-group">
 
-    }
+        <label>セット</label>
 
-  });
-
-  return foundPR;
-
-}
-
-/* =====================================================
-
-   前回コピー
-
-===================================================== */
-
-function copyPrevious(){
-
-  const dates=
-
-    Object.keys(data)
-
-      .filter(
-
-        d=>d<state.date
-
-      )
-
-      .sort();
-
-  if(!dates.length){
-
-    alert(
-
-      "前回の記録がありません。"
-
-    );
-
-    return;
-
-  }
-
-  const previous=
-
-    data[dates[dates.length-1]];
-
-  if(!previous)return;
-
-  data[state.date]=
-
-    JSON.parse(
-
-      JSON.stringify(previous)
-
-    );
-
-  data[state.date].pr=false;
-
-  saveAll();
-
-  renderHomeDetails();
-
-}
-
-/* =====================================================
-
-   モーダル
-
-===================================================== */
-
-function closeModal(){
-
-  document.getElementById(
-
-    "modalRoot"
-
-  ).innerHTML="";
-
-}
-
-/* =====================================================
-
-   種目管理
-
-===================================================== */
-
-function renderMenu(){
-
-  const grouped={};
-
-  menus.forEach(m=>{
-
-    if(!grouped[m.cat]){
-
-      grouped[m.cat]=[];
-
-    }
-
-    grouped[m.cat].push(m);
-
-  });
-
-  document.getElementById("main")
-
-    .innerHTML=`
-
-      <div class="card">
-
-        <h2>
-
-          種目管理
-
-        </h2>
+        ${setsHTML}
 
         <button
 
-          class="btn"
+          class="add-set"
 
-          onclick="menuForm()">
+          onclick="modalAddSet()">
 
-          ＋ 種目を追加
+          ＋ セット追加
 
         </button>
 
       </div>
 
-      <div class="card">
+    `;
 
-        ${Object.keys(grouped).map(
+  }
 
-          cat=>`
+  document.getElementById('modalBox').innerHTML = `
 
-            <h3 style="margin-top:16px">
+    <div class="modal-head">
 
-              ${esc(cat)}
+      <div class="modal-title">
 
-            </h3>
-
-            ${
-
-              grouped[cat].map(
-
-                m=>`
-
-                  <div
-
-                    class="row between"
-
-                    style="
-
-                      padding:9px 0;
-
-                      border-bottom:1px solid #eee
-
-                    ">
-
-                    <div>
-
-                      <div>
-
-                        ${esc(m.name)}
-
-                      </div>
-
-                      <div class="muted">
-
-                        ${esc(m.equip)}
-
-                      </div>
-
-                    </div>
-
-                    <div>
-
-                      <button
-
-                        class="btn secondary small"
-
-                        onclick="menuForm('${esc(m.id)}')">
-
-                        編集
-
-                      </button>
-
-                      <button
-
-                        class="btn danger small"
-
-                        onclick="deleteMenu('${esc(m.id)}')">
-
-                        削除
-
-                      </button>
-
-                    </div>
-
-                  </div>
-
-                `
-
-              ).join("")
-
-            }
-
-          `
-
-        ).join("")}
+        ${state.modalEditIndex === null ? '記録を追加' : '記録を変更'}
 
       </div>
 
-    `;
+      <button class="modal-close" onclick="closeModal()">×</button>
 
-}
+    </div>
 
-function menuForm(id){
+    <div class="form-group">
 
-  const menu=
+      <label>部位</label>
 
-    menus.find(
+      <select id="modal-category"
 
-      m=>m.id===id
+        onchange="modalCategoryChanged()">
 
-    ) || {
+        ${categories.map(cat=>`
 
-      cat:"胸",
+          <option value="${esc(cat)}"
 
-      name:"",
+            ${w.cat === cat ? 'selected' : ''}>
 
-      equip:"マシン"
+            ${esc(cat)}
 
-    };
+          </option>
 
-  document.getElementById(
+        `).join('')}
 
-    "modalRoot"
+      </select>
 
-  ).innerHTML=`
+    </div>
 
-    <div
+    <div class="form-group">
 
-      class="modal"
+      <label>種目</label>
 
-      onclick="
+      <select id="modal-exercise">
 
-        if(event.target===this)
+        ${exerciseOptions}
 
-        closeModal()
+      </select>
 
-      ">
+      <div class="exercise-select-note">
 
-      <div class="modal-box">
-
-        <div class="modal-head">
-
-          <h2 style="margin:0">
-
-            ${id?"種目を編集":"種目を追加"}
-
-          </h2>
-
-          <button
-
-            class="modal-close"
-
-            onclick="closeModal()">
-
-            ×
-
-          </button>
-
-        </div>
-
-        <label>
-
-          部位
-
-        </label>
-
-        <select id="menuCat">
-
-          ${
-
-            cats.map(
-
-              c=>`
-
-                <option
-
-                  ${c===menu.cat?"selected":""}>
-
-                  ${esc(c)}
-
-                </option>
-
-              `
-
-            ).join("")
-
-          }
-
-        </select>
-
-        <label>
-
-          種目名
-
-        </label>
-
-        <input
-
-          id="menuName"
-
-          value="${esc(menu.name)}"
-
-          placeholder="例：インクラインベンチプレス">
-
-        <label>
-
-          器具
-
-        </label>
-
-        <select id="menuEquip">
-
-          ${
-
-            [
-
-              "マシン",
-
-              "バーベル",
-
-              "ダンベル",
-
-              "ケーブル",
-
-              "スミス",
-
-              "自重",
-
-              "有酸素",
-
-              "その他"
-
-            ].map(
-
-              e=>`
-
-                <option
-
-                  ${e===menu.equip?"selected":""}>
-
-                  ${e}
-
-                </option>
-
-              `
-
-            ).join("")
-
-          }
-
-        </select>
-
-        <div
-
-          class="row"
-
-          style="
-
-            margin-top:14px;
-
-            justify-content:flex-end
-
-          ">
-
-          <button
-
-            class="btn secondary"
-
-            onclick="closeModal()">
-
-            キャンセル
-
-          </button>
-
-          <button
-
-            class="btn"
-
-            onclick="saveMenu('${id||""}')">
-
-            保存
-
-          </button>
-
-        </div>
+        部位を選ぶと、その部位に対応した種目が表示されます。
 
       </div>
 
     </div>
 
-  `;
+    ${
 
-}
+      !isCardio
 
-function saveMenu(id){
+      ? `
 
-  const obj={
+        <div class="form-group">
 
-    id:id || "m_"+Date.now(),
+          <label>使用器具（任意）</label>
 
-    cat:
+          <input
 
-      document.getElementById(
+            id="modal-equip"
 
-        "menuCat"
+            type="text"
 
-      ).value,
+            value="${esc(w.equip || '')}"
 
-    name:
+            placeholder="例：スミスマシン">
 
-      document.getElementById(
+        </div>
 
-        "menuName"
+      `
 
-      ).value.trim(),
+      : ''
 
-    equip:
+    }
 
-      document.getElementById(
+    ${content}
 
-        "menuEquip"
+    <div class="form-group">
 
-      ).value
+      <label>この種目のメモ（任意）</label>
 
-  };
+      <textarea
 
-  if(!obj.name){
+        id="modal-workout-memo"
 
-    alert(
+        placeholder="フォームや体調など">${esc(w.memo || '')}</textarea>
 
-      "種目名を入力してください。"
+    </div>
 
-    );
+    <div class="modal-actions">
 
-    return;
+      ${
 
-  }
+        state.modalEditIndex !== null
 
-  if(id){
+        ? `
 
-    menus=menus.map(
+          <button
 
-      m=>m.id===id
+            class="secondary-btn danger"
 
-        ?obj
+            onclick="deleteWorkoutFromModal()">
 
-        :m
+            削除
 
-    );
+          </button>
 
-  }else{
+        `
 
-    menus.push(obj);
+        : ''
 
-  }
-
-  saveAll();
-
-  closeModal();
-
-  renderMenu();
-
-}
-
-function deleteMenu(id){
-
-  if(
-
-    !confirm(
-
-      "この種目を削除しますか？"
-
-    )
-
-  )return;
-
-  menus=menus.filter(
-
-    m=>m.id!==id
-
-  );
-
-  saveAll();
-
-  renderMenu();
-
-}
-
-/* =====================================================
-
-   設定
-
-===================================================== */
-
-function renderSettings(){
-
-  document.getElementById("main")
-
-    .innerHTML=`
-
-      <div class="card">
-
-        <h2>
-
-          メニュー
-
-        </h2>
-
-        <button
-
-          class="btn secondary"
-
-          onclick="profileSettings()">
-
-          👤 個人設定
-
-        </button>
-
-      </div>
-
-      <div class="card">
-
-        <h3>
-
-          データ
-
-        </h3>
-
-        <button
-
-          class="btn secondary"
-
-          onclick="exportData()">
-
-          💾 データを書き出す
-
-        </button>
-
-        <button
-
-          class="btn danger"
-
-          style="margin-left:6px"
-
-          onclick="resetData()">
-
-          データ初期化
-
-        </button>
-
-      </div>
-
-    `;
-
-}
-
-function profileSettings(){
-
-  document.getElementById(
-
-    "main"
-
-  ).innerHTML=`
-
-    <div class="card">
-
-      <h2>
-
-        個人設定
-
-      </h2>
-
-      <label>
-
-        名前
-
-      </label>
-
-      <input
-
-        id="profileName"
-
-        value="${esc(profile.name||"")}">
-
-      <label>
-
-        身長 cm
-
-      </label>
-
-      <input
-
-        id="profileHeight"
-
-        type="number"
-
-        value="${esc(profile.height||"")}">
-
-      <label>
-
-        体重 kg
-
-      </label>
-
-      <input
-
-        id="profileWeight"
-
-        type="number"
-
-        step="0.1"
-
-        value="${esc(profile.weight||"")}">
+      }
 
       <button
 
-        class="btn"
+        class="primary-btn"
 
-        style="margin-top:12px"
-
-        onclick="saveProfile()">
+        onclick="saveWorkoutModal()">
 
         保存
 
       </button>
 
-      <button
+    </div>
 
-        class="btn secondary"
+  `;
 
-        style="margin-left:6px"
+  openModal();
 
-        onclick="renderSettings()">
+}
 
-        戻る
+function modalCategoryChanged(){
+
+  syncWorkoutModal();
+
+  const cat =
+
+    document.getElementById('modal-category').value;
+
+  state.modalWorkout.cat = cat;
+
+  const list = menus[cat] || [];
+
+  state.modalWorkout.exercise = list[0] || '';
+
+  if(cat === '有酸素'){
+
+    state.modalWorkout.time =
+
+      state.modalWorkout.time || '';
+
+  }else{
+
+    if(!Array.isArray(state.modalWorkout.sets)){
+
+      state.modalWorkout.sets = [
+
+        {weight:'',reps:''},
+
+        {weight:'',reps:''},
+
+        {weight:'',reps:''}
+
+      ];
+
+    }
+
+  }
+
+  renderWorkoutModal();
+
+}
+
+function syncWorkoutModal(){
+
+  if(!state.modalWorkout) return;
+
+  const catEl =
+
+    document.getElementById('modal-category');
+
+  const exerciseEl =
+
+    document.getElementById('modal-exercise');
+
+  if(catEl){
+
+    state.modalWorkout.cat = catEl.value;
+
+  }
+
+  if(exerciseEl){
+
+    state.modalWorkout.exercise =
+
+      exerciseEl.value;
+
+  }
+
+  const equipEl =
+
+    document.getElementById('modal-equip');
+
+  if(equipEl){
+
+    state.modalWorkout.equip =
+
+      equipEl.value;
+
+  }
+
+  const timeEl =
+
+    document.getElementById('modal-time');
+
+  if(timeEl){
+
+    state.modalWorkout.time =
+
+      timeEl.value;
+
+  }
+
+  const memoEl =
+
+    document.getElementById('modal-workout-memo');
+
+  if(memoEl){
+
+    state.modalWorkout.memo =
+
+      memoEl.value;
+
+  }
+
+  if(state.modalWorkout.cat !== '有酸素'){
+
+    const sets = [];
+
+    let i = 0;
+
+    while(document.getElementById(`modal-weight-${i}`)){
+
+      sets.push({
+
+        weight:
+
+          document.getElementById(`modal-weight-${i}`).value,
+
+        reps:
+
+          document.getElementById(`modal-reps-${i}`).value
+
+      });
+
+      i++;
+
+    }
+
+    state.modalWorkout.sets = sets;
+
+  }
+
+}
+
+function modalAddSet(){
+
+  syncWorkoutModal();
+
+  if(!Array.isArray(state.modalWorkout.sets)){
+
+    state.modalWorkout.sets = [];
+
+  }
+
+  state.modalWorkout.sets.push({
+
+    weight:'',
+
+    reps:''
+
+  });
+
+  renderWorkoutModal();
+
+}
+
+function modalRemoveSet(index){
+
+  syncWorkoutModal();
+
+  if(state.modalWorkout.sets.length <= 1){
+
+    alert('セットは1つ以上残してください。');
+
+    return;
+
+  }
+
+  state.modalWorkout.sets.splice(index,1);
+
+  renderWorkoutModal();
+
+}
+
+function saveWorkoutModal(){
+
+  syncWorkoutModal();
+
+  const w = state.modalWorkout;
+
+  if(!w.exercise){
+
+    alert('種目を選択してください。');
+
+    return;
+
+  }
+
+  if(w.cat === '有酸素'){
+
+    if(!w.time){
+
+      alert('時間を入力してください。');
+
+      return;
+
+    }
+
+  }else{
+
+    w.sets = (w.sets || []).map(s=>({
+
+      weight:String(s.weight || ''),
+
+      reps:String(s.reps || '')
+
+    }));
+
+  }
+
+  if(!data[state.date]){
+
+    data[state.date] = {
+
+      workouts:[],
+
+      memo:''
+
+    };
+
+  }
+
+  if(state.modalEditIndex === null){
+
+    data[state.date].workouts.push(w);
+
+  }else{
+
+    data[state.date].workouts[state.modalEditIndex] = w;
+
+  }
+
+  saveJSON(KEY,data);
+
+  closeModal();
+
+  render();
+
+}
+
+function deleteWorkoutFromModal(){
+
+  if(state.modalEditIndex === null) return;
+
+  if(!confirm('この記録を削除しますか？')){
+
+    return;
+
+  }
+
+  const record = getRecord(state.date);
+
+  record.workouts.splice(
+
+    state.modalEditIndex,
+
+    1
+
+  );
+
+  data[state.date] = record;
+
+  saveJSON(KEY,data);
+
+  closeModal();
+
+  render();
+
+}
+
+/* =========================================================
+
+   日のメモ
+
+========================================================= */
+
+function openDayMemoModal(){
+
+  const record = getRecord(state.date);
+
+  document.getElementById('modalBox').innerHTML = `
+
+    <div class="modal-head">
+
+      <div class="modal-title">
+
+        📝 日のメモ
+
+      </div>
+
+      <button class="modal-close"
+
+        onclick="closeModal()">
+
+        ×
 
       </button>
+
+    </div>
+
+    <div class="form-group">
+
+      <label>
+
+        ${formatDate(state.date)}
+
+      </label>
+
+      <textarea
+
+        id="day-memo"
+
+        placeholder="体調、疲労感、気づいたことなど">${esc(record.memo)}</textarea>
+
+    </div>
+
+    <div class="modal-actions">
+
+      <button
+
+        class="secondary-btn"
+
+        onclick="closeModal()">
+
+        キャンセル
+
+      </button>
+
+      <button
+
+        class="primary-btn"
+
+        onclick="saveDayMemo()">
+
+        保存
+
+      </button>
+
+    </div>
+
+  `;
+
+  openModal();
+
+}
+
+function saveDayMemo(){
+
+  const memo =
+
+    document.getElementById('day-memo').value;
+
+  if(!data[state.date]){
+
+    data[state.date] = {
+
+      workouts:[],
+
+      memo:''
+
+    };
+
+  }
+
+  data[state.date].memo = memo;
+
+  saveJSON(KEY,data);
+
+  closeModal();
+
+  render();
+
+}
+
+/* =========================================================
+
+   モーダル共通
+
+========================================================= */
+
+function openModal(){
+
+  document.getElementById('modal')
+
+    .classList.add('show');
+
+}
+
+function closeModal(){
+
+  document.getElementById('modal')
+
+    .classList.remove('show');
+
+  state.modalWorkout = null;
+
+  state.modalEditIndex = null;
+
+}
+
+function modalBackground(e){
+
+  if(e.target.id === 'modal'){
+
+    closeModal();
+
+  }
+
+}
+
+/* =========================================================
+
+   種目管理
+
+========================================================= */
+
+function renderMenu(){
+
+  let html = `
+
+    <div class="page">
+
+      <div class="section-title">
+
+        種目管理
+
+      </div>
+
+      <div class="card">
+
+        <div style="color:#666;font-size:13px;">
+
+          記録するときは「部位 → 種目」の順番で選択します。
+
+        </div>
+
+      </div>
+
+  `;
+
+  categories.forEach(cat=>{
+
+    html += `
+
+      <div class="card menu-section">
+
+        <div class="row-between">
+
+          <div class="menu-category" style="margin:0;">
+
+            ${esc(cat)}
+
+          </div>
+
+          <button
+
+            class="small-btn"
+
+            onclick="addMenuExercise('${esc(cat)}')">
+
+            ＋追加
+
+          </button>
+
+        </div>
+
+    `;
+
+    (menus[cat] || []).forEach((ex,i)=>{
+
+      html += `
+
+        <div class="item row-between">
+
+          <span>${esc(ex)}</span>
+
+          <button
+
+            class="small-btn danger"
+
+            onclick="deleteMenuExercise('${esc(cat)}',${i})">
+
+            削除
+
+          </button>
+
+        </div>
+
+      `;
+
+    });
+
+    html += `</div>`;
+
+  });
+
+  html += `</div>`;
+
+  return html;
+
+}
+
+function addMenuExercise(cat){
+
+  const name =
+
+    prompt(`${cat}に追加する種目名を入力してください。`);
+
+  if(!name || !name.trim()){
+
+    return;
+
+  }
+
+  if(!menus[cat]){
+
+    menus[cat] = [];
+
+  }
+
+  menus[cat].push(name.trim());
+
+  saveJSON(MENUKEY,menus);
+
+  render();
+
+}
+
+function deleteMenuExercise(cat,index){
+
+  const name = menus[cat][index];
+
+  if(!confirm(`「${name}」を削除しますか？`)){
+
+    return;
+
+  }
+
+  menus[cat].splice(index,1);
+
+  saveJSON(MENUKEY,menus);
+
+  render();
+
+}
+
+/* =========================================================
+
+   設定・メニュー
+
+========================================================= */
+
+function renderSettings(){
+
+  return `
+
+    <div class="page">
+
+      <div class="section-title">
+
+        メニュー
+
+      </div>
+
+      <div class="card">
+
+        <div class="section-title" style="margin-top:0;">
+
+          📝 カレンダーのマーク説明
+
+        </div>
+
+        <div class="mark-description">
+
+          <div class="mark-icon">🔥</div>
+
+          <div>
+
+            <strong>トレーニング記録あり</strong><br>
+
+            その日に筋トレ・有酸素などの記録があります。
+
+          </div>
+
+        </div>
+
+        <div class="mark-description">
+
+          <div class="mark-icon">📅</div>
+
+          <div>
+
+            <strong>予定あり</strong><br>
+
+            その日にトレーニング予定が登録されています。
+
+          </div>
+
+        </div>
+
+        <div class="mark-description">
+
+          <div class="mark-icon">📝</div>
+
+          <div>
+
+            <strong>メモあり</strong><br>
+
+            その日のメモが登録されています。
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        <div class="section-title" style="margin-top:0;">
+
+          プロフィール
+
+        </div>
+
+        <div class="form-group">
+
+          <label>名前</label>
+
+          <input
+
+            id="profile-name"
+
+            value="${esc(profile.name || '')}">
+
+        </div>
+
+        <div class="form-group">
+
+          <label>身長（cm）</label>
+
+          <input
+
+            id="profile-height"
+
+            type="number"
+
+            value="${esc(profile.height || '')}">
+
+        </div>
+
+        <div class="form-group">
+
+          <label>体重（kg）</label>
+
+          <input
+
+            id="profile-weight"
+
+            type="number"
+
+            step="0.1"
+
+            value="${esc(profile.weight || '')}">
+
+        </div>
+
+        <button
+
+          class="primary-btn"
+
+          onclick="saveProfile()">
+
+          保存
+
+        </button>
+
+      </div>
+
+      <div class="card">
+
+        <div class="section-title" style="margin-top:0;">
+
+          データ
+
+        </div>
+
+        <button
+
+          class="secondary-btn"
+
+          onclick="exportData()">
+
+          データを書き出す
+
+        </button>
+
+        <button
+
+          class="secondary-btn"
+
+          onclick="importData()">
+
+          データを読み込む
+
+        </button>
+
+      </div>
 
     </div>
 
@@ -3040,681 +2934,151 @@ function profileSettings(){
 
 function saveProfile(){
 
-  profile.name=
+  profile = {
 
-    document.getElementById(
+    name:
 
-      "profileName"
+      document.getElementById('profile-name').value,
 
-    ).value.trim() || "自分";
+    height:
 
-  profile.height=
+      document.getElementById('profile-height').value,
 
-    document.getElementById(
+    weight:
 
-      "profileHeight"
-
-    ).value;
-
-  profile.weight=
-
-    document.getElementById(
-
-      "profileWeight"
-
-    ).value;
-
-  saveAll();
-
-  render();
-
-}
-
-/* =====================================================
-
-   データ書き出し
-
-===================================================== */
-
-function exportData(){
-
-  const output={
-
-    data:data,
-
-    menus:menus,
-
-    profile:profile
+      document.getElementById('profile-weight').value
 
   };
 
-  const blob=
+  saveJSON(PROFILEKEY,profile);
 
-    new Blob(
-
-      [
-
-        JSON.stringify(
-
-          output,
-
-          null,
-
-          2
-
-        )
-
-      ],
-
-      {
-
-        type:"application/json"
-
-      }
-
-    );
-
-  const url=
-
-    URL.createObjectURL(blob);
-
-  const a=
-
-    document.createElement("a");
-
-  a.href=url;
-
-  a.download=
-
-    "kintore-backup.json";
-
-  a.click();
-
-  URL.revokeObjectURL(url);
-
-}
-
-function resetData(){
-
-  if(
-
-    !confirm(
-
-      "すべての記録を削除します。\n"+
-
-      "本当に実行しますか？"
-
-    )
-
-  )return;
-
-  data={};
-
-  saveAll();
+  alert('保存しました。');
 
   render();
 
 }
 
-/* =====================================================
+/* =========================================================
 
    分析
 
-===================================================== */
+========================================================= */
 
 function renderAnalysis(){
 
-  const entries=
+  const dates =
 
-    Object.entries(data);
+    Object.keys(data).sort();
 
-  const exercises=[
+  let totalWorkouts = 0;
 
-    ...new Set(
+  let totalSets = 0;
 
-      entries.flatMap(
+  dates.forEach(date=>{
 
-        ([,record])=>
+    const record = getRecord(date);
 
-          (
+    totalWorkouts += record.workouts.length;
 
-            Array.isArray(record?.workouts)
+    record.workouts.forEach(w=>{
 
-              ?record.workouts
+      if(w.cat !== '有酸素'){
 
-              :[]
-
-          )
-
-          .filter(
-
-            w=>w.cat!=="有酸素"
-
-          )
-
-          .map(
-
-            w=>w.exercise
-
-          )
-
-      )
-
-    )
-
-  ];
-
-  let selected=
-
-    state.analysisExercise ||
-
-    exercises[0] ||
-
-    "";
-
-  if(
-
-    selected &&
-
-    !exercises.includes(selected)
-
-  ){
-
-    selected=
-
-      exercises[0]||"";
-
-  }
-
-  let sets=0;
-
-  let volume=0;
-
-  let trainingDays=0;
-
-  entries.forEach(
-
-    ([,record])=>{
-
-      const workouts=
-
-        Array.isArray(record?.workouts)
-
-          ?record.workouts
-
-          :[];
-
-      if(workouts.length){
-
-        trainingDays++;
+        totalSets += (w.sets || []).length;
 
       }
 
-      workouts.forEach(w=>{
+    });
 
-        if(w.cat==="有酸素")return;
+  });
 
-        const arr=
+  return `
 
-          Array.isArray(w.sets)
+    <div class="page">
 
-            ?w.sets
+      <div class="section-title">
 
-            :[];
+        分析
 
-        arr.forEach(s=>{
+      </div>
 
-          if(
-
-            s.weight!=="" ||
-
-            s.reps!==""
-
-          ){
-
-            sets++;
-
-          }
-
-          volume+=
-
-            (Number(s.weight)||0)*
-
-            (Number(s.reps)||0);
-
-        });
-
-      });
-
-    }
-
-  );
-
-  document.getElementById(
-
-    "main"
-
-  ).innerHTML=`
-
-    <div class="card">
-
-      <h2>
-
-        トレーニング分析
-
-      </h2>
-
-      <div class="statgrid">
+      <div class="stat-grid">
 
         <div class="stat">
 
-          <span class="muted">
+          <div class="stat-value">
 
-            トレーニング日
+            ${totalWorkouts}
 
-          </span>
+          </div>
 
-          <strong>
+          <div class="stat-label">
 
-            ${trainingDays}
+            記録種目数
 
-          </strong>
-
-          日
+          </div>
 
         </div>
 
         <div class="stat">
 
-          <span class="muted">
+          <div class="stat-value">
 
-            セット数
+            ${totalSets}
 
-          </span>
+          </div>
 
-          <strong>
+          <div class="stat-label">
 
-            ${sets}
+            総セット数
 
-          </strong>
-
-        </div>
-
-        <div class="stat">
-
-          <span class="muted">
-
-            総負荷
-
-          </span>
-
-          <strong>
-
-            ${Math.round(volume).toLocaleString()}
-
-          </strong>
-
-          <span class="muted">
-
-            kg
-
-          </span>
-
-        </div>
-
-        <div class="stat">
-
-          <span class="muted">
-
-            登録種目
-
-          </span>
-
-          <strong>
-
-            ${exercises.length}
-
-          </strong>
-
-          種目
+          </div>
 
         </div>
 
       </div>
 
-    </div>
+      <div class="card" style="margin-top:12px;">
 
-    <div class="card">
+        <div class="section-title" style="margin-top:0;">
 
-      <h2>
+          体重推移
 
-        種目別・重量推移
+        </div>
 
-      </h2>
+        <canvas id="weightChart" height="220"></canvas>
 
-      ${
-
-        exercises.length
-
-        ?
-
-        `
-
-          <select
-
-            id="analysisExercise"
-
-            onchange="
-
-              state.analysisExercise=this.value;
-
-              renderAnalysis();
-
-            ">
-
-            ${
-
-              exercises.map(
-
-                e=>`
-
-                  <option
-
-                    value="${esc(e)}"
-
-                    ${e===selected?"selected":""}>
-
-                    ${esc(e)}
-
-                  </option>
-
-                `
-
-              ).join("")
-
-            }
-
-          </select>
-
-          <div class="canvas-wrap">
-
-            <canvas
-
-              id="weightChart">
-
-            </canvas>
-
-          </div>
-
-        `
-
-        :
-
-        `
-
-          <div class="empty">
-
-            まだ重量記録がありません
-
-          </div>
-
-        `
-
-      }
-
-    </div>
-
-    <div class="card">
-
-      <h2>
-
-        種目別MAX重量
-
-      </h2>
-
-      ${
-
-        exercises.length
-
-        ?
-
-        exercises.map(
-
-          e=>{
-
-            let max=0;
-
-            entries.forEach(
-
-              ([,record])=>{
-
-                const workouts=
-
-                  Array.isArray(record?.workouts)
-
-                    ?record.workouts
-
-                    :[];
-
-                workouts
-
-                  .filter(
-
-                    w=>w.exercise===e
-
-                  )
-
-                  .forEach(w=>{
-
-                    (
-
-                      Array.isArray(w.sets)
-
-                        ?w.sets
-
-                        :[]
-
-                    ).forEach(s=>{
-
-                      max=Math.max(
-
-                        max,
-
-                        Number(s.weight)||0
-
-                      );
-
-                    });
-
-                  });
-
-              }
-
-            );
-
-            return `
-
-              <div
-
-                class="row between"
-
-                style="
-
-                  padding:9px 0;
-
-                  border-bottom:1px solid #eee
-
-                ">
-
-                <span>
-
-                  ${esc(e)}
-
-                </span>
-
-                <strong>
-
-                  ${max ? max+" kg" : "-"}
-
-                </strong>
-
-              </div>
-
-            `;
-
-          }
-
-        ).join("")
-
-        :
-
-        `
-
-          <div class="empty">
-
-            まだありません
-
-          </div>
-
-        `
-
-      }
+      </div>
 
     </div>
 
   `;
 
-  if(exercises.length){
-
-    drawWeightChart(selected);
-
-  }
-
 }
 
-/* =====================================================
+function drawWeightChart(){
 
-   グラフ
+  const canvas =
 
-===================================================== */
+    document.getElementById('weightChart');
 
-function drawWeightChart(exercise){
+  if(!canvas) return;
 
-  const canvas=
+  const ctx = canvas.getContext('2d');
 
-    document.getElementById(
+  const dates =
 
-      "weightChart"
+    Object.keys(data)
 
-    );
+      .sort()
 
-  if(!canvas)return;
+      .filter(d=>{
 
-  const rect=
+        return data[d] &&
 
-    canvas.getBoundingClientRect();
+          data[d].weight !== undefined;
 
-  const dpr=
-
-    window.devicePixelRatio||1;
-
-  const width=
-
-    Math.max(
-
-      300,
-
-      rect.width
-
-    );
-
-  const height=
-
-    Math.max(
-
-      240,
-
-      rect.height
-
-    );
-
-  canvas.width=
-
-    width*dpr;
-
-  canvas.height=
-
-    height*dpr;
-
-  const ctx=
-
-    canvas.getContext("2d");
-
-  ctx.scale(
-
-    dpr,
-
-    dpr
-
-  );
-
-  let points=[];
-
-  Object.keys(data)
-
-    .sort()
-
-    .forEach(date=>{
-
-      const workouts=
-
-        Array.isArray(data[date]?.workouts)
-
-          ?data[date].workouts
-
-          :[];
-
-      workouts
-
-        .filter(
-
-          w=>w.exercise===exercise
-
-        )
-
-        .forEach(w=>{
-
-          const sets=
-
-            Array.isArray(w.sets)
-
-              ?w.sets
-
-              :[];
-
-          sets.forEach(s=>{
-
-            const value=
-
-              Number(s.weight)||0;
-
-            if(value>0){
-
-              points.push({
-
-                date:date,
-
-                value:value
-
-              });
-
-            }
-
-          });
-
-        });
-
-    });
+      });
 
   ctx.clearRect(
 
@@ -3722,351 +3086,147 @@ function drawWeightChart(exercise){
 
     0,
 
-    width,
+    canvas.width,
 
-    height
+    canvas.height
 
   );
 
-  if(!points.length){
-
-    ctx.fillStyle="#666";
-
-    ctx.fillText(
-
-      "重量データがありません",
-
-      20,
-
-      40
-
-    );
-
-    return;
-
-  }
-
-  const max=
-
-    Math.max(
-
-      ...points.map(
-
-        p=>p.value
-
-      )
-
-    );
-
-  const min=
-
-    Math.min(
-
-      ...points.map(
-
-        p=>p.value
-
-      )
-
-    );
-
-  const range=
-
-    Math.max(
-
-      max-min,
-
-      1
-
-    );
-
-  const left=45;
-
-  const right=12;
-
-  const top=20;
-
-  const bottom=35;
-
-  ctx.font=
-
-    "12px -apple-system,BlinkMacSystemFont,sans-serif";
-
-  ctx.strokeStyle="#ddd";
-
-  ctx.fillStyle="#666";
-
-  for(let i=0;i<=4;i++){
-
-    const y=
-
-      top+
-
-      (height-top-bottom)*
-
-      i/4;
-
-    const value=
-
-      max-
-
-      range*i/4;
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-
-      left,
-
-      y
-
-    );
-
-    ctx.lineTo(
-
-      width-right,
-
-      y
-
-    );
-
-    ctx.stroke();
-
-    ctx.fillText(
-
-      Math.round(value*10)/10+
-
-      "kg",
-
-      2,
-
-      y+4
-
-    );
-
-  }
-
-  ctx.strokeStyle="#111";
-
-  ctx.beginPath();
-
-  points.forEach(
-
-    (point,index)=>{
-
-      const x=
-
-        left+
-
-        (width-left-right)*
-
-        (
-
-          points.length===1
-
-          ?
-
-          .5
-
-          :
-
-          index/(points.length-1)
-
-        );
-
-      const y=
-
-        top+
-
-        (height-top-bottom)*
-
-        (
-
-          max-point.value
-
-        )/range;
-
-      if(index===0){
-
-        ctx.moveTo(
-
-          x,
-
-          y
-
-        );
-
-      }else{
-
-        ctx.lineTo(
-
-          x,
-
-          y
-
-        );
-
-      }
-
-    }
-
-  );
-
-  ctx.stroke();
-
-  ctx.fillStyle="#111";
-
-  points.forEach(
-
-    (point,index)=>{
-
-      const x=
-
-        left+
-
-        (width-left-right)*
-
-        (
-
-          points.length===1
-
-          ?
-
-          .5
-
-          :
-
-          index/(points.length-1)
-
-        );
-
-      const y=
-
-        top+
-
-        (height-top-bottom)*
-
-        (
-
-          max-point.value
-
-        )/range;
-
-      ctx.beginPath();
-
-      ctx.arc(
-
-        x,
-
-        y,
-
-        3,
-
-        0,
-
-        Math.PI*2
-
-      );
-
-      ctx.fill();
-
-    }
-
-  );
-
-  ctx.fillStyle="#666";
+  ctx.font = '12px sans-serif';
 
   ctx.fillText(
 
-    points[0].date.slice(5),
+    '体重記録があるデータがここに表示されます',
 
-    left,
+    10,
 
-    height-10
+    30
 
   );
 
-  if(points.length>1){
+}
 
-    ctx.fillText(
+/* =========================================================
 
-      points[points.length-1].date.slice(5),
+   データ書き出し・読み込み
 
-      width-50,
+========================================================= */
 
-      height-10
+function exportData(){
+
+  const all = {
+
+    data,
+
+    menus,
+
+    plans,
+
+    profile,
+
+    templates
+
+  };
+
+  const blob =
+
+    new Blob(
+
+      [JSON.stringify(all,null,2)],
+
+      {type:'application/json'}
 
     );
 
-  }
+  const url =
+
+    URL.createObjectURL(blob);
+
+  const a =
+
+    document.createElement('a');
+
+  a.href = url;
+
+  a.download =
+
+    `筋トレ記録_${isoToday()}.json`;
+
+  a.click();
+
+  URL.revokeObjectURL(url);
 
 }
 
-/* =====================================================
+function importData(){
 
-   エラー処理
+  const input =
 
-===================================================== */
+    document.createElement('input');
 
-window.addEventListener(
+  input.type = 'file';
 
-  "error",
+  input.accept = '.json';
 
-  function(event){
+  input.onchange = e=>{
 
-    const box=
+    const file =
 
-      document.getElementById(
+      e.target.files[0];
 
-        "errorBox"
+    if(!file) return;
 
-      );
+    const reader =
 
-    if(!box)return;
+      new FileReader();
 
-    box.style.display="block";
+    reader.onload = ()=>{
 
-    box.textContent=
+      try{
 
-      "アプリの読み込み中にエラーが発生しました。\n\n"+
+        const obj =
 
-      event.message;
+          JSON.parse(reader.result);
 
-  }
+        if(obj.data) data = obj.data;
 
-);
+        if(obj.menus) menus = obj.menus;
 
-/* =====================================================
+        if(obj.plans) plans = obj.plans;
 
-   起動
+        if(obj.profile) profile = obj.profile;
 
-===================================================== */
+        if(obj.templates) templates = obj.templates;
 
-try{
+        saveAll();
 
-  render();
+        alert('データを読み込みました。');
 
-}catch(error){
+        render();
 
-  console.error(error);
+      }catch(err){
 
-  const box=
+        alert('データを読み込めませんでした。');
 
-    document.getElementById(
+      }
 
-      "errorBox"
+    };
 
-    );
+    reader.readAsText(file);
 
-  box.style.display="block";
+  };
 
-  box.textContent=
-
-    "アプリの起動に失敗しました。\n\n"+
-
-    error.message;
+  input.click();
 
 }
+
+/* =========================================================
+
+   初期表示
+
+========================================================= */
+
+showTab('calendar');
 
 </script>
 
