@@ -16,37 +16,359 @@
 
 *{box-sizing:border-box}
 
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#f5f5f7;color:#222}
+body{
 
-header{background:#111;color:white;padding:18px;text-align:center;font-size:22px;font-weight:bold}
+ margin:0;
 
-main{padding:16px;max-width:600px;margin:auto}
+ font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
 
-.card{background:white;border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 2px 8px #0001}
+ background:#f5f5f7;
 
-h2{margin:0 0 12px}
+ color:#222;
 
-button{border:0;border-radius:12px;padding:12px 16px;font-size:16px;background:#111;color:white}
+ padding-bottom:80px;
 
-input,select{width:100%;padding:12px;border:1px solid #ccc;border-radius:10px;font-size:16px;margin:5px 0 10px}
+}
 
-.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+header{
 
-.day{text-align:center;padding:10px 2px;border-radius:10px;background:#eee;min-height:48px}
+ background:#111;
 
-.today{background:#111;color:white;font-weight:bold}
+ color:white;
 
-.done{font-size:11px}
+ padding:18px;
 
-.row{display:flex;gap:8px}
+ text-align:center;
 
-.row>*{flex:1}
+ font-size:22px;
 
-.hidden{display:none}
+ font-weight:bold;
 
-.item{padding:10px;border-bottom:1px solid #eee}
+}
 
-.back{background:#777;margin-bottom:12px}
+main{
+
+ max-width:650px;
+
+ margin:auto;
+
+ padding:16px;
+
+}
+
+.card{
+
+ background:white;
+
+ border-radius:16px;
+
+ padding:16px;
+
+ margin-bottom:16px;
+
+ box-shadow:0 2px 8px #0001;
+
+}
+
+h2{
+
+ margin:0 0 14px;
+
+}
+
+h3{
+
+ margin:14px 0 8px;
+
+}
+
+button{
+
+ border:0;
+
+ border-radius:12px;
+
+ padding:11px 15px;
+
+ font-size:16px;
+
+ background:#111;
+
+ color:white;
+
+}
+
+button.secondary{
+
+ background:#777;
+
+}
+
+button.danger{
+
+ background:#c62828;
+
+}
+
+button.small{
+
+ font-size:14px;
+
+ padding:8px 11px;
+
+}
+
+input,select{
+
+ width:100%;
+
+ padding:12px;
+
+ border:1px solid #ccc;
+
+ border-radius:10px;
+
+ font-size:16px;
+
+ margin:5px 0 10px;
+
+ background:white;
+
+}
+
+label{
+
+ font-size:14px;
+
+ font-weight:bold;
+
+}
+
+.row{
+
+ display:flex;
+
+ gap:8px;
+
+}
+
+.row>*{
+
+ flex:1;
+
+}
+
+.hidden{
+
+ display:none!important;
+
+}
+
+.calendar{
+
+ display:grid;
+
+ grid-template-columns:repeat(7,1fr);
+
+ gap:5px;
+
+}
+
+.weekday{
+
+ text-align:center;
+
+ font-weight:bold;
+
+ padding:6px 0;
+
+}
+
+.day{
+
+ text-align:center;
+
+ padding:9px 2px;
+
+ border-radius:10px;
+
+ background:#eee;
+
+ min-height:52px;
+
+ cursor:pointer;
+
+}
+
+.today{
+
+ background:#111;
+
+ color:white;
+
+ font-weight:bold;
+
+}
+
+.done{
+
+ font-size:11px;
+
+ margin-top:3px;
+
+}
+
+.navmonth{
+
+ display:flex;
+
+ justify-content:space-between;
+
+ align-items:center;
+
+ margin-bottom:12px;
+
+}
+
+.navmonth button{
+
+ padding:8px 13px;
+
+}
+
+.bottomnav{
+
+ position:fixed;
+
+ bottom:0;
+
+ left:0;
+
+ right:0;
+
+ height:68px;
+
+ background:white;
+
+ border-top:1px solid #ddd;
+
+ display:grid;
+
+ grid-template-columns:repeat(3,1fr);
+
+ z-index:10;
+
+}
+
+.bottomnav button{
+
+ background:white;
+
+ color:#555;
+
+ border-radius:0;
+
+ font-size:13px;
+
+}
+
+.bottomnav button.active{
+
+ color:#111;
+
+ font-weight:bold;
+
+}
+
+.item{
+
+ padding:12px 0;
+
+ border-bottom:1px solid #eee;
+
+}
+
+.menu-item{
+
+ display:flex;
+
+ justify-content:space-between;
+
+ align-items:center;
+
+ gap:10px;
+
+ padding:12px 0;
+
+ border-bottom:1px solid #eee;
+
+}
+
+.menu-info{
+
+ flex:1;
+
+}
+
+.menu-name{
+
+ font-weight:bold;
+
+ font-size:16px;
+
+}
+
+.menu-equipment{
+
+ font-size:13px;
+
+ color:#777;
+
+ margin-top:3px;
+
+}
+
+.actions{
+
+ display:flex;
+
+ gap:5px;
+
+}
+
+.category-title{
+
+ margin-top:20px;
+
+ padding-bottom:6px;
+
+ border-bottom:2px solid #ddd;
+
+}
+
+.empty{
+
+ color:#888;
+
+ padding:10px 0;
+
+}
+
+.notice{
+
+ background:#f0f0f0;
+
+ border-radius:10px;
+
+ padding:10px;
+
+ font-size:13px;
+
+ color:#666;
+
+ margin-bottom:15px;
+
+}
 
 </style>
 
@@ -58,11 +380,21 @@ input,select{width:100%;padding:12px;border:1px solid #ccc;border-radius:10px;fo
 
 <main>
 
+<!-- ================= CALENDAR ================= -->
+
 <section id="calendarScreen">
 
 <div class="card">
 
+<div class="navmonth">
+
+<button onclick="changeMonth(-1)">‹</button>
+
 <h2 id="monthTitle"></h2>
+
+<button onclick="changeMonth(1)">›</button>
+
+</div>
 
 <div class="calendar" id="calendar"></div>
 
@@ -78,9 +410,15 @@ input,select{width:100%;padding:12px;border:1px solid #ccc;border-radius:10px;fo
 
 </section>
 
+<!-- ================= RECORD ================= -->
+
 <section id="recordScreen" class="hidden">
 
-<button class="back" onclick="showCalendar()">← カレンダー</button>
+<button class="secondary" onclick="showScreen('calendar')">
+
+← カレンダー
+
+</button>
 
 <div class="card">
 
@@ -174,45 +512,325 @@ input,select{width:100%;padding:12px;border:1px solid #ccc;border-radius:10px;fo
 
 </section>
 
+<!-- ================= MENU MANAGEMENT ================= -->
+
+<section id="menuScreen" class="hidden">
+
+<div class="card">
+
+<h2>📋 メニュー管理</h2>
+
+<div class="notice">
+
+ここで登録した種目は、トレーニング記録の「種目」に自動的に追加されます。
+
+</div>
+
+<button onclick="showAddMenu()">＋ メニューを追加</button>
+
+</div>
+
+<div id="addMenuCard" class="card hidden">
+
+<h2 id="menuFormTitle">メニューを追加</h2>
+
+<label>部位</label>
+
+<select id="menuCategory">
+
+<option>胸</option>
+
+<option>背中</option>
+
+<option>肩</option>
+
+<option>腕</option>
+
+<option>脚</option>
+
+<option>腹</option>
+
+<option>有酸素</option>
+
+<option>その他</option>
+
+</select>
+
+<label>メニュー名</label>
+
+<input id="menuName" type="text" placeholder="例：インクラインベンチプレス">
+
+<label>器具</label>
+
+<select id="menuEquipment">
+
+<option>マシン</option>
+
+<option>バーベル</option>
+
+<option>ダンベル</option>
+
+<option>ケーブル</option>
+
+<option>自重</option>
+
+<option>その他</option>
+
+</select>
+
+<div class="row">
+
+<button onclick="saveMenu()">保存</button>
+
+<button class="secondary" onclick="cancelMenu()">キャンセル</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>登録メニュー</h2>
+
+<div id="menuList"></div>
+
+</div>
+
+</section>
+
 </main>
+
+<!-- ================= BOTTOM NAV ================= -->
+
+<nav class="bottomnav">
+
+<button id="navCalendar" onclick="showScreen('calendar')" class="active">
+
+📅<br>カレンダー
+
+</button>
+
+<button id="navRecord" onclick="openToday()">
+
+🏋️<br>記録
+
+</button>
+
+<button id="navMenu" onclick="showScreen('menu')">
+
+📋<br>メニュー
+
+</button>
+
+</nav>
 
 <script>
 
-const exercises={
+/* =====================================================
 
-"胸":["ベンチプレス","チェストプレス","ダンベルプレス","ディップス"],
+   データ
 
-"背中":["懸垂","ラットプルダウン","ローイング","ワンハンドロー"],
+===================================================== */
 
-"肩":["ショルダープレス","サイドレイズ","フロントレイズ"],
+const defaultMenus = {
 
-"腕":["アームカール","ハンマーカール","トライセプスプレスダウン"],
+"胸":[
 
-"脚":["スクワット","スミスマシンスクワット","レッグプレス","レッグカール","カーフレイズ"],
+ {name:"ベンチプレス",equipment:"バーベル"},
 
-"腹":["アブドミナル","レッグレイズ","ケーブルクランチ"],
+ {name:"チェストプレス",equipment:"マシン"},
 
-"有酸素":["ランニング","ジョギング","ウォーキング","サイクリング","水泳","その他"],
+ {name:"ダンベルプレス",equipment:"ダンベル"},
 
-"その他":["その他"]
+ {name:"ディップス",equipment:"自重"}
+
+],
+
+"背中":[
+
+ {name:"懸垂",equipment:"自重"},
+
+ {name:"ラットプルダウン",equipment:"マシン"},
+
+ {name:"ローイング",equipment:"マシン"},
+
+ {name:"ワンハンドロー",equipment:"ダンベル"}
+
+],
+
+"肩":[
+
+ {name:"ショルダープレス",equipment:"マシン"},
+
+ {name:"サイドレイズ",equipment:"ダンベル"},
+
+ {name:"フロントレイズ",equipment:"ダンベル"}
+
+],
+
+"腕":[
+
+ {name:"アームカール",equipment:"ダンベル"},
+
+ {name:"ハンマーカール",equipment:"ダンベル"},
+
+ {name:"トライセプスプレスダウン",equipment:"ケーブル"}
+
+],
+
+"脚":[
+
+ {name:"スクワット",equipment:"バーベル"},
+
+ {name:"スミスマシンスクワット",equipment:"マシン"},
+
+ {name:"レッグプレス",equipment:"マシン"},
+
+ {name:"レッグカール",equipment:"マシン"},
+
+ {name:"カーフレイズ",equipment:"マシン"}
+
+],
+
+"腹":[
+
+ {name:"アブドミナル",equipment:"マシン"},
+
+ {name:"レッグレイズ",equipment:"自重"},
+
+ {name:"ケーブルクランチ",equipment:"ケーブル"}
+
+],
+
+"有酸素":[
+
+ {name:"ランニング",equipment:"その他"},
+
+ {name:"ジョギング",equipment:"その他"},
+
+ {name:"ウォーキング",equipment:"その他"},
+
+ {name:"サイクリング",equipment:"その他"},
+
+ {name:"水泳",equipment:"その他"}
+
+],
+
+"その他":[
+
+ {name:"その他",equipment:"その他"}
+
+]
 
 };
 
-let selectedDate=new Date();
+let data =
 
-let data=JSON.parse(localStorage.getItem("kintoreData")||"{}");
+JSON.parse(localStorage.getItem("kintoreData") || "{}");
 
-function dateKey(d){
+let menus =
 
-return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+JSON.parse(localStorage.getItem("kintoreMenus") || "null");
+
+if(!menus){
+
+menus = JSON.parse(JSON.stringify(defaultMenus));
+
+localStorage.setItem(
+
+ "kintoreMenus",
+
+ JSON.stringify(menus)
+
+);
 
 }
 
-function showCalendar(){
+let selectedDate = new Date();
+
+let editingMenuCategory = null;
+
+let editingMenuIndex = null;
+
+/* =====================================================
+
+   共通
+
+===================================================== */
+
+function dateKey(d){
+
+return d.getFullYear()+"-"+
+
+String(d.getMonth()+1).padStart(2,"0")+"-"+
+
+String(d.getDate()).padStart(2,"0");
+
+}
+
+/* =====================================================
+
+   画面切り替え
+
+===================================================== */
+
+function showScreen(screen){
+
+document.getElementById("calendarScreen").classList.add("hidden");
+
+document.getElementById("recordScreen").classList.add("hidden");
+
+document.getElementById("menuScreen").classList.add("hidden");
+
+document.getElementById("navCalendar").classList.remove("active");
+
+document.getElementById("navRecord").classList.remove("active");
+
+document.getElementById("navMenu").classList.remove("active");
+
+if(screen==="calendar"){
 
 document.getElementById("calendarScreen").classList.remove("hidden");
 
-document.getElementById("recordScreen").classList.add("hidden");
+document.getElementById("navCalendar").classList.add("active");
+
+drawCalendar();
+
+}
+
+if(screen==="record"){
+
+document.getElementById("recordScreen").classList.remove("hidden");
+
+document.getElementById("navRecord").classList.add("active");
+
+}
+
+if(screen==="menu"){
+
+document.getElementById("menuScreen").classList.remove("hidden");
+
+document.getElementById("navMenu").classList.add("active");
+
+renderMenuList();
+
+}
+
+}
+
+/* =====================================================
+
+   カレンダー
+
+===================================================== */
+
+function changeMonth(amount){
+
+selectedDate.setMonth(
+
+ selectedDate.getMonth()+amount
+
+);
 
 drawCalendar();
 
@@ -220,9 +838,13 @@ drawCalendar();
 
 function drawCalendar(){
 
-let y=selectedDate.getFullYear(),m=selectedDate.getMonth();
+let y=selectedDate.getFullYear();
 
-document.getElementById("monthTitle").textContent=y+"年 "+(m+1)+"月";
+let m=selectedDate.getMonth();
+
+document.getElementById("monthTitle").textContent =
+
+y+"年 "+(m+1)+"月";
 
 let cal=document.getElementById("calendar");
 
@@ -234,9 +856,7 @@ let e=document.createElement("div");
 
 e.textContent=x;
 
-e.style.textAlign="center";
-
-e.style.fontWeight="bold";
+e.className="weekday";
 
 cal.appendChild(e);
 
@@ -246,19 +866,49 @@ let first=new Date(y,m,1).getDay();
 
 let days=new Date(y,m+1,0).getDate();
 
-for(let i=0;i<first;i++)cal.appendChild(document.createElement("div"));
+for(let i=0;i<first;i++){
+
+cal.appendChild(
+
+ document.createElement("div")
+
+);
+
+}
 
 for(let d=1;d<=days;d++){
 
-let date=new Date(y,m,d),key=dateKey(date);
+let date=new Date(y,m,d);
+
+let key=dateKey(date);
 
 let e=document.createElement("div");
 
 e.className="day";
 
-if(key===dateKey(new Date()))e.classList.add("today");
+if(key===dateKey(new Date())){
 
-e.innerHTML=d+(data[key]&&data[key].length?"<div class='done'>🔥</div>":"");
+e.classList.add("today");
+
+}
+
+let icon="";
+
+if(data[key] && data[key].length){
+
+icon="🔥";
+
+}
+
+e.innerHTML =
+
+d+
+
+"<div class='done'>"+
+
+icon+
+
+"</div>";
 
 e.onclick=()=>openRecord(date);
 
@@ -268,19 +918,31 @@ cal.appendChild(e);
 
 }
 
-function openToday(){openRecord(new Date())}
+/* =====================================================
+
+   記録
+
+===================================================== */
+
+function openToday(){
+
+openRecord(new Date());
+
+}
 
 function openRecord(date){
 
 selectedDate=date;
 
-document.getElementById("calendarScreen").classList.add("hidden");
+showScreen("record");
 
-document.getElementById("recordScreen").classList.remove("hidden");
+document.getElementById("recordDate").textContent =
 
-document.getElementById("recordDate").textContent=
+date.getFullYear()+"年"+
 
-date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日の記録";
+(date.getMonth()+1)+"月"+
+
+date.getDate()+"日の記録";
 
 updateExercise();
 
@@ -296,21 +958,29 @@ let ex=document.getElementById("exercise");
 
 ex.innerHTML="";
 
-exercises[cat].forEach(x=>{
+(menus[cat] || []).forEach(item=>{
 
-let o=document.createElement("option");
+let option=document.createElement("option");
 
-o.textContent=x;
+option.textContent=item.name;
 
-ex.appendChild(o);
+ex.appendChild(option);
 
 });
 
 let cardio=cat==="有酸素";
 
-document.getElementById("strengthArea").classList.toggle("hidden",cardio);
+document
 
-document.getElementById("cardioArea").classList.toggle("hidden",!cardio);
+.getElementById("strengthArea")
+
+.classList.toggle("hidden",cardio);
+
+document
+
+.getElementById("cardioArea")
+
+.classList.toggle("hidden",!cardio);
 
 }
 
@@ -318,7 +988,11 @@ function saveRecord(){
 
 let key=dateKey(selectedDate);
 
-if(!data[key])data[key]=[];
+if(!data[key]){
+
+data[key]=[];
+
+}
 
 let cat=document.getElementById("category").value;
 
@@ -344,11 +1018,19 @@ memo:document.getElementById("memo").value
 
 data[key].push(rec);
 
-localStorage.setItem("kintoreData",JSON.stringify(data));
+localStorage.setItem(
+
+"kintoreData",
+
+JSON.stringify(data)
+
+);
 
 document.getElementById("memo").value="";
 
 showRecords();
+
+drawCalendar();
 
 alert("保存しました！💪");
 
@@ -362,7 +1044,15 @@ let box=document.getElementById("records");
 
 box.innerHTML="";
 
-(data[key]||[]).forEach((r,i)=>{
+if(!data[key] || !data[key].length){
+
+box.innerHTML="<div class='empty'>まだ記録はありません</div>";
+
+return;
+
+}
+
+data[key].forEach((r,i)=>{
 
 let e=document.createElement("div");
 
@@ -370,15 +1060,55 @@ e.className="item";
 
 if(r.category==="有酸素"){
 
-e.innerHTML="🏃 "+r.exercise+"　"+(r.distance||"-")+"km / "+(r.time||"-")+"分"+
+e.innerHTML =
 
-(r.memo?"<br>📝 "+r.memo:"");
+"🏃 "+
+
+r.exercise+
+
+"　"+
+
+(r.distance||"-")+
+
+"km / "+
+
+(r.time||"-")+
+
+"分"+
+
+(r.memo?
+
+"<br>📝 "+r.memo:""
+
+);
 
 }else{
 
-e.innerHTML="🏋️ "+r.exercise+"　"+(r.weight||"-")+"kg × "+(r.reps||"-")+"回 × "+(r.sets||"-")+"set"+
+e.innerHTML =
 
-(r.memo?"<br>📝 "+r.memo:"");
+"🏋️ "+
+
+r.exercise+
+
+"　"+
+
+(r.weight||"-")+
+
+"kg × "+
+
+(r.reps||"-")+
+
+"回 × "+
+
+(r.sets||"-")+
+
+"set"+
+
+(r.memo?
+
+"<br>📝 "+r.memo:""
+
+);
 
 }
 
@@ -386,9 +1116,279 @@ box.appendChild(e);
 
 });
 
-if(!data[key])box.innerHTML="まだ記録はありません";
+}
+
+/* =====================================================
+
+   メニュー管理
+
+===================================================== */
+
+function showAddMenu(){
+
+editingMenuCategory=null;
+
+editingMenuIndex=null;
+
+document.getElementById("menuFormTitle").textContent =
+
+"メニューを追加";
+
+document.getElementById("menuName").value="";
+
+document.getElementById("menuCategory").value="胸";
+
+document.getElementById("menuEquipment").value="マシン";
+
+document
+
+.getElementById("addMenuCard")
+
+.classList.remove("hidden");
 
 }
+
+function cancelMenu(){
+
+document
+
+.getElementById("addMenuCard")
+
+.classList.add("hidden");
+
+editingMenuCategory=null;
+
+editingMenuIndex=null;
+
+}
+
+function saveMenu(){
+
+let category =
+
+document.getElementById("menuCategory").value;
+
+let name =
+
+document.getElementById("menuName").value.trim();
+
+let equipment =
+
+document.getElementById("menuEquipment").value;
+
+if(!name){
+
+alert("メニュー名を入力してください");
+
+return;
+
+}
+
+if(!menus[category]){
+
+menus[category]=[];
+
+}
+
+if(editingMenuCategory!==null){
+
+menus[editingMenuCategory]
+
+[editingMenuIndex]={
+
+name:name,
+
+equipment:equipment
+
+};
+
+}else{
+
+menus[category].push({
+
+name:name,
+
+equipment:equipment
+
+});
+
+}
+
+localStorage.setItem(
+
+"kintoreMenus",
+
+JSON.stringify(menus)
+
+);
+
+cancelMenu();
+
+renderMenuList();
+
+updateExercise();
+
+alert("メニューを保存しました！");
+
+}
+
+function editMenu(category,index){
+
+let menu=menus[category][index];
+
+editingMenuCategory=category;
+
+editingMenuIndex=index;
+
+document.getElementById("menuFormTitle").textContent =
+
+"メニューを編集";
+
+document.getElementById("menuCategory").value =
+
+category;
+
+document.getElementById("menuName").value =
+
+menu.name;
+
+document.getElementById("menuEquipment").value =
+
+menu.equipment;
+
+document
+
+.getElementById("addMenuCard")
+
+.classList.remove("hidden");
+
+}
+
+function deleteMenu(category,index){
+
+let menu=menus[category][index];
+
+if(!confirm(
+
+"「"+menu.name+"」を削除しますか？"
+
+)){
+
+return;
+
+}
+
+menus[category].splice(index,1);
+
+localStorage.setItem(
+
+"kintoreMenus",
+
+JSON.stringify(menus)
+
+);
+
+renderMenuList();
+
+updateExercise();
+
+}
+
+function renderMenuList(){
+
+let box=document.getElementById("menuList");
+
+box.innerHTML="";
+
+Object.keys(menus).forEach(category=>{
+
+let title=document.createElement("h3");
+
+title.className="category-title";
+
+title.textContent=category;
+
+box.appendChild(title);
+
+if(!menus[category].length){
+
+let empty=document.createElement("div");
+
+empty.className="empty";
+
+empty.textContent="登録なし";
+
+box.appendChild(empty);
+
+return;
+
+}
+
+menus[category].forEach((menu,index)=>{
+
+let row=document.createElement("div");
+
+row.className="menu-item";
+
+let info=document.createElement("div");
+
+info.className="menu-info";
+
+info.innerHTML =
+
+"<div class='menu-name'>"+
+
+menu.name+
+
+"</div>"+
+
+"<div class='menu-equipment'>"+
+
+menu.equipment+
+
+"</div>";
+
+let actions=document.createElement("div");
+
+actions.className="actions";
+
+let edit=document.createElement("button");
+
+edit.className="small secondary";
+
+edit.textContent="編集";
+
+edit.onclick=()=>editMenu(category,index);
+
+let del=document.createElement("button");
+
+del.className="small danger";
+
+del.textContent="削除";
+
+del.onclick=()=>deleteMenu(category,index);
+
+actions.appendChild(edit);
+
+actions.appendChild(del);
+
+row.appendChild(info);
+
+row.appendChild(actions);
+
+box.appendChild(row);
+
+});
+
+});
+
+}
+
+/* =====================================================
+
+   初期化
+
+===================================================== */
 
 drawCalendar();
 
