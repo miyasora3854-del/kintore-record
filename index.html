@@ -1,12 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="ja">
 
 <head>
 
-<meta charset="UTF-8">
+<meta charset="utf-8">
 
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<meta name="theme-color" content="#111827">
 
 <title>筋トレ記録</title>
 
@@ -16,397 +18,269 @@
 
 body{
 
-  margin:0;
+ margin:0;
 
-  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+ font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
 
-  background:#f5f5f7;
-
-  color:#222;
+ background:#f4f5f7;color:#111827
 
 }
+
+button,input,select,textarea{font:inherit}
+
+button{cursor:pointer;border:0}
+
+.app{max-width:760px;margin:auto;min-height:100vh;padding-bottom:82px}
 
 header{
 
-  background:#111;
+ background:#111827;color:white;padding:18px 18px 14px;
 
-  color:white;
-
-  padding:18px 16px;
-
-  text-align:center;
-
-  font-size:22px;
-
-  font-weight:bold;
+ position:sticky;top:0;z-index:5
 
 }
 
-main{
+.title{font-size:21px;font-weight:800}
 
-  max-width:700px;
+.sub{font-size:12px;opacity:.7;margin-top:3px}
 
-  margin:auto;
-
-  padding:16px 16px 90px;
-
-}
+main{padding:14px}
 
 .card{
 
-  background:white;
+ background:white;border-radius:16px;padding:16px;margin-bottom:12px;
 
-  border-radius:14px;
-
-  padding:16px;
-
-  margin-bottom:14px;
-
-  box-shadow:0 2px 8px rgba(0,0,0,.06);
+ box-shadow:0 2px 10px #0000000b
 
 }
 
-button{
+h2{font-size:18px;margin:0 0 12px}
 
-  border:0;
+h3{font-size:15px;margin:0 0 10px}
 
-  border-radius:10px;
+.row{display:flex;gap:8px;align-items:center}
 
-  padding:11px 15px;
+.between{justify-content:space-between}
 
-  font-size:15px;
+.wrap{flex-wrap:wrap}
 
-  cursor:pointer;
+.btn{
 
-}
+ padding:10px 14px;border-radius:11px;background:#111827;
 
-.primary{
-
-  background:#111;
-
-  color:white;
+ color:white;font-weight:700
 
 }
 
-.secondary{
+.btn.secondary{background:#e5e7eb;color:#111827}
 
-  background:#eee;
+.btn.danger{background:#fee2e2;color:#991b1b}
 
-}
-
-.danger{
-
-  background:#e74c3c;
-
-  color:white;
-
-}
+.btn.small{padding:7px 10px;font-size:13px}
 
 input,select,textarea{
 
-  width:100%;
+ width:100%;padding:10px 11px;border:1px solid #d1d5db;
 
-  padding:10px;
-
-  margin-top:6px;
-
-  border:1px solid #ccc;
-
-  border-radius:8px;
-
-  font-size:16px;
+ border-radius:10px;background:white
 
 }
+
+textarea{min-height:80px;resize:vertical}
 
 label{
 
-  display:block;
-
-  margin-top:12px;
-
-  font-weight:bold;
+ display:block;font-size:12px;color:#6b7280;margin:9px 0 5px
 
 }
 
-.hidden{display:none!important}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 
 .tabs{
 
-  position:fixed;
+ position:fixed;bottom:0;left:0;right:0;background:#fff;
 
-  bottom:0;
+ border-top:1px solid #ddd;z-index:10;
 
-  left:0;
-
-  right:0;
-
-  background:white;
-
-  border-top:1px solid #ddd;
-
-  display:flex;
-
-  justify-content:space-around;
-
-  padding:8px 0;
-
-  z-index:50;
+ display:flex;justify-content:center
 
 }
 
 .tabs button{
 
-  background:white;
+ flex:1;max-width:190px;background:white;padding:10px 4px 12px;
 
-  padding:7px 10px;
-
-  font-size:12px;
+ color:#6b7280;font-size:12px
 
 }
 
-.calendar-title{
+.tabs button.active{color:#111827;font-weight:800}
 
-  display:flex;
+.tabs b{display:block;font-size:20px}
 
-  align-items:center;
+.calendar-head{
 
-  justify-content:space-between;
+ display:flex;align-items:center;justify-content:space-between;
 
-  margin-bottom:12px;
-
-}
-
-.calendar-title button{
-
-  padding:7px 12px;
+ margin-bottom:10px
 
 }
 
-.calendar{
+.month{font-weight:800;font-size:18px}
 
-  display:grid;
+.week,.calendar{
 
-  grid-template-columns:repeat(7,1fr);
-
-  gap:5px;
+ display:grid;grid-template-columns:repeat(7,1fr);gap:4px
 
 }
 
-.week{
+.week div{
 
-  text-align:center;
-
-  font-size:12px;
-
-  color:#777;
-
-  padding:5px 0;
+ text-align:center;font-size:11px;color:#6b7280;padding:4px
 
 }
 
 .day{
 
-  min-height:62px;
+ min-height:72px;background:#fafafa;border:1px solid #eee;
 
-  background:#fafafa;
-
-  border:1px solid #eee;
-
-  border-radius:8px;
-
-  padding:5px;
-
-  font-size:13px;
-
-  cursor:pointer;
+ border-radius:10px;padding:5px;position:relative
 
 }
 
-.day.today{
+.day button{
 
-  border:2px solid #111;
+ width:100%;height:100%;background:transparent;
 
-}
-
-.day.selected{
-
-  background:#eee;
+ text-align:left;padding:0
 
 }
 
-.daynum{
+.day.muted{opacity:.35}
 
-  font-weight:bold;
+.day.today{outline:2px solid #111827}
 
-}
+.day.selected{background:#eef2ff}
 
-.mark{
+.day .num{font-weight:700;font-size:12px}
 
-  font-size:16px;
+.legend{font-size:11px;color:#6b7280;line-height:1.7}
 
-  margin-top:5px;
+.home-wrap{
 
-}
+ height:calc(100vh - 132px);
 
-.row{
-
-  display:grid;
-
-  grid-template-columns:45px 1fr 1fr;
-
-  gap:7px;
-
-  align-items:end;
-
-  margin-top:8px;
+ display:flex;flex-direction:column;overflow:hidden
 
 }
 
-.setno{
+.home-calendar{
 
-  font-weight:bold;
-
-  padding-bottom:10px;
+ flex:0 0 auto;background:#f4f5f7;padding-bottom:8px
 
 }
 
-.small{
+.home-details{
 
-  font-size:12px;
-
-  color:#777;
+ flex:1;overflow-y:auto;padding-top:4px
 
 }
 
-.exercise{
+.home-details .card:last-child{margin-bottom:20px}
 
-  border:1px solid #ddd;
+.canvas-wrap{width:100%;height:280px}
 
-  border-radius:10px;
+.canvas-wrap canvas{width:100%;height:100%}
 
-  padding:12px;
+.set{
 
-  margin:8px 0;
+ display:grid;grid-template-columns:45px 1fr 1fr 42px;
 
-  background:#fff;
-
-}
-
-.exercise-head{
-
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
+ gap:7px;align-items:center;margin-bottom:7px
 
 }
 
-.exercise-name{
+.setno{font-weight:800;color:#6b7280;text-align:center}
 
-  font-weight:bold;
+.set input{min-width:0}
+
+.exercise-card{
+
+ border:1px solid #e5e7eb;border-radius:13px;padding:12px;margin:10px 0
+
+}
+
+.pill{
+
+ display:inline-block;background:#eef2ff;border-radius:999px;
+
+ padding:4px 8px;font-size:11px;margin:2px
 
 }
 
-.modal-bg{
+.hidden{display:none!important}
 
-  position:fixed;
+.empty{text-align:center;color:#6b7280;padding:25px 5px}
 
-  inset:0;
+.notice{
 
-  background:rgba(0,0,0,.55);
+ background:#fff7ed;border:1px solid #fed7aa;
 
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  z-index:100;
-
-  padding:18px;
+ border-radius:12px;padding:11px;font-size:13px
 
 }
+
+.statgrid{
+
+ display:grid;grid-template-columns:repeat(2,1fr);gap:9px
+
+}
+
+.stat{
+
+ background:#f9fafb;border-radius:12px;padding:12px
+
+}
+
+.stat strong{font-size:20px;display:block}
+
+.muted{color:#6b7280;font-size:12px}
+
+hr{border:0;border-top:1px solid #eee;margin:14px 0}
 
 .modal{
 
-  background:white;
+ position:fixed;inset:0;background:#0008;
 
-  width:100%;
+ display:flex;align-items:center;justify-content:center;
 
-  max-width:500px;
+ padding:18px;z-index:50
 
-  max-height:90vh;
+}
 
-  overflow:auto;
+.modal-box{
 
-  border-radius:16px;
+ background:white;width:min(560px,100%);
 
-  padding:20px;
+ max-height:90vh;overflow:auto;border-radius:18px;
+
+ padding:18px;box-shadow:0 20px 60px #0005
 
 }
 
 .modal-head{
 
-  display:flex;
+ display:flex;justify-content:space-between;
 
-  justify-content:space-between;
-
-  align-items:center;
+ align-items:center;margin-bottom:8px
 
 }
 
-.close{
+.modal-close{
 
-  background:#eee;
+ background:#f3f4f6;border-radius:50%;
 
-  border-radius:50%;
-
-  width:34px;
-
-  height:34px;
-
-  padding:0;
-
-}
-
-.actions{
-
-  display:flex;
-
-  gap:8px;
-
-  margin-top:16px;
-
-}
-
-.actions button{
-
-  flex:1;
-
-}
-
-.list-item{
-
-  padding:12px 0;
-
-  border-bottom:1px solid #eee;
-
-}
-
-.badge{
-
-  display:inline-block;
-
-  background:#eee;
-
-  border-radius:20px;
-
-  padding:4px 8px;
-
-  font-size:12px;
-
-  margin:2px;
+ width:36px;height:36px;font-size:22px
 
 }
 
@@ -416,1859 +290,3793 @@ label{
 
 <body>
 
-<header>筋トレ記録</header>
+<div class="app">
 
-<main>
+<header>
 
-<!-- カレンダー -->
+ <div class="title">🏋️ 筋トレ記録</div>
 
-<section id="calendarPage">
+ <div class="sub" id="headerSub">自分のトレーニングを記録</div>
 
-  <div class="card">
+</header>
 
-    <div class="calendar-title">
+<main id="main"></main>
 
-      <button class="secondary" onclick="changeMonth(-1)">‹</button>
-
-      <h2 id="monthTitle"></h2>
-
-      <button class="secondary" onclick="changeMonth(1)">›</button>
-
-    </div>
-
-    <div class="calendar">
-
-      <div class="week">日</div>
-
-      <div class="week">月</div>
-
-      <div class="week">火</div>
-
-      <div class="week">水</div>
-
-      <div class="week">木</div>
-
-      <div class="week">金</div>
-
-      <div class="week">土</div>
-
-    </div>
-
-    <div id="calendar" class="calendar"></div>
-
-  </div>
-
-  <div class="card">
-
-    <b>マーク</b><br>
-
-    🔥 トレーニング<br>
-
-    📅 予定<br>
-
-    🏆 PR更新<br>
-
-    📝 メモ
-
-  </div>
-
-</section>
-
-<!-- 記録 -->
-
-<section id="recordPage" class="hidden">
-
-  <div class="card">
-
-    <h2 id="recordDateTitle"></h2>
-
-    <button class="primary" onclick="showAddWorkout()">
-
-      ＋ トレーニングを追加
-
-    </button>
-
-    <button class="secondary" onclick="copyPrevious()">
-
-      ↩ 前回コピー
-
-    </button>
-
-  </div>
-
-  <div id="workoutList"></div>
-
-  <div class="card">
-
-    <label>全体メモ</label>
-
-    <textarea id="dayMemo" rows="4" placeholder="今日の感想など"></textarea>
-
-    <button class="primary" style="margin-top:10px" onclick="saveMemo()">
-
-      メモ保存
-
-    </button>
-
-  </div>
-
-</section>
-
-<!-- メニュー -->
-
-<section id="menuPage" class="hidden">
-
-  <div class="card">
-
-    <h2>メニュー管理</h2>
-
-    <button class="primary" onclick="showMenuModal()">
-
-      ＋ 種目を追加
-
-    </button>
-
-  </div>
-
-  <div id="menuList"></div>
-
-  <div class="card">
-
-    <h2>保存メニュー</h2>
-
-    <button class="primary" onclick="showTemplateModal()">
-
-      ＋ 保存メニューを作成
-
-    </button>
-
-    <div id="templateList"></div>
-
-  </div>
-
-</section>
-
-<!-- 分析 -->
-
-<section id="analysisPage" class="hidden">
-
-  <div class="card">
-
-    <h2>分析</h2>
-
-    <div id="analysis"></div>
-
-  </div>
-
-</section>
-
-</main>
-
-<!-- 下部メニュー -->
+<div id="modalRoot"></div>
 
 <nav class="tabs">
 
-  <button onclick="showPage('calendar')">📅<br>カレンダー</button>
+<button data-tab="calendar" onclick="showTab('calendar')">
 
-  <button onclick="showPage('record')">🏋️<br>記録</button>
+ <b>🏠</b>ホーム
 
-  <button onclick="showPage('menu')">📋<br>メニュー</button>
+</button>
 
-  <button onclick="showPage('analysis')">📊<br>分析</button>
+<button data-tab="menu" onclick="showTab('menu')">
+
+ <b>📋</b>種目管理
+
+</button>
+
+<button data-tab="analysis" onclick="showTab('analysis')">
+
+ <b>📊</b>分析
+
+</button>
+
+<button data-tab="settings" onclick="showTab('settings')">
+
+ <b>⚙️</b>メニュー
+
+</button>
 
 </nav>
-
-<!-- トレーニング追加モーダル -->
-
-<div id="workoutModal" class="modal-bg hidden">
-
-  <div class="modal">
-
-    <div class="modal-head">
-
-      <h2>トレーニング追加</h2>
-
-      <button class="close" onclick="closeModal('workoutModal')">×</button>
-
-    </div>
-
-    <label>部位</label>
-
-    <select id="bodyPart" onchange="updateExerciseSelect()">
-
-      <option value="胸">胸</option>
-
-      <option value="背中">背中</option>
-
-      <option value="肩">肩</option>
-
-      <option value="腕">腕</option>
-
-      <option value="脚">脚</option>
-
-      <option value="腹">腹</option>
-
-      <option value="有酸素">有酸素</option>
-
-      <option value="その他">その他</option>
-
-    </select>
-
-    <label>種目</label>
-
-    <select id="exerciseSelect"></select>
-
-    <div id="strengthInputs">
-
-      <div id="setRows"></div>
-
-      <button class="secondary" onclick="addSet()">
-
-        ＋ セット追加
-
-      </button>
-
-      <label>メモ</label>
-
-      <textarea id="exerciseMemo" rows="3"></textarea>
-
-    </div>
-
-    <div id="cardioInputs" class="hidden">
-
-      <label>距離 km</label>
-
-      <input id="distance" type="number" step="0.01">
-
-      <label>時間</label>
-
-      <input id="time" type="text" placeholder="60:00">
-
-      <label>消費カロリー kcal（任意）</label>
-
-      <input id="calories" type="number">
-
-      <label>メモ</label>
-
-      <textarea id="cardioMemo" rows="3"></textarea>
-
-    </div>
-
-    <div class="actions">
-
-      <button class="secondary" onclick="closeModal('workoutModal')">
-
-        キャンセル
-
-      </button>
-
-      <button class="primary" onclick="saveWorkout()">
-
-        保存
-
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- 種目管理モーダル -->
-
-<div id="menuModal" class="modal-bg hidden">
-
-  <div class="modal">
-
-    <div class="modal-head">
-
-      <h2 id="menuModalTitle">種目追加</h2>
-
-      <button class="close" onclick="closeModal('menuModal')">×</button>
-
-    </div>
-
-    <input type="hidden" id="editMenuIndex">
-
-    <label>部位</label>
-
-    <select id="menuBodyPart">
-
-      <option>胸</option>
-
-      <option>背中</option>
-
-      <option>肩</option>
-
-      <option>腕</option>
-
-      <option>脚</option>
-
-      <option>腹</option>
-
-      <option>有酸素</option>
-
-      <option>その他</option>
-
-    </select>
-
-    <label>種目名</label>
-
-    <input id="menuName" placeholder="例：ベンチプレス">
-
-    <label>器具</label>
-
-    <select id="menuEquipment">
-
-      <option>マシン</option>
-
-      <option>バーベル</option>
-
-      <option>ダンベル</option>
-
-      <option>ケーブル</option>
-
-      <option>自重</option>
-
-      <option>その他</option>
-
-    </select>
-
-    <div class="actions">
-
-      <button class="secondary" onclick="closeModal('menuModal')">
-
-        キャンセル
-
-      </button>
-
-      <button class="primary" onclick="saveMenu()">
-
-        保存
-
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- 保存メニューモーダル -->
-
-<div id="templateModal" class="modal-bg hidden">
-
-  <div class="modal">
-
-    <div class="modal-head">
-
-      <h2>保存メニュー</h2>
-
-      <button class="close" onclick="closeModal('templateModal')">×</button>
-
-    </div>
-
-    <label>メニュー名</label>
-
-    <input id="templateName" placeholder="例：胸の日">
-
-    <label>種目</label>
-
-    <div id="templateExercises"></div>
-
-    <div class="actions">
-
-      <button class="secondary" onclick="closeModal('templateModal')">
-
-        キャンセル
-
-      </button>
-
-      <button class="primary" onclick="saveTemplate()">
-
-        保存
-
-      </button>
-
-    </div>
-
-  </div>
 
 </div>
 
 <script>
 
-const defaultMenus = {
+const KEY='kintoreData';
 
-  "胸":[
+const MENUKEY='kintoreMenus';
 
-    ["ベンチプレス","バーベル"],
+const PLANKEY='kintorePlans';
 
-    ["チェストプレス","マシン"],
+const PROFILEKEY='kintoreProfile';
 
-    ["ダンベルプレス","ダンベル"],
+const cats=[
 
-    ["ディップス","自重"]
+ '胸','背中','肩','腕','脚','腹','有酸素','その他'
 
-  ],
+];
 
-  "背中":[
+const cardio=[
 
-    ["懸垂","自重"],
+ 'ランニング','ジョギング','ウォーキング',
 
-    ["ラットプルダウン","マシン"],
+ 'サイクリング','水泳','その他'
 
-    ["ローイング","マシン"],
+];
 
-    ["ワンハンドロー","ダンベル"]
+const defaults=[
 
-  ],
+ ['胸','ベンチプレス','バーベル'],
 
-  "肩":[
+ ['胸','チェストプレス','マシン'],
 
-    ["ショルダープレス","マシン"],
+ ['胸','ダンベルプレス','ダンベル'],
 
-    ["サイドレイズ","ダンベル"],
+ ['胸','ディップス','自重'],
 
-    ["フロントレイズ","ダンベル"]
+ ['背中','懸垂','自重'],
 
-  ],
+ ['背中','ラットプルダウン','マシン'],
 
-  "腕":[
+ ['背中','ローイング','マシン'],
 
-    ["アームカール","マシン"],
+ ['背中','ワンハンドロー','ダンベル'],
 
-    ["ハンマーカール","ダンベル"],
+ ['肩','ショルダープレス','マシン'],
 
-    ["トライセプスプレスダウン","ケーブル"]
+ ['肩','サイドレイズ','ダンベル'],
 
-  ],
+ ['肩','フロントレイズ','ダンベル'],
 
-  "脚":[
+ ['腕','アームカール','マシン'],
 
-    ["スクワット","バーベル"],
+ ['腕','ハンマーカール','ダンベル'],
 
-    ["スミスマシンスクワット","マシン"],
+ ['腕','トライセプスプレスダウン','ケーブル'],
 
-    ["レッグプレス","マシン"],
+ ['脚','スクワット','バーベル'],
 
-    ["レッグカール","マシン"],
+ ['脚','スミスマシンスクワット','スミス'],
 
-    ["カーフレイズ","マシン"]
+ ['脚','レッグプレス','マシン'],
 
-  ],
+ ['脚','レッグカール','マシン'],
 
-  "腹":[
+ ['脚','カーフレイズ','スミス'],
 
-    ["アブドミナル","マシン"],
+ ['腹','アブドミナル','マシン'],
 
-    ["レッグレイズ","自重"],
+ ['腹','レッグレイズ','自重'],
 
-    ["ケーブルクランチ","ケーブル"]
+ ['腹','ケーブルクランチ','ケーブル'],
 
-  ],
+ ...cardio.map(x=>['有酸素',x,'有酸素']),
 
-  "有酸素":[
+ ['その他','その他','その他']
 
-    ["ランニング","その他"],
-
-    ["ジョギング","その他"],
-
-    ["ウォーキング","その他"],
-
-    ["サイクリング","その他"],
-
-    ["水泳","その他"]
-
-  ],
-
-  "その他":[
-
-    ["その他","その他"]
-
-  ]
-
-};
-
-let menus = loadJSON("kintoreMenus",defaultMenus);
-
-let records = loadJSON("kintoreData",{});
-
-let templates = loadJSON("kintoreTemplates",[]);
-
-let selectedDate = todayString();
-
-let currentMonth = new Date();
-
-currentMonth.setDate(1);
-
-let editingWorkoutIndex = null;
+];
 
 function loadJSON(key,fallback){
 
-  try{
+ try{
 
-    const raw=localStorage.getItem(key);
+  const v=localStorage.getItem(key);
 
-    if(!raw) return structuredClone(fallback);
+  return v ? JSON.parse(v) : fallback;
 
-    const data=JSON.parse(raw);
+ }catch(e){
 
-    return data ?? structuredClone(fallback);
+  console.warn('保存データ読み込みエラー',e);
 
-  }catch(e){
+  return fallback;
 
-    console.log("データ読み込みエラー",key,e);
-
-    return structuredClone(fallback);
-
-  }
+ }
 
 }
 
-function saveJSON(key,data){
+let data=loadJSON(KEY,{});
 
-  try{
+let menus=loadJSON(MENUKEY,null);
 
-    localStorage.setItem(key,JSON.stringify(data));
+if(!Array.isArray(menus)){
 
-  }catch(e){
-
-    alert("データ保存に失敗しました");
-
-  }
+ menus=[];
 
 }
 
-function todayString(){
+function mergeDefaultMenus(){
 
-  const d=new Date();
+ const key=new Set(
 
-  return d.getFullYear()+"-"+
+  menus.map(m=>m.cat+'|'+m.name)
 
-    String(d.getMonth()+1).padStart(2,"0")+"-"+
+ );
 
-    String(d.getDate()).padStart(2,"0");
+ defaults.forEach((x,i)=>{
+
+  const k=x[0]+'|'+x[1];
+
+  if(!key.has(k)){
+
+   menus.push({
+
+    id:'mdefault'+i,
+
+    cat:x[0],
+
+    name:x[1],
+
+    equip:x[2]
+
+   });
+
+  }
+
+ });
 
 }
 
-function dateString(y,m,d){
+mergeDefaultMenus();
 
-  return y+"-"+String(m+1).padStart(2,"0")+"-"+String(d).padStart(2,"0");
+let plans=loadJSON(PLANKEY,{});
+
+let profile=loadJSON(PROFILEKEY,null);
+
+if(!profile){
+
+ profile={
+
+  name:'自分',
+
+  height:'',
+
+  weight:''
+
+ };
 
 }
 
-function showPage(page){
+let templates=loadJSON(
 
-  document.getElementById("calendarPage").classList.add("hidden");
+ 'kintoreTemplates',
 
-  document.getElementById("recordPage").classList.add("hidden");
+ {}
 
-  document.getElementById("menuPage").classList.add("hidden");
+);
 
-  document.getElementById("analysisPage").classList.add("hidden");
+if(!templates || typeof templates!=='object'){
 
-  if(page==="calendar"){
+ templates={};
 
-    document.getElementById("calendarPage").classList.remove("hidden");
+}
 
-    renderCalendar();
+let state={
 
-  }
+ tab:'calendar',
 
-  if(page==="record"){
+ date:isoToday(),
 
-    document.getElementById("recordPage").classList.remove("hidden");
+ month:new Date(),
 
-    renderRecord();
+ editing:null,
 
-  }
+ analysisExercise:''
 
-  if(page==="menu"){
+};
 
-    document.getElementById("menuPage").classList.remove("hidden");
+function saveAll(){
 
-    renderMenus();
+ try{
 
-    renderTemplates();
+  localStorage.setItem(
 
-  }
+   KEY,
 
-  if(page==="analysis"){
+   JSON.stringify(data)
 
-    document.getElementById("analysisPage").classList.remove("hidden");
+  );
 
-    renderAnalysis();
+  localStorage.setItem(
 
-  }
+   MENUKEY,
+
+   JSON.stringify(menus)
+
+  );
+
+  localStorage.setItem(
+
+   PLANKEY,
+
+   JSON.stringify(plans)
+
+  );
+
+  localStorage.setItem(
+
+   PROFILEKEY,
+
+   JSON.stringify(profile)
+
+  );
+
+  localStorage.setItem(
+
+   'kintoreTemplates',
+
+   JSON.stringify(templates)
+
+  );
+
+ }catch(e){
+
+  alert('保存に失敗しました。端末の保存容量を確認してください。');
+
+ }
+
+}
+
+function isoToday(){
+
+ const d=new Date();
+
+ return localDate(d);
+
+}
+
+function localDate(d){
+
+ return d.getFullYear()+
+
+ '-' +
+
+ String(d.getMonth()+1).padStart(2,'0')+
+
+ '-' +
+
+ String(d.getDate()).padStart(2,'0');
+
+}
+
+function esc(s){
+
+ return String(s??'').replace(
+
+  /[&<>"']/g,
+
+  m=>({
+
+   '&':'&amp;',
+
+   '<':'&lt;',
+
+   '>':'&gt;',
+
+   '"':'&quot;',
+
+   "'":'&#39;'
+
+  }[m])
+
+ );
+
+}
+
+function showTab(t){
+
+ state.tab=t;
+
+ state.editing=null;
+
+ render();
+
+}
+
+function render(){
+
+ document.querySelectorAll('.tabs button')
+
+ .forEach(b=>{
+
+  b.classList.toggle(
+
+   'active',
+
+   b.dataset.tab===state.tab
+
+  );
+
+ });
+
+ document.getElementById(
+
+  'headerSub'
+
+ ).textContent=
+
+ profile.name+' のトレーニング記録';
+
+ if(state.tab==='calendar'){
+
+  renderCalendar();
+
+ }
+
+ else if(state.tab==='menu'){
+
+  renderMenu();
+
+ }
+
+ else if(state.tab==='analysis'){
+
+  renderAnalysis();
+
+ }
+
+ else{
+
+  renderSettings();
+
+ }
 
 }
 
 function renderCalendar(){
 
-  const y=currentMonth.getFullYear();
+ const d=state.month;
 
-  const m=currentMonth.getMonth();
+ const y=d.getFullYear();
 
-  document.getElementById("monthTitle").textContent=
+ const m=d.getMonth();
 
-    y+"年"+(m+1)+"月";
+ const first=new Date(y,m,1);
 
-  const cal=document.getElementById("calendar");
+ const last=new Date(y,m+1,0);
 
-  cal.innerHTML="";
+ const start=(first.getDay()+6)%7;
 
-  const first=new Date(y,m,1).getDay();
+ let cells=[];
 
-  const last=new Date(y,m+1,0).getDate();
+ for(let i=0;i<start;i++){
 
-  for(let i=0;i<first;i++){
+  cells.push(
 
-    const blank=document.createElement("div");
+   '<div class="day muted"></div>'
 
-    cal.appendChild(blank);
+  );
 
-  }
+ }
 
-  for(let d=1;d<=last;d++){
+ for(let n=1;n<=last.getDate();n++){
 
-    const date=dateString(y,m,d);
+  const date=localDate(
 
-    const el=document.createElement("div");
+   new Date(y,m,n)
 
-    el.className="day";
+  );
 
-    if(date===todayString())
+  cells.push(`
 
-      el.classList.add("today");
+   <div class="day
 
-    if(date===selectedDate)
+    ${date===isoToday()?'today':''}
 
-      el.classList.add("selected");
+    ${date===state.date?'selected':''}">
 
-    let html=`<div class="daynum">${d}</div>`;
+    <button onclick="openDate('${date}')">
 
-    if(records[date] && records[date].length){
+     <div class="num">${n}</div>
 
-      html+=`<div class="mark">🔥</div>`;
+    </button>
 
-      if(hasPR(date))
+   </div>
 
-        html+=`<div class="mark">🏆</div>`;
+  `);
 
-    }
+ }
 
-    if(records[date] && records[date].memo)
+ const totals=monthTotals(y,m);
 
-      html+=`<div class="mark">📝</div>`;
+ document.getElementById('main').innerHTML=`
 
-    el.innerHTML=html;
+ <div class="home-wrap">
 
-    el.onclick=()=>{
+  <div class="home-calendar">
 
-      selectedDate=date;
+   <div class="calendar-head">
 
-      showPage("record");
+    <button
 
-    };
+     class="btn secondary small"
 
-    cal.appendChild(el);
+     onclick="moveMonth(-1)">
 
-  }
+     ‹
+
+    </button>
+
+    <div class="month">
+
+     ${y}年${m+1}月
+
+    </div>
+
+    <button
+
+     class="btn secondary small"
+
+     onclick="moveMonth(1)">
+
+     ›
+
+    </button>
+
+   </div>
+
+   <div class="week">
+
+    ${[
+
+     '月','火','水','木','金','土','日'
+
+    ].map(x=>`<div>${x}</div>`).join('')}
+
+   </div>
+
+   <div class="calendar">
+
+    ${cells.join('')}
+
+   </div>
+
+   <div
+
+    class="statgrid"
+
+    style="margin-top:8px">
+
+    <div class="stat">
+
+     <span class="muted">
+
+      今月セット数
+
+     </span>
+
+     <strong>
+
+      ${totals.sets}
+
+     </strong>
+
+     <span class="muted">
+
+      sets
+
+     </span>
+
+    </div>
+
+    <div class="stat">
+
+     <span class="muted">
+
+      今月推定消費
+
+     </span>
+
+     <strong>
+
+      ${Math.round(
+
+       totals.calories
+
+      ).toLocaleString()}
+
+     </strong>
+
+     <span class="muted">
+
+      kcal
+
+     </span>
+
+    </div>
+
+   </div>
+
+  </div>
+
+  <div
+
+   class="home-details"
+
+   id="homeDetails">
+
+  </div>
+
+ </div>
+
+ `;
+
+ renderHomeDetails();
 
 }
 
-function changeMonth(diff){
+function monthTotals(y,m){
 
-  currentMonth.setMonth(currentMonth.getMonth()+diff);
+ const prefix=
 
-  renderCalendar();
+  y+'-'+
 
-}
+  String(m+1).padStart(2,'0');
 
-function renderRecord(){
+ let sets=0;
 
-  document.getElementById("recordDateTitle").textContent=
+ let calories=0;
 
-    selectedDate.replaceAll("-","/");
+ Object.entries(data).forEach(
 
-  const list=document.getElementById("workoutList");
+  ([date,r])=>{
 
-  list.innerHTML="";
-
-  const day=records[selectedDate];
-
-  document.getElementById("dayMemo").value=
-
-    (day && day.memo) || "";
-
-  if(!day || !Array.isArray(day.workouts) && !Array.isArray(day)){
-
-    list.innerHTML=`
-
-      <div class="card">
-
-        まだ記録がありません。
-
-      </div>`;
+   if(!date.startsWith(prefix)){
 
     return;
 
-  }
+   }
 
-  const workouts=Array.isArray(day)
+   const workouts=
 
-    ? day
+    Array.isArray(r?.workouts)
 
-    : day.workouts;
+     ? r.workouts
 
-  if(!workouts.length){
+     : [];
 
-    list.innerHTML=`
+   workouts.forEach(w=>{
 
-      <div class="card">
+    if(w.cat==='有酸素'){
 
-        まだ記録がありません。
-
-      </div>`;
-
-    return;
-
-  }
-
-  workouts.forEach((w,index)=>{
-
-    const card=document.createElement("div");
-
-    card.className="card";
-
-    if(w.type==="cardio"){
-
-      card.innerHTML=`
-
-        <div class="exercise-head">
-
-          <div>
-
-            <div class="exercise-name">
-
-              ${escapeHTML(w.name)}
-
-            </div>
-
-            <span class="badge">有酸素</span>
-
-          </div>
-
-          <button class="danger"
-
-            onclick="deleteWorkout(${index})">
-
-            削除
-
-          </button>
-
-        </div>
-
-        <p>
-
-          距離：${w.distance || "-"} km<br>
-
-          時間：${w.time || "-"}<br>
-
-          ${w.calories ? "カロリー："+w.calories+" kcal<br>":""}
-
-        </p>
-
-        ${w.memo ? "<p>"+escapeHTML(w.memo)+"</p>":""}
-
-      `;
+     calories+=estimateCalories(w);
 
     }else{
 
-      const sets=normalizeSets(w.sets);
+     const arr=
 
-      let setText="";
+      Array.isArray(w.sets)
 
-      sets.forEach((s,i)=>{
+       ? w.sets
 
-        setText+=`
+       : [];
 
-          <div>
+     sets+=arr.filter(
 
-            ${i+1}セット目：
+      s=>
 
-            ${s.weight || "-"} kg ×
+       s.weight!=='' ||
 
-            ${s.reps || "-"}回
+       s.reps!==''
 
-          </div>`;
-
-      });
-
-      card.innerHTML=`
-
-        <div class="exercise-head">
-
-          <div>
-
-            <div class="exercise-name">
-
-              ${escapeHTML(w.name)}
-
-            </div>
-
-            <span class="badge">
-
-              ${escapeHTML(w.bodyPart || "")}
-
-            </span>
-
-            ${w.equipment ?
-
-              `<span class="badge">${escapeHTML(w.equipment)}</span>`
-
-              :""
-
-            }
-
-          </div>
-
-          <button class="danger"
-
-            onclick="deleteWorkout(${index})">
-
-            削除
-
-          </button>
-
-        </div>
-
-        <div style="margin-top:10px">
-
-          ${setText}
-
-        </div>
-
-        ${w.memo ?
-
-          `<p>${escapeHTML(w.memo)}</p>`:""
-
-        }
-
-      `;
+     ).length;
 
     }
 
-    list.appendChild(card);
-
-  });
-
-}
-
-function normalizeSets(sets){
-
-  if(Array.isArray(sets)){
-
-    return sets.map(s=>({
-
-      weight:s?.weight ?? "",
-
-      reps:s?.reps ?? ""
-
-    }));
+   });
 
   }
 
-  if(typeof sets==="number" || typeof sets==="string"){
+ );
 
-    return [
+ return {
 
-      {weight:sets,reps:""},
+  sets,
 
-      {weight:"",reps:""},
+  calories
 
-      {weight:"",reps:""}
+ };
 
-    ];
+}
+
+function estimateCalories(w){
+
+ const weight=
+
+  Number(profile.weight)||62;
+
+ if(w.cat!=='有酸素'){
+
+  return 0;
+
+ }
+
+ const minutes=
+
+  Number(w.time)||0;
+
+ const met={
+
+  'ランニング':9.8,
+
+  'ジョギング':7,
+
+  'ウォーキング':3.5,
+
+  'サイクリング':7.5,
+
+  '水泳':8,
+
+  'その他':5
+
+ }[w.exercise]||5;
+
+ return met*
+
+  3.5*
+
+  weight/
+
+  200*
+
+  minutes;
+
+}
+
+function openDate(date){
+
+ state.date=date;
+
+ state.tab='calendar';
+
+ render();
+
+ setTimeout(()=>{
+
+  const el=
+
+   document.getElementById(
+
+    'homeDetails'
+
+   );
+
+  if(el){
+
+   el.scrollTop=0;
 
   }
 
-  return [
-
-    {weight:"",reps:""},
-
-    {weight:"",reps:""},
-
-    {weight:"",reps:""}
-
-  ];
+ },20);
 
 }
 
-function showAddWorkout(){
+function moveMonth(diff){
 
-  editingWorkoutIndex=null;
+ state.month.setMonth(
 
-  document.getElementById("bodyPart").value="胸";
+  state.month.getMonth()+diff
 
-  updateExerciseSelect();
+ );
 
-  document.getElementById("exerciseMemo").value="";
-
-  document.getElementById("distance").value="";
-
-  document.getElementById("time").value="";
-
-  document.getElementById("calories").value="";
-
-  document.getElementById("cardioMemo").value="";
-
-  createSetRows(3);
-
-  document.getElementById("workoutModal").classList.remove("hidden");
+ render();
 
 }
 
-function updateExerciseSelect(){
+function renderHomeDetails(){
 
-  const part=document.getElementById("bodyPart").value;
+ const box=
 
-  const select=document.getElementById("exerciseSelect");
+  document.getElementById(
 
-  select.innerHTML="";
+   'homeDetails'
 
-  const list=menus[part] || [];
+  );
 
-  list.forEach(item=>{
+ if(!box)return;
 
-    const option=document.createElement("option");
+ const r=
 
-    option.value=item[0];
+  data[state.date]||
 
-    option.textContent=item[0];
+  {
 
-    option.dataset.equipment=item[1] || "";
+   workouts:[],
 
-    select.appendChild(option);
+   memo:''
 
-  });
+  };
 
-  const isCardio=part==="有酸素";
+ const plan=
 
-  document.getElementById("strengthInputs")
+  Array.isArray(plans[state.date])
 
-    .classList.toggle("hidden",isCardio);
+   ? plans[state.date]
 
-  document.getElementById("cardioInputs")
+   : [];
 
-    .classList.toggle("hidden",!isCardio);
+ const workouts=
 
-}
+  Array.isArray(r.workouts)
 
-function createSetRows(count){
+   ? r.workouts
 
-  const box=document.getElementById("setRows");
+   : [];
 
-  box.innerHTML="";
+ box.innerHTML=`
 
-  for(let i=0;i<count;i++){
+ <div class="card">
 
-    const row=document.createElement("div");
+  <div class="row between">
 
-    row.className="row";
+   <h2 style="margin:0">
 
-    row.innerHTML=`
+    ${state.date.replaceAll('-','/')}
 
-      <div class="setno">${i+1}</div>
+   </h2>
 
-      <div>
+   <button
 
-        <div class="small">重量 kg</div>
+    class="btn small"
 
-        <input class="weight" type="number" step="0.1">
+    onclick="addWorkout()">
 
-      </div>
+    ＋ 記録
 
-      <div>
+   </button>
 
-        <div class="small">回数</div>
+  </div>
 
-        <input class="reps" type="number">
+  ${
 
-      </div>
+   plan.length
 
-    `;
+   ?
 
-    box.appendChild(row);
+   `<div
+
+    class="notice"
+
+    style="margin-top:10px">
+
+    📅 予定：
+
+    ${plan.map(esc).join(' / ')}
+
+   </div>`
+
+   :''
 
   }
 
+  ${
+
+   workouts.length
+
+   ?
+
+   workouts.map(
+
+    (w,i)=>homeWorkoutHTML(w,i)
+
+   ).join('')
+
+   :
+
+   '<div class="empty">この日の記録はありません</div>'
+
+  }
+
+  <label>
+
+   全体メモ
+
+  </label>
+
+  <textarea
+
+   id="dayMemo"
+
+   placeholder="今日の体調・気づきなど"
+
+  >${esc(r.memo||'')}</textarea>
+
+  <button
+
+   class="btn"
+
+   style="margin-top:8px"
+
+   onclick="saveDay()">
+
+   保存
+
+  </button>
+
+  <button
+
+   class="btn secondary"
+
+   style="margin-left:6px"
+
+   onclick="copyPrevious()">
+
+   前回コピー
+
+  </button>
+
+ </div>
+
+ `;
+
 }
 
-function addSet(){
+function homeWorkoutHTML(w,i){
 
-  const rows=document.querySelectorAll("#setRows .row");
+ if(w.cat==='有酸素'){
 
-  const row=document.createElement("div");
+  return `
 
-  row.className="row";
+  <div class="exercise-card">
 
-  row.innerHTML=`
-
-    <div class="setno">${rows.length+1}</div>
+   <div class="row between">
 
     <div>
 
-      <div class="small">重量 kg</div>
+     <strong>
 
-      <input class="weight" type="number" step="0.1">
+      ${esc(w.exercise)}
+
+     </strong>
+
+     <span class="pill">
+
+      有酸素
+
+     </span>
 
     </div>
 
-    <div>
+    <button
 
-      <div class="small">回数</div>
+     class="btn danger small"
 
-      <input class="reps" type="number">
+     onclick="removeWorkout(${i})">
 
-    </div>
+     削除
+
+    </button>
+
+   </div>
+
+   <label>
+
+    時間（分）
+
+   </label>
+
+   <input
+
+    class="cardio-time"
+
+    data-i="${i}"
+
+    type="number"
+
+    min="0"
+
+    value="${esc(w.time||'')}"
+
+    placeholder="例：60">
+
+   <div
+
+    class="muted"
+
+    style="margin-top:6px">
+
+    推定消費：
+
+    ${Math.round(
+
+     estimateCalories(w)
+
+    )} kcal
+
+   </div>
+
+   <label>
+
+    種目メモ
+
+   </label>
+
+   <textarea
+
+    class="workout-memo"
+
+    data-i="${i}"
+
+    placeholder="メモ"
+
+   >${esc(w.memo||'')}</textarea>
+
+  </div>
 
   `;
 
-  document.getElementById("setRows").appendChild(row);
+ }
+
+ const sets=
+
+  Array.isArray(w.sets)
+
+   ? w.sets
+
+   : [];
+
+ return `
+
+ <div class="exercise-card">
+
+  <div class="row between">
+
+   <div>
+
+    <strong>
+
+     ${esc(w.exercise)}
+
+    </strong>
+
+    <span class="pill">
+
+     ${esc(w.cat)}
+
+    </span>
+
+    <span class="pill">
+
+     ${esc(w.equip||'')}
+
+    </span>
+
+   </div>
+
+   <button
+
+    class="btn danger small"
+
+    onclick="removeWorkout(${i})">
+
+    削除
+
+   </button>
+
+  </div>
+
+  <div
+
+   style="margin-top:10px">
+
+   ${sets.map(
+
+    (s,j)=>`
+
+    <div class="set">
+
+     <div class="setno">
+
+      ${j+1}
+
+     </div>
+
+     <input
+
+      class="weight"
+
+      data-i="${i}"
+
+      data-j="${j}"
+
+      type="number"
+
+      step="0.1"
+
+      value="${esc(s.weight??'')}"
+
+      placeholder="重量 kg">
+
+     <input
+
+      class="reps"
+
+      data-i="${i}"
+
+      data-j="${j}"
+
+      type="number"
+
+      value="${esc(s.reps??'')}"
+
+      placeholder="rep">
+
+     <button
+
+      class="btn danger small"
+
+      onclick="removeSet(${i},${j})">
+
+      ×
+
+     </button>
+
+    </div>
+
+   `).join('')}
+
+  </div>
+
+  <button
+
+   class="btn secondary small"
+
+   onclick="addSet(${i})">
+
+   ＋セット追加
+
+  </button>
+
+  <label>
+
+   種目メモ
+
+  </label>
+
+  <textarea
+
+   class="workout-memo"
+
+   data-i="${i}"
+
+   placeholder="この種目についてのメモ"
+
+  >${esc(w.memo||'')}</textarea>
+
+ </div>
+
+ `;
 
 }
 
-function saveWorkout(){
+function saveDay(){
 
-  const part=document.getElementById("bodyPart").value;
+ const old=
 
-  const option=
+  data[state.date]||
 
-    document.getElementById("exerciseSelect")
+  {
 
-      .selectedOptions[0];
+   workouts:[],
 
-  if(!option){
+   memo:''
 
-    alert("種目を選択してください");
+  };
 
-    return;
+ const workouts=
 
-  }
+  Array.isArray(old.workouts)
 
-  const name=option.value;
+   ? old.workouts
 
-  if(!records[selectedDate])
+   : [];
 
-    records[selectedDate]={workouts:[],memo:""};
+ document.querySelectorAll(
 
-  if(Array.isArray(records[selectedDate]))
+  '.weight'
 
-    records[selectedDate]={
+ ).forEach(el=>{
 
-      workouts:records[selectedDate],
+  const i=
 
-      memo:""
+   Number(el.dataset.i);
 
-    };
+  const j=
 
-  if(part==="有酸素"){
+   Number(el.dataset.j);
 
-    records[selectedDate].workouts.push({
+  if(workouts[i]&&workouts[i].sets[j]){
 
-      type:"cardio",
+   workouts[i].sets[j].weight=
 
-      bodyPart:part,
-
-      name:name,
-
-      distance:document.getElementById("distance").value,
-
-      time:document.getElementById("time").value,
-
-      calories:document.getElementById("calories").value,
-
-      memo:document.getElementById("cardioMemo").value
-
-    });
-
-  }else{
-
-    const weights=
-
-      [...document.querySelectorAll(".weight")]
-
-        .map(x=>x.value);
-
-    const reps=
-
-      [...document.querySelectorAll(".reps")]
-
-        .map(x=>x.value);
-
-    const sets=[];
-
-    for(let i=0;i<weights.length;i++){
-
-      if(weights[i]!=="" || reps[i]!==""){
-
-        sets.push({
-
-          weight:weights[i],
-
-          reps:reps[i]
-
-        });
-
-      }
-
-    }
-
-    if(!sets.length){
-
-      alert("重量または回数を入力してください");
-
-      return;
-
-    }
-
-    records[selectedDate].workouts.push({
-
-      type:"strength",
-
-      bodyPart:part,
-
-      name:name,
-
-      equipment:option.dataset.equipment || "",
-
-      sets:sets,
-
-      memo:document.getElementById("exerciseMemo").value
-
-    });
+    el.value;
 
   }
 
-  saveJSON("kintoreData",records);
+ });
 
-  closeModal("workoutModal");
+ document.querySelectorAll(
 
-  renderRecord();
+  '.reps'
 
-  renderCalendar();
+ ).forEach(el=>{
+
+  const i=
+
+   Number(el.dataset.i);
+
+  const j=
+
+   Number(el.dataset.j);
+
+  if(workouts[i]&&workouts[i].sets[j]){
+
+   workouts[i].sets[j].reps=
+
+    el.value;
+
+  }
+
+ });
+
+ document.querySelectorAll(
+
+  '.cardio-time'
+
+ ).forEach(el=>{
+
+  const i=
+
+   Number(el.dataset.i);
+
+  if(workouts[i]){
+
+   workouts[i].time=
+
+    el.value;
+
+  }
+
+ });
+
+ document.querySelectorAll(
+
+  '.workout-memo'
+
+ ).forEach(el=>{
+
+  const i=
+
+   Number(el.dataset.i);
+
+  if(workouts[i]){
+
+   workouts[i].memo=
+
+    el.value;
+
+  }
+
+ });
+
+ old.workouts=workouts;
+
+ const memo=
+
+  document.getElementById(
+
+   'dayMemo'
+
+  );
+
+ old.memo=
+
+  memo ? memo.value : '';
+
+ data[state.date]=old;
+
+ saveAll();
+
+ render();
 
 }
 
-function deleteWorkout(index){
+function addSet(i){
 
-  if(!confirm("この記録を削除しますか？"))
+ if(!data[state.date]){
 
-    return;
+  data[state.date]={
 
-  const day=records[selectedDate];
+   workouts:[],
 
-  if(Array.isArray(day)){
+   memo:''
 
-    day.splice(index,1);
+  };
 
-    if(!day.length)
+ }
 
-      delete records[selectedDate];
+ if(!Array.isArray(
 
-  }else{
+  data[state.date].workouts
 
-    day.workouts.splice(index,1);
+ )){
 
-    if(!day.workouts.length && !day.memo)
+  data[state.date].workouts=[];
 
-      delete records[selectedDate];
+ }
 
-  }
+ const w=
 
-  saveJSON("kintoreData",records);
+  data[state.date].workouts[i];
 
-  renderRecord();
+ if(!w)return;
 
-  renderCalendar();
+ if(!Array.isArray(w.sets)){
+
+  w.sets=[];
+
+ }
+
+ w.sets.push({
+
+  weight:'',
+
+  reps:''
+
+ });
+
+ renderHomeDetails();
 
 }
 
-function saveMemo(){
+function removeSet(i,j){
 
-  if(!records[selectedDate])
+ const w=
 
-    records[selectedDate]={workouts:[],memo:""};
+  data[state.date]?.workouts?.[i];
 
-  if(Array.isArray(records[selectedDate]))
+ if(!w)return;
 
-    records[selectedDate]={
+ if(w.sets.length<=1){
 
-      workouts:records[selectedDate],
+  alert(
 
-      memo:""
+   'セットを0件にはできません。'
 
-    };
+  );
 
-  records[selectedDate].memo=
+  return;
 
-    document.getElementById("dayMemo").value;
+ }
 
-  saveJSON("kintoreData",records);
+ w.sets.splice(j,1);
 
-  renderCalendar();
+ saveAll();
 
-  alert("メモを保存しました");
+ renderHomeDetails();
+
+}
+
+function removeWorkout(i){
+
+ if(!data[state.date]?.workouts){
+
+  return;
+
+ }
+
+ if(
+
+  confirm(
+
+   'この記録を削除しますか？'
+
+  )
+
+ ){
+
+  data[state.date].workouts.splice(
+
+   i,
+
+   1
+
+  );
+
+  saveAll();
+
+  renderHomeDetails();
+
+ }
+
+}
+
+function addWorkout(){
+
+ const menuOptions=
+
+  menus.map(
+
+   m=>`
+
+   <option
+
+    value="${esc(m.id)}">
+
+    ${esc(m.cat)}
+
+    ／
+
+    ${esc(m.name)}
+
+   </option>
+
+  `
+
+  ).join('');
+
+ document.getElementById(
+
+  'modalRoot'
+
+ ).innerHTML=`
+
+ <div
+
+  class="modal"
+
+  onclick="if(event.target===this)closeModal()">
+
+  <div class="modal-box">
+
+   <div class="modal-head">
+
+    <h2 style="margin:0">
+
+     記録を追加
+
+    </h2>
+
+    <button
+
+     class="modal-close"
+
+     onclick="closeModal()">
+
+     ×
+
+    </button>
+
+   </div>
+
+   <label>
+
+    種目
+
+   </label>
+
+   <select id="addExercise">
+
+    ${menuOptions}
+
+   </select>
+
+   <div
+
+    class="notice"
+
+    style="margin-top:12px">
+
+    筋トレ種目は
+
+    <strong>3セット</strong>
+
+    が初期表示されます。
+
+   </div>
+
+   <div
+
+    class="row"
+
+    style="margin-top:14px;justify-content:flex-end">
+
+    <button
+
+     class="btn secondary"
+
+     onclick="closeModal()">
+
+     キャンセル
+
+    </button>
+
+    <button
+
+     class="btn"
+
+     onclick="confirmAddWorkout()">
+
+     追加
+
+    </button>
+
+   </div>
+
+  </div>
+
+ </div>
+
+ `;
+
+}
+
+function confirmAddWorkout(){
+
+ const id=
+
+  document.getElementById(
+
+   'addExercise'
+
+  ).value;
+
+ const m=
+
+  menus.find(
+
+   x=>x.id===id
+
+  );
+
+ if(!m)return;
+
+ if(!data[state.date]){
+
+  data[state.date]={
+
+   workouts:[],
+
+   memo:''
+
+  };
+
+ }
+
+ if(!Array.isArray(
+
+  data[state.date].workouts
+
+ )){
+
+  data[state.date].workouts=[];
+
+ }
+
+ let w;
+
+ if(m.cat==='有酸素'){
+
+  w={
+
+   cat:m.cat,
+
+   exercise:m.name,
+
+   equip:m.equip,
+
+   time:'',
+
+   memo:''
+
+  };
+
+ }else{
+
+  w={
+
+   cat:m.cat,
+
+   exercise:m.name,
+
+   equip:m.equip,
+
+   sets:[
+
+    {weight:'',reps:''},
+
+    {weight:'',reps:''},
+
+    {weight:'',reps:''}
+
+   ],
+
+   memo:''
+
+  };
+
+ }
+
+ data[state.date].workouts.push(w);
+
+ saveAll();
+
+ closeModal();
+
+ renderHomeDetails();
 
 }
 
 function copyPrevious(){
 
-  const dates=Object.keys(records)
+ const dates=
 
-    .filter(d=>d<selectedDate)
+  Object.keys(data)
 
-    .sort();
+  .filter(d=>d<state.date)
 
-  if(!dates.length){
+  .sort();
 
-    alert("前回の記録がありません");
+ if(!dates.length){
 
-    return;
+  alert(
 
-  }
+   '前回の記録がありません。'
 
-  const previous=dates[dates.length-1];
+  );
 
-  const source=records[previous];
+  return;
 
-  let workouts=
+ }
 
-    Array.isArray(source)
+ const prev=
 
-      ? source
+  data[dates[dates.length-1]];
 
-      : source.workouts || [];
+ if(!prev)return;
 
-  if(!records[selectedDate])
+ data[state.date]=
 
-    records[selectedDate]={workouts:[],memo:""};
+  JSON.parse(
 
-  if(Array.isArray(records[selectedDate]))
+   JSON.stringify(prev)
 
-    records[selectedDate]={
+  );
 
-      workouts:records[selectedDate],
+ saveAll();
 
-      memo:""
-
-    };
-
-  const copied=JSON.parse(JSON.stringify(workouts));
-
-  records[selectedDate].workouts=
-
-    records[selectedDate].workouts.concat(copied);
-
-  saveJSON("kintoreData",records);
-
-  renderRecord();
-
-  renderCalendar();
-
-  alert(previous+" の記録をコピーしました");
+ renderHomeDetails();
 
 }
 
-function showMenuModal(index=null){
+function renderMenu(){
 
-  document.getElementById("menuModal").classList.remove("hidden");
+ const grouped={};
 
-  if(index===null){
+ menus.forEach(m=>{
 
-    document.getElementById("menuModalTitle").textContent="種目追加";
+  if(!grouped[m.cat]){
 
-    document.getElementById("editMenuIndex").value="";
-
-    document.getElementById("menuBodyPart").value="胸";
-
-    document.getElementById("menuName").value="";
-
-    document.getElementById("menuEquipment").value="マシン";
-
-  }else{
-
-    const item=getAllMenus()[index];
-
-    document.getElementById("menuModalTitle").textContent="種目編集";
-
-    document.getElementById("editMenuIndex").value=index;
-
-    document.getElementById("menuBodyPart").value=item.part;
-
-    document.getElementById("menuName").value=item.name;
-
-    document.getElementById("menuEquipment").value=item.equipment;
+   grouped[m.cat]=[];
 
   }
 
-}
+  grouped[m.cat].push(m);
 
-function getAllMenus(){
+ });
 
-  const result=[];
+ document.getElementById(
 
-  Object.keys(menus).forEach(part=>{
+  'main'
 
-    (menus[part]||[]).forEach(item=>{
+ ).innerHTML=`
 
-      result.push({
+ <div class="card">
 
-        part:part,
+  <h2>
 
-        name:item[0],
+   種目管理
 
-        equipment:item[1] || ""
+  </h2>
 
-      });
+  <div class="notice">
 
-    });
+   デフォルト種目は最初から登録されています。
 
-  });
+   削除した場合も、アプリを再読み込みすると
 
-  return result;
+   デフォルト種目を復活できます。
 
-}
+  </div>
 
-function saveMenu(){
+  <div
 
-  const part=document.getElementById("menuBodyPart").value;
+   class="row"
 
-  const name=document.getElementById("menuName").value.trim();
+   style="margin-top:12px">
 
-  const equipment=document.getElementById("menuEquipment").value;
+   <button
 
-  if(!name){
+    class="btn"
 
-    alert("種目名を入力してください");
+    onclick="menuForm('')">
 
-    return;
+    ＋ 種目を追加
 
-  }
+   </button>
 
-  const edit=
+   <button
 
-    document.getElementById("editMenuIndex").value;
+    class="btn secondary"
 
-  if(edit===""){
+    onclick="templateForm()">
 
-    if(!menus[part])
+    ＋ 保存メニュー
 
-      menus[part]=[];
+   </button>
 
-    menus[part].push([name,equipment]);
+  </div>
 
-  }else{
+ </div>
 
-    const all=getAllMenus();
+ <div class="card">
 
-    const old=all[Number(edit)];
+  <h3>
 
-    menus[old.part]=menus[old.part].filter(
+   登録されている種目
 
-      x=>x[0]!==old.name
+  </h3>
 
-    );
+  ${
 
-    if(!menus[part])
+   Object.keys(grouped).map(
 
-      menus[part]=[];
+    cat=>`
 
-    menus[part].push([name,equipment]);
+    <div style="margin-top:14px">
 
-  }
+     <strong>
 
-  saveJSON("kintoreMenus",menus);
+      ${esc(cat)}
 
-  closeModal("menuModal");
+     </strong>
 
-  renderMenus();
+     ${
 
-}
+      grouped[cat].map(
 
-function deleteMenu(part,name){
+       m=>`
 
-  if(!confirm(name+"を削除しますか？"))
+       <div
 
-    return;
+        class="row between"
 
-  menus[part]=menus[part].filter(x=>x[0]!==name);
+        style="
 
-  saveJSON("kintoreMenus",menus);
+         padding:9px 0;
 
-  renderMenus();
+         border-bottom:1px solid #eee
 
-}
-
-function renderMenus(){
-
-  const box=document.getElementById("menuList");
-
-  box.innerHTML="";
-
-  const all=getAllMenus();
-
-  if(!all.length){
-
-    box.innerHTML=`<div class="card">種目がありません。</div>`;
-
-    return;
-
-  }
-
-  all.forEach((item,index)=>{
-
-    const div=document.createElement("div");
-
-    div.className="card";
-
-    div.innerHTML=`
-
-      <div class="exercise-head">
+        ">
 
         <div>
 
-          <b>${escapeHTML(item.name)}</b><br>
+         <div>
 
-          <span class="badge">${escapeHTML(item.part)}</span>
+          ${esc(m.name)}
 
-          <span class="badge">${escapeHTML(item.equipment)}</span>
+         </div>
+
+         <div class="muted">
+
+          ${esc(m.equip)}
+
+         </div>
 
         </div>
 
         <div>
 
-          <button class="secondary"
+         <button
 
-            onclick="showMenuModal(${index})">
+          class="btn secondary small"
 
-            編集
+          onclick="menuForm('${esc(m.id)}')">
 
-          </button>
+          編集
 
-          <button class="danger"
+         </button>
 
-            onclick="deleteMenu('${escapeAttr(item.part)}','${escapeAttr(item.name)}')">
+         <button
 
-            削除
+          class="btn danger small"
 
-          </button>
+          onclick="deleteMenu('${esc(m.id)}')">
+
+          削除
+
+         </button>
 
         </div>
+
+       </div>
+
+       `
+
+      ).join('')
+
+     }
+
+    </div>
+
+    `
+
+   ).join('')
+
+  }
+
+ </div>
+
+ <div class="card">
+
+  <h3>
+
+   保存メニュー
+
+  </h3>
+
+  ${
+
+   Object.keys(templates).length
+
+   ?
+
+   Object.entries(templates)
+
+   .map(
+
+    ([name,items])=>`
+
+    <div
+
+     class="row between"
+
+     style="
+
+      padding:9px 0;
+
+      border-bottom:1px solid #eee
+
+     ">
+
+     <div>
+
+      <strong>
+
+       ${esc(name)}
+
+      </strong>
+
+      <div class="muted">
+
+       ${items.map(esc).join(' / ')}
 
       </div>
 
-    `;
+     </div>
 
-    box.appendChild(div);
+     <button
 
-  });
+      class="btn danger small"
+
+      onclick="deleteTemplate('${esc(name)}')">
+
+      削除
+
+     </button>
+
+    </div>
+
+    `
+
+   ).join('')
+
+   :
+
+   '<div class="empty">まだありません</div>'
+
+  }
+
+ </div>
+
+ `;
 
 }
 
-function showTemplateModal(){
+function menuForm(id){
 
-  document.getElementById("templateName").value="";
+ const m=
 
-  const box=document.getElementById("templateExercises");
+  menus.find(
 
-  box.innerHTML="";
+   x=>x.id===id
 
-  getAllMenus().forEach((item,index)=>{
+  )||
 
-    const label=document.createElement("label");
+  {
 
-    label.style.fontWeight="normal";
+   cat:'胸',
 
-    label.innerHTML=`
+   name:'',
 
-      <input type="checkbox"
+   equip:'マシン'
 
-        value="${index}"
+  };
 
-        style="width:auto;margin-right:8px">
+ document.getElementById(
 
-      ${escapeHTML(item.name)}
+  'modalRoot'
 
-      <span class="small">(${escapeHTML(item.part)})</span>
+ ).innerHTML=`
 
-    `;
+ <div
 
-    box.appendChild(label);
+  class="modal"
 
-  });
+  onclick="if(event.target===this)closeModal()">
 
-  document.getElementById("templateModal")
+  <div class="modal-box">
 
-    .classList.remove("hidden");
+   <div class="modal-head">
+
+    <h2 style="margin:0">
+
+     ${id?'種目を編集':'種目を追加'}
+
+    </h2>
+
+    <button
+
+     class="modal-close"
+
+     onclick="closeModal()">
+
+     ×
+
+    </button>
+
+   </div>
+
+   <label>
+
+    部位
+
+   </label>
+
+   <select id="mfCat">
+
+    ${
+
+     cats.map(
+
+      c=>`
+
+      <option
+
+       ${c===m.cat?'selected':''}>
+
+       ${esc(c)}
+
+      </option>
+
+      `
+
+     ).join('')
+
+    }
+
+   </select>
+
+   <label>
+
+    種目名
+
+   </label>
+
+   <input
+
+    id="mfName"
+
+    value="${esc(m.name)}"
+
+    placeholder="例：インクラインベンチプレス">
+
+   <label>
+
+    器具
+
+   </label>
+
+   <select id="mfEquip">
+
+    ${
+
+     [
+
+      'マシン',
+
+      'バーベル',
+
+      'ダンベル',
+
+      'ケーブル',
+
+      'スミス',
+
+      '自重',
+
+      '有酸素',
+
+      'その他'
+
+     ].map(
+
+      x=>`
+
+      <option
+
+       ${x===m.equip?'selected':''}>
+
+       ${x}
+
+      </option>
+
+      `
+
+     ).join('')
+
+    }
+
+   </select>
+
+   <div
+
+    class="row"
+
+    style="
+
+     margin-top:14px;
+
+     justify-content:flex-end
+
+    ">
+
+    <button
+
+     class="btn secondary"
+
+     onclick="closeModal()">
+
+     キャンセル
+
+    </button>
+
+    <button
+
+     class="btn"
+
+     onclick="saveMenu('${id||''}')">
+
+     保存
+
+    </button>
+
+   </div>
+
+  </div>
+
+ </div>
+
+ `;
+
+}
+
+function closeModal(){
+
+ document.getElementById(
+
+  'modalRoot'
+
+ ).innerHTML='';
+
+}
+
+function saveMenu(id){
+
+ const obj={
+
+  id:
+
+   id||
+
+   'm'+Date.now(),
+
+  cat:
+
+   document.getElementById(
+
+    'mfCat'
+
+   ).value,
+
+  name:
+
+   document.getElementById(
+
+    'mfName'
+
+   ).value.trim(),
+
+  equip:
+
+   document.getElementById(
+
+    'mfEquip'
+
+   ).value
+
+ };
+
+ if(!obj.name){
+
+  alert(
+
+   '種目名を入力してください'
+
+  );
+
+  return;
+
+ }
+
+ if(id){
+
+  menus=menus.map(
+
+   m=>m.id===id
+
+    ? obj
+
+    : m
+
+  );
+
+ }else{
+
+  menus.push(obj);
+
+ }
+
+ saveAll();
+
+ closeModal();
+
+ renderMenu();
+
+}
+
+function deleteMenu(id){
+
+ if(
+
+  confirm(
+
+   'この種目を削除しますか？'
+
+  )
+
+ ){
+
+  menus=menus.filter(
+
+   m=>m.id!==id
+
+  );
+
+  saveAll();
+
+  renderMenu();
+
+ }
+
+}
+
+function templateForm(){
+
+ const names=
+
+  menus.map(
+
+   m=>m.name
+
+  );
+
+ document.getElementById(
+
+  'modalRoot'
+
+ ).innerHTML=`
+
+ <div
+
+  class="modal"
+
+  onclick="if(event.target===this)closeModal()">
+
+  <div class="modal-box">
+
+   <div class="modal-head">
+
+    <h2 style="margin:0">
+
+     保存メニューを作る
+
+    </h2>
+
+    <button
+
+     class="modal-close"
+
+     onclick="closeModal()">
+
+     ×
+
+    </button>
+
+   </div>
+
+   <label>
+
+    メニュー名
+
+   </label>
+
+   <input
+
+    id="tplName"
+
+    placeholder="例：胸の日">
+
+   <label>
+
+    種目
+
+    （カンマ区切り）
+
+   </label>
+
+   <textarea
+
+    id="tplItems"
+
+    placeholder="${esc(
+
+     names.slice(0,5).join(', ')
+
+    )}"></textarea>
+
+   <div
+
+    class="row"
+
+    style="
+
+     margin-top:14px;
+
+     justify-content:flex-end
+
+    ">
+
+    <button
+
+     class="btn secondary"
+
+     onclick="closeModal()">
+
+     キャンセル
+
+    </button>
+
+    <button
+
+     class="btn"
+
+     onclick="saveTemplate()">
+
+     保存
+
+    </button>
+
+   </div>
+
+  </div>
+
+ </div>
+
+ `;
 
 }
 
 function saveTemplate(){
 
+ const n=
+
+  document.getElementById(
+
+   'tplName'
+
+  ).value.trim();
+
+ const items=
+
+  document.getElementById(
+
+   'tplItems'
+
+  ).value
+
+  .split(',')
+
+  .map(
+
+   x=>x.trim()
+
+  )
+
+  .filter(Boolean);
+
+ if(!n||!items.length){
+
+  alert(
+
+   'メニュー名と種目を入力してください'
+
+  );
+
+  return;
+
+ }
+
+ templates[n]=items;
+
+ saveAll();
+
+ closeModal();
+
+ alert('保存しました');
+
+ renderMenu();
+
+}
+
+function deleteTemplate(n){
+
+ if(
+
+  confirm(
+
+   '「'+n+'」を削除しますか？'
+
+  )
+
+ ){
+
+  delete templates[n];
+
+  saveAll();
+
+  renderMenu();
+
+ }
+
+}
+
+function renderSchedule(){
+
+ const labels=[
+
+  '月','火','水','木','金','土','日'
+
+ ];
+
+ document.getElementById(
+
+  'main'
+
+ ).innerHTML=`
+
+ <div class="card">
+
+  <h2>
+
+   曜日別の自動予定
+
+  </h2>
+
+  <p class="muted">
+
+   「胸の日」などを曜日に割り当てると、
+
+   今後4週間の予定を自動作成します。
+
+  </p>
+
+  ${
+
+   labels.map(
+
+    (x,i)=>`
+
+    <label>
+
+     ${x}曜日
+
+    </label>
+
+    <select id="wd${i}">
+
+     <option value="">
+
+      休み・未設定
+
+     </option>
+
+     ${
+
+      Object.keys(templates)
+
+      .map(
+
+       n=>`
+
+       <option
+
+        ${
+
+         plans['wd'+i]===n
+
+          ?'selected'
+
+          :''
+
+        }>
+
+        ${esc(n)}
+
+       </option>
+
+       `
+
+      ).join('')
+
+     }
+
+    </select>
+
+    `
+
+   ).join('')
+
+  }
+
+  <button
+
+   class="btn"
+
+   style="margin-top:12px"
+
+   onclick="saveSchedule()">
+
+   4週間の予定を作成
+
+  </button>
+
+  <button
+
+   class="btn secondary"
+
+   onclick="render()">
+
+   戻る
+
+  </button>
+
+ </div>
+
+ `;
+
+}
+
+function saveSchedule(){
+
+ for(let i=0;i<7;i++){
+
+  plans['wd'+i]=
+
+   document.getElementById(
+
+    'wd'+i
+
+   ).value;
+
+ }
+
+ const start=new Date();
+
+ for(let k=0;k<28;k++){
+
+  const d=new Date(start);
+
+  d.setDate(
+
+   start.getDate()+k
+
+  );
+
+  const idx=
+
+   (d.getDay()+6)%7;
+
   const name=
 
-    document.getElementById("templateName").value.trim();
+   plans['wd'+idx];
 
-  if(!name){
+  if(name&&templates[name]){
 
-    alert("メニュー名を入力してください");
+   plans[localDate(d)]=
 
-    return;
-
-  }
-
-  const selected=
-
-    [...document.querySelectorAll(
-
-      "#templateExercises input:checked"
-
-    )].map(x=>Number(x.value));
-
-  if(!selected.length){
-
-    alert("種目を選択してください");
-
-    return;
+    templates[name].slice();
 
   }
 
-  const all=getAllMenus();
+ }
 
-  templates.push({
+ saveAll();
 
-    name:name,
+ alert(
 
-    exercises:selected.map(i=>({
+  '今後4週間の予定を作成しました'
 
-      name:all[i].name,
+ );
 
-      part:all[i].part,
-
-      equipment:all[i].equipment
-
-    }))
-
-  });
-
-  saveJSON("kintoreTemplates",templates);
-
-  closeModal("templateModal");
-
-  renderTemplates();
+ render();
 
 }
 
-function renderTemplates(){
+function renderSettings(){
 
-  const box=document.getElementById("templateList");
+ document.getElementById(
 
-  box.innerHTML="";
+  'main'
 
-  if(!templates.length){
+ ).innerHTML=`
 
-    box.innerHTML=
+ <div class="card">
 
-      `<p class="small">保存メニューはまだありません。</p>`;
+  <h2>
 
-    return;
+   メニュー
 
-  }
+  </h2>
 
-  templates.forEach((t,index)=>{
+  <p class="muted">
 
-    const div=document.createElement("div");
+   アプリ全体の設定や情報を管理します。
 
-    div.className="list-item";
+  </p>
 
-    div.innerHTML=`
+  <button
 
-      <b>${escapeHTML(t.name)}</b>
+   class="btn secondary"
 
-      <div>
+   onclick="profileSettings()">
 
-        ${(t.exercises||[])
+   👤 個人設定
 
-          .map(e=>`<span class="badge">${escapeHTML(e.name)}</span>`)
+  </button>
 
-          .join("")}
+  <button
 
-      </div>
+   class="btn secondary"
 
-      <button class="danger"
+   style="margin-left:6px"
 
-        style="margin-top:8px"
+   onclick="showInfo()">
 
-        onclick="deleteTemplate(${index})">
+   ℹ️ Info
 
-        削除
+  </button>
 
-      </button>
+ </div>
 
-    `;
+ <div class="card">
 
-    box.appendChild(div);
+  <h3>
 
-  });
+   予定管理
+
+  </h3>
+
+  <button
+
+   class="btn secondary"
+
+   onclick="renderSchedule()">
+
+   曜日別の自動予定
+
+  </button>
+
+ </div>
+
+ `;
 
 }
 
-function deleteTemplate(index){
+function showInfo(){
 
-  if(!confirm("この保存メニューを削除しますか？"))
+ document.getElementById(
 
-    return;
+  'main'
 
-  templates.splice(index,1);
+ ).innerHTML=`
 
-  saveJSON("kintoreTemplates",templates);
+ <div class="card">
 
-  renderTemplates();
+  <h2>
+
+   Info
+
+  </h2>
+
+  <h3>
+
+   カレンダーのマーク
+
+  </h3>
+
+  <p>
+
+   🔥 トレーニング実施日
+
+  </p>
+
+  <p>
+
+   📅 トレーニング予定日
+
+  </p>
+
+  <p>
+
+   🏆 PR更新日
+
+  </p>
+
+  <p>
+
+   📝 メモがある日
+
+  </p>
+
+  <p class="muted">
+
+   ※現在のホーム画面では、
+
+   カレンダーを見やすくするため
+
+   マークを表示していません。
+
+  </p>
+
+  <button
+
+   class="btn secondary"
+
+   onclick="renderSettings()">
+
+   戻る
+
+  </button>
+
+ </div>
+
+ `;
+
+}
+
+function profileSettings(){
+
+ document.getElementById(
+
+  'main'
+
+ ).innerHTML=`
+
+ <div class="card">
+
+  <h2>
+
+   個人設定
+
+  </h2>
+
+  <label>
+
+   ユーザー名
+
+  </label>
+
+  <input
+
+   id="pname"
+
+   value="${esc(profile.name||'')}"
+
+   placeholder="表示名">
+
+  <label>
+
+   身長 cm
+
+  </label>
+
+  <input
+
+   id="pheight"
+
+   type="number"
+
+   step="0.1"
+
+   value="${esc(profile.height||'')}">
+
+  <label>
+
+   体重 kg
+
+  </label>
+
+  <input
+
+   id="pweight"
+
+   type="number"
+
+   step="0.1"
+
+   value="${esc(profile.weight||'')}">
+
+  <p class="muted">
+
+   体重は有酸素運動の
+
+   推定消費カロリー計算に使用します。
+
+  </p>
+
+  <button
+
+   class="btn"
+
+   onclick="saveProfile()">
+
+   保存
+
+  </button>
+
+  <button
+
+   class="btn secondary"
+
+   style="margin-left:6px"
+
+   onclick="renderSettings()">
+
+   戻る
+
+  </button>
+
+ </div>
+
+ `;
+
+}
+
+function saveProfile(){
+
+ profile.name=
+
+  document.getElementById(
+
+   'pname'
+
+  ).value.trim()||
+
+  '自分';
+
+ profile.height=
+
+  Number(
+
+   document.getElementById(
+
+    'pheight'
+
+   ).value
+
+  )||'';
+
+ profile.weight=
+
+  Number(
+
+   document.getElementById(
+
+    'pweight'
+
+   ).value
+
+  )||'';
+
+ saveAll();
+
+ render();
 
 }
 
 function renderAnalysis(){
 
-  const box=document.getElementById("analysis");
+ const entries=
 
-  let workoutDays=0;
+  Object.entries(data);
 
-  let totalSets=0;
+ const now=new Date();
 
-  let totalVolume=0;
+ const y=
 
-  let cardioDistance=0;
+  now.getFullYear();
 
-  Object.values(records).forEach(day=>{
+ const m=
 
-    const workouts=
+  now.getMonth()+1;
 
-      Array.isArray(day)
+ const prefix=
 
-        ? day
+  y+'-'+
 
-        : day.workouts || [];
+  String(m).padStart(2,'0');
 
-    if(workouts.length)
+ const current=
 
-      workoutDays++;
+  entries.filter(
 
-    workouts.forEach(w=>{
+   ([d])=>d.startsWith(prefix)
 
-      if(w.type==="cardio"){
+  );
 
-        cardioDistance+=Number(w.distance)||0;
+ const count=
 
-      }else{
+  a=>
 
-        normalizeSets(w.sets).forEach(s=>{
+   a.filter(
 
-          const weight=Number(s.weight)||0;
+    ([,v])=>
 
-          const reps=Number(s.reps)||0;
+     Array.isArray(v?.workouts)&&
 
-          if(weight || reps)
+     v.workouts.length
 
-            totalSets++;
+   ).length;
 
-          totalVolume+=weight*reps;
+ const setCount=
 
-        });
+  a=>
 
-      }
+   a.reduce(
 
-    });
+    (n,[,v])=>
 
-  });
+     n+
 
-  box.innerHTML=`
+     (Array.isArray(v?.workouts)
 
-    <p>
+      ?v.workouts.reduce(
 
-      トレーニング日数：
+       (z,w)=>
 
-      <b>${workoutDays}</b>日
+        z+
 
-    </p>
+        (
 
-    <p>
+         w.cat==='有酸素'
 
-      総セット数：
+          ?0
 
-      <b>${totalSets}</b>セット
+          :(
 
-    </p>
+           Array.isArray(w.sets)
 
-    <p>
+            ?w.sets
 
-      総負荷量：
+            :[]
 
-      <b>${Math.round(totalVolume).toLocaleString()}</b> kg
+          ).filter(
 
-    </p>
+           s=>
 
-    <p>
+            s.weight!==''||
 
-      有酸素距離：
+            s.reps!==''
 
-      <b>${cardioDistance.toFixed(1)}</b> km
+          ).length
 
-    </p>
+        ),
 
-    <hr>
+       0
 
-    <p class="small">
+      )
 
-      ※現在のバージョンではデータはこの端末に保存されます。
+      :0),
 
-    </p>
+    0
 
-  `;
+   );
 
-}
+ const volume=
 
-function hasPR(date){
+  a=>
 
-  const day=records[date];
+   a.reduce(
 
-  const workouts=
+    (n,[,v])=>
 
-    Array.isArray(day)
+     n+
 
-      ? day
+     (
 
-      : day?.workouts || [];
+      Array.isArray(v?.workouts)
 
-  for(const w of workouts){
+       ?v.workouts.reduce(
 
-    if(w.type==="cardio") continue;
+        (z,w)=>
 
-    const sets=normalizeSets(w.sets);
+         z+
 
-    for(const s of sets){
+         (
 
-      const weight=Number(s.weight)||0;
+          Array.isArray(w.sets)
 
-      if(!weight) continue;
+           ?w.sets
 
-      let previousMax=0;
+           :[]
 
-      Object.keys(records)
+         ).reduce(
 
-        .filter(d=>d<date)
+          (q,s)=>
 
-        .forEach(d=>{
+           q+
 
-          const pd=records[d];
+           (
 
-          const pws=
+            Number(s.weight)||0
 
-            Array.isArray(pd)
+           )*
 
-              ? pd
+           (
 
-              : pd?.workouts || [];
+            Number(s.reps)||0
 
-          pws.forEach(pw=>{
+           ),
 
-            if(pw.name!==w.name) return;
+          0
 
-            normalizeSets(pw.sets).forEach(ps=>{
+         ),
 
-              previousMax=Math.max(
+        0
 
-                previousMax,
+       )
 
-                Number(ps.weight)||0
+       :0
 
-              );
+     ),
 
-            });
+    0
 
-          });
+   );
 
-        });
+ const calories=
 
-      if(weight>previousMax)
+  a=>
 
-        return true;
+   a.reduce(
+
+    (n,[,v])=>
+
+     n+
+
+     (
+
+      Array.isArray(v?.workouts)
+
+       ?v.workouts.reduce(
+
+        (z,w)=>
+
+         z+
+
+         estimateCalories(w),
+
+        0
+
+       )
+
+       :0
+
+     ),
+
+    0
+
+   );
+
+ let exercises=[
+
+  ...new Set(
+
+   entries.flatMap(
+
+    ([,v])=>
+
+     (
+
+      Array.isArray(v?.workouts)
+
+       ?v.workouts
+
+       :[]
+
+     )
+
+     .filter(
+
+      w=>w.cat!=='有酸素'
+
+     )
+
+     .map(
+
+      w=>w.exercise
+
+     )
+
+   )
+
+  )
+
+ ];
+
+ let selected=
+
+  state.analysisExercise||
+
+  exercises[0]||
+
+  '';
+
+ if(
+
+  selected &&
+
+  !exercises.includes(selected)
+
+ ){
+
+  selected=exercises[0]||'';
+
+ }
+
+ document.getElementById(
+
+  'main'
+
+ ).innerHTML=`
+
+ <div class="card">
+
+  <h2>
+
+   ${y}年${m}月
+
+  </h2>
+
+  <div class="statgrid">
+
+   <div class="stat">
+
+    <span class="muted">
+
+     トレーニング日
+
+    </span>
+
+    <strong>
+
+     ${count(current)}
+
+    </strong>
+
+    日
+
+   </div>
+
+   <div class="stat">
+
+    <span class="muted">
+
+     セット数
+
+    </span>
+
+    <strong>
+
+     ${setCount(current)}
+
+    </strong>
+
+   </div>
+
+   <div class="stat">
+
+    <span class="muted">
+
+     総負荷
+
+    </span>
+
+    <strong>
+
+     ${Math.round(
+
+      volume(current)
+
+     ).toLocaleString()}
+
+    </strong>
+
+    <span class="muted">
+
+     kg
+
+    </span>
+
+   </div>
+
+   <div class="stat">
+
+    <span class="muted">
+
+     推定消費
+
+    </span>
+
+    <strong>
+
+     ${Math.round(
+
+      calories(current)
+
+     ).toLocaleString()}
+
+    </strong>
+
+    <span class="muted">
+
+     kcal
+
+    </span>
+
+   </div>
+
+  </div>
+
+ </div>
+
+ <div class="card">
+
+  <h2>
+
+   種目別・重量推移
+
+  </h2>
+
+  ${
+
+   exercises.length
+
+   ?
+
+   `
+
+   <select
+
+    id="analysisExercise"
+
+    onchange="
+
+     state.analysisExercise=this.value;
+
+     renderAnalysis()
+
+    ">
+
+    ${
+
+     exercises.map(
+
+      e=>`
+
+      <option
+
+       value="${esc(e)}"
+
+       ${
+
+        e===selected
+
+         ?'selected'
+
+         :''
+
+       }>
+
+       ${esc(e)}
+
+      </option>
+
+      `
+
+     ).join('')
 
     }
 
+   </select>
+
+   <div class="canvas-wrap">
+
+    <canvas
+
+     id="weightChart">
+
+    </canvas>
+
+   </div>
+
+   `
+
+   :
+
+   '<div class="empty">重量記録がありません</div>'
+
   }
 
-  return false;
+ </div>
+
+ <div class="card">
+
+  <h2>
+
+   MAX重量
+
+  </h2>
+
+  ${
+
+   exercises.length
+
+   ?
+
+   exercises.map(
+
+    e=>{
+
+     let max=0;
+
+     entries.forEach(
+
+      ([,v])=>{
+
+       (
+
+        Array.isArray(v?.workouts)
+
+         ?v.workouts
+
+         :[]
+
+       )
+
+       .filter(
+
+        w=>w.exercise===e
+
+       )
+
+       .forEach(
+
+        w=>{
+
+         (
+
+          Array.isArray(w.sets)
+
+           ?w.sets
+
+           :[]
+
+         )
+
+         .forEach(
+
+          s=>{
+
+           max=Math.max(
+
+            max,
+
+            Number(s.weight)||0
+
+           );
+
+          }
+
+         );
+
+        }
+
+       );
+
+      }
+
+     );
+
+     return `
+
+     <div
+
+      class="row between"
+
+      style="
+
+       padding:8px 0;
+
+       border-bottom:1px solid #eee
+
+      ">
+
+      <span>
+
+       ${esc(e)}
+
+      </span>
+
+      <strong>
+
+       ${max||'-'}
+
+       ${max?'kg':''}
+
+      </strong>
+
+     </div>
+
+     `;
+
+    }
+
+   ).join('')
+
+   :
+
+   '<div class="empty">まだありません</div>'
+
+  }
+
+ </div>
+
+ <div class="card">
+
+  <h3>
+
+   消費カロリーについて
+
+  </h3>
+
+  <p class="muted">
+
+   有酸素運動の時間と体重から
+
+   METsを使って推定します。
+
+   実測値ではないため、
+
+   目安として表示します。
+
+   <br><br>
+
+   筋トレは時間記録がないため、
+
+   現時点では合計に含めていません。
+
+  </p>
+
+ </div>
+
+ `;
+
+ if(exercises.length){
+
+  drawWeightChart(selected);
+
+ }
 
 }
 
-function closeModal(id){
+function drawWeightChart(exercise){
 
-  document.getElementById(id).classList.add("hidden");
+ const c=
+
+  document.getElementById(
+
+   'weightChart'
+
+  );
+
+ if(!c)return;
+
+ const rect=
+
+  c.getBoundingClientRect();
+
+ const dpr=
+
+  window.devicePixelRatio||1;
+
+ const w=
+
+  Math.max(
+
+   300,
+
+   rect.width
+
+  );
+
+ const h=
+
+  Math.max(
+
+   240,
+
+   rect.height
+
+  );
+
+ c.width=w*dpr;
+
+ c.height=h*dpr;
+
+ const ctx=
+
+  c.getContext('2d');
+
+ ctx.scale(
+
+  dpr,
+
+  dpr
+
+ );
+
+ ctx.clearRect(
+
+  0,
+
+  0,
+
+  w,
+
+  h
+
+ );
+
+ let pts=[];
+
+ Object.keys(data)
+
+ .sort()
+
+ .forEach(
+
+  date=>{
+
+   const workouts=
+
+    Array.isArray(
+
+     data[date]?.workouts
+
+    )
+
+    ?data[date].workouts
+
+    :[];
+
+   workouts
+
+   .filter(
+
+    x=>x.exercise===exercise
+
+   )
+
+   .forEach(
+
+    x=>{
+
+     const sets=
+
+      Array.isArray(x.sets)
+
+       ?x.sets
+
+       :[];
+
+     sets.forEach(
+
+      s=>{
+
+       const v=
+
+        Number(s.weight);
+
+       if(v>0){
+
+        pts.push({
+
+         date,
+
+         v
+
+        });
+
+       }
+
+      }
+
+     );
+
+    }
+
+   );
+
+  }
+
+ );
+
+ if(!pts.length){
+
+  ctx.fillText(
+
+   '重量データがありません',
+
+   20,
+
+   40
+
+  );
+
+  return;
+
+ }
+
+ const max=
+
+  Math.max(
+
+   ...pts.map(
+
+    p=>p.v
+
+   )
+
+  );
+
+ const min=
+
+  Math.min(
+
+   ...pts.map(
+
+    p=>p.v
+
+   )
+
+  );
+
+ const left=45;
+
+ const right=12;
+
+ const top=20;
+
+ const bottom=38;
+
+ const pad=
+
+  (max-min)||1;
+
+ ctx.font=
+
+  '12px -apple-system,BlinkMacSystemFont,sans-serif';
+
+ ctx.strokeStyle='#ddd';
+
+ ctx.fillStyle='#666';
+
+ for(let i=0;i<=4;i++){
+
+  const yy=
+
+   top+
+
+   (h-top-bottom)*i/4;
+
+  const val=
+
+   max-
+
+   pad*i/4;
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+
+   left,
+
+   yy
+
+  );
+
+  ctx.lineTo(
+
+   w-right,
+
+   yy
+
+  );
+
+  ctx.stroke();
+
+  ctx.fillText(
+
+   Math.round(
+
+    val*10
+
+   )/10+'kg',
+
+   2,
+
+   yy+4
+
+  );
+
+ }
+
+ ctx.strokeStyle='#111';
+
+ ctx.beginPath();
+
+ pts.forEach(
+
+  (p,i)=>{
+
+   const x=
+
+    left+
+
+    (w-left-right)*
+
+    (
+
+     pts.length===1
+
+      ?0.5
+
+      :i/(pts.length-1)
+
+    );
+
+   const y=
+
+    top+
+
+    (h-top-bottom)*
+
+    (max-p.v)/pad;
+
+   if(i){
+
+    ctx.lineTo(
+
+     x,
+
+     y
+
+    );
+
+   }else{
+
+    ctx.moveTo(
+
+     x,
+
+     y
+
+    );
+
+   }
+
+  }
+
+ );
+
+ ctx.stroke();
+
+ ctx.fillStyle='#111';
+
+ pts.forEach(
+
+  (p,i)=>{
+
+   const x=
+
+    left+
+
+    (w-left-right)*
+
+    (
+
+     pts.length===1
+
+      ?0.5
+
+      :i/(pts.length-1)
+
+    );
+
+   const yy=
+
+    top+
+
+    (h-top-bottom)*
+
+    (max-p.v)/pad;
+
+   ctx.beginPath();
+
+   ctx.arc(
+
+    x,
+
+    yy,
+
+    3,
+
+    0,
+
+    Math.PI*2
+
+   );
+
+   ctx.fill();
+
+  }
+
+ );
+
+ ctx.fillStyle='#666';
+
+ ctx.fillText(
+
+  pts[0].date.slice(5),
+
+  left,
+
+  h-12
+
+ );
+
+ if(pts.length>1){
+
+  ctx.fillText(
+
+   pts[pts.length-1].date.slice(5),
+
+   w-50,
+
+   h-12
+
+  );
+
+ }
 
 }
 
-function escapeHTML(value){
-
-  return String(value ?? "")
-
-    .replaceAll("&","&amp;")
-
-    .replaceAll("<","&lt;")
-
-    .replaceAll(">","&gt;")
-
-    .replaceAll('"',"&quot;")
-
-    .replaceAll("'","&#039;");
-
-}
-
-function escapeAttr(value){
-
-  return String(value ?? "")
-
-    .replaceAll("\\","\\\\")
-
-    .replaceAll("'","\\'");
-
-}
-
-/* モーダル外をタップして閉じる */
-
-document.querySelectorAll(".modal-bg").forEach(bg=>{
-
-  bg.addEventListener("click",e=>{
-
-    if(e.target===bg)
-
-      bg.classList.add("hidden");
-
-  });
-
-});
-
-/* 初期表示 */
-
-document.addEventListener("DOMContentLoaded",()=>{
-
-  renderCalendar();
-
-  updateExerciseSelect();
-
-});
+render();
 
 </script>
 
